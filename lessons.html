@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Разборы · Два проекта, которые не вышли в продакшен · Сергей Воробьев</title>
+<meta name="description" content="Два внедрения, которые технически работали, но остановились на MVP. Причины в экономике и инфраструктуре, не в коде." />
+<meta name="author" content="Сергей Воробьев" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content="Sparrow AI · Сергей Воробьев" />
+<meta property="og:title" content="Разборы · Два проекта, которые не вышли в продакшен · Сергей Воробьев" />
+<meta property="og:description" content="Два внедрения, которые технически работали, но остановились на MVP. Причины в экономике и инфраструктуре, не в коде." />
+<meta property="og:url" content="https://sparrow-ai.tech/lessons.html" />
+<meta property="og:image" content="https://sparrow-ai.tech/assets/svorg-black.png" />
+<meta property="og:image:alt" content="Кит · логотип Sparrow AI" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Разборы · Два проекта, которые не вышли в продакшен · Сергей Воробьев" />
+<meta name="twitter:description" content="Два внедрения, которые технически работали, но остановились на MVP. Причины в экономике и инфраструктуре, не в коде." />
+<meta name="twitter:image" content="https://sparrow-ai.tech/assets/svorg-black.png" />
+
+<!-- Canonical -->
+<link rel="canonical" href="https://sparrow-ai.tech/lessons.html" />
+
+<!-- Apple touch icon -->
+<link rel="apple-touch-icon" href="assets/svorg-black.png" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230E0E10'/%3E%3Ccircle cx='50' cy='50' r='24' fill='none' stroke='%23fff' stroke-width='7'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%23C9F24E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Forum&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="top-stripe"></div>
+
+<!-- ====== NAVBAR ====== -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-mark" src="assets/svorg-black.png" alt="" />
+      <span class="brand-name">Сергей Воробьев</span>
+    </a>
+    <nav class="nav-menu" aria-label="Main">
+      <a href="products.html"><span class="nav-num mono">01</span>Продукты</a>
+      <a href="cases.html"><span class="nav-num mono">02</span>Кейсы</a>
+      <a href="about.html"><span class="nav-num mono">03</span>О себе</a>
+      <a href="about.html#contacts"><span class="nav-num mono">04</span>Контакты</a>
+      <a class="btn-write" href="https://t.me/SergChina" target="_blank" rel="noopener">Написать</a>
+    </nav>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ====== BREADCRUMBS ====== -->
+<div class="container">
+  <nav class="breadcrumbs">
+    <a href="cases.html">Кейсы</a><span class="sep"><span class="arr">→</span></span><span>Разборы</span>
+  </nav>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="container lessons-hero" data-screen-label="01 Hero">
+  <div class="eyebrow">Не только успехи</div>
+  <h1 class="display" style="margin-top: 24px;">Два проекта,<br>которые остановились на&nbsp;MVP.</h1>
+  <p class="sub">Обе системы технически работали. Ни одна не вышла в продакшен. Причины не в технологии&nbsp;· в экономике и инфраструктуре. Расскажу, что я понял на этих проектах и как это изменило мой подход к оценке.</p>
+</section>
+
+<!-- ====== PROJECT 1 ====== -->
+<section class="container project-block" data-screen-label="02 Project · Экология">
+  <div class="project-head">
+    <div class="period-mono">2025</div>
+    <div class="cat">ЭКОЛОГИЯ · РЕГУЛЯТОРИКА</div>
+    <h2>Автоматическая проверка отчётов о&nbsp;выбросах.</h2>
+    <div class="nda-line">Экологическая компания. Внедрение под&nbsp;NDA.</div>
+  </div>
+
+  <div class="subblock">
+    <div class="label">Что было решено технически</div>
+    <h3>MVP полностью работал.</h3>
+    <div class="solution-grid lessons-cards">
+      <div class="sol-card">
+        <div class="t">Интеграция с кадастром</div>
+        <div class="d">Автоматическая сверка адресных данных объекта. Робот сравнивал данные клиента с официальным реестром и фиксировал несоответствия&nbsp;· например, когда в документах указано «корпус 5, строение 3», а на самом деле «корпус 4, строение 2».</div>
+      </div>
+      <div class="sol-card">
+        <div class="t">Связь с реестром ГОСТ и СанПиН</div>
+        <div class="d">Подключение к актуальной нормативной базе. Система автоматически подтягивала действующие нормативы выбросов с учётом их регулярных изменений и проверяла замеры клиента на соответствие.</div>
+      </div>
+      <div class="sol-card">
+        <div class="t">Автогенерация отчётов</div>
+        <div class="d">Итоговый документ собирался автоматически&nbsp;· с водяными знаками, печатями и подписями компании, готовый к отправке заказчику.</div>
+      </div>
+      <div class="sol-card">
+        <div class="t">Прошёл техническое тестирование</div>
+        <div class="d">MVP был развёрнут, протестирован на реальных кейсах клиента, показал заявленную точность работы.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subblock large">
+    <div class="label">Почему не вышел в продакшен</div>
+    <h3>Экономика не сошлась.</h3>
+    <div class="reason-body">
+      <p>Когда мы посчитали полную стоимость разработки, постоянной поддержки и адаптации под изменения в нормативной базе&nbsp;· оказалось, что <span class="ochre-mark">содержать двух специалистов, делающих ту же работу руками, в моменте выходит дешевле</span>. Регулярные обновления ГОСТ и СанПиН требовали бы постоянного сопровождения системы, и совокупная стоимость владения автоматизацией превышала фонд оплаты труда на эту функцию.</p>
+      <p>Бизнес рационально отказался от внедрения.</p>
+    </div>
+  </div>
+
+  <div class="subblock large">
+    <div class="label">Что я понял</div>
+    <p class="reflection">Автоматизация ради автоматизации не работает. Технически впечатляющий проект может оказаться экономически бессмысленным, если задача низкочастотная или нормативная база требует постоянной адаптации. С этого проекта я начал каждый разговор с клиентом со счёта: сколько человеко-часов мы экономим, сколько стоит разработка, сколько стоит поддержка. Если математика не сходится&nbsp;· мы не делаем проект, даже если можем.</p>
+  </div>
+</section>
+
+<!-- ====== DIVIDER ====== -->
+<div class="container project-divider">
+  <div class="line"></div>
+</div>
+
+<!-- ====== PROJECT 2 ====== -->
+<section class="container project-block" data-screen-label="03 Project · Общепит">
+  <div class="project-head">
+    <div class="period-mono">2026</div>
+    <div class="cat">ОБЩЕПИТ · ФРАНШИЗА · ГОЛОСОВЫЕ СИСТЕМЫ</div>
+    <h2>Голосовой ассистент для контроля операций торговой сети.</h2>
+    <div class="nda-line">Торговая сеть с франшизой. Внедрение под&nbsp;NDA.</div>
+  </div>
+
+  <div class="subblock">
+    <div class="label">Что было спроектировано</div>
+    <h3>Архитектура голосового ассистента для франшизной сети.</h3>
+    <div class="solution-grid lessons-cards">
+      <div class="sol-card">
+        <div class="t">Контроль товарного соседства</div>
+        <div class="d">Голосовая система отслеживает соблюдение санитарных норм товарного соседства в реальном времени&nbsp;· какие продукты могут стоять рядом, какие нет, какие условия хранения нарушаются.</div>
+      </div>
+      <div class="sol-card">
+        <div class="t">Учёт расхода продуктов</div>
+        <div class="d">Контроль фактического расхода против нормативного. Выявление перерасхода, несоответствий между списанием и продажами, утечек на конкретной точке.</div>
+      </div>
+      <div class="sol-card">
+        <div class="t">Интеграция с iiko и r-keeper</div>
+        <div class="d">Двусторонняя синхронизация с системами учёта в общепите. Голосовой ассистент работал поверх привычной для франчайзи инфраструктуры, не требуя замены систем.</div>
+      </div>
+      <div class="sol-card">
+        <div class="t">Готовый продукт для франшизной модели</div>
+        <div class="d">Система проектировалась как тиражируемый продукт&nbsp;· единый стандарт для всей сети, продаваемый франчайзи как часть пакета.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subblock large">
+    <div class="label">Почему не вышел в продакшен</div>
+    <h3>Инфраструктуры не оказалось.</h3>
+    <div class="reason-body">
+      <p>Технически проект был реализуем. Деньги у заказчика были. Команда готова. Архитектура продумана.</p>
+      <p><span class="ochre-mark">Но мы не смогли найти специализированное аппаратное обеспечение, необходимое для развёртывания системы в нужном масштабе.</span> Производственные мощности, на которые мы рассчитывали при проектировании, оказались недоступны на российском рынке в нужных объёмах и в нужных характеристиках. Импортные альтернативы не подходили по совокупности причин, российские аналоги не вытягивали требования проекта.</p>
+      <p>Проект был приостановлен до момента, когда необходимое железо станет доступно. Когда это произойдёт&nbsp;· мы вернёмся к нему.</p>
+    </div>
+  </div>
+
+  <div class="subblock large">
+    <div class="label">Что я понял</div>
+    <p class="reflection">Технология&nbsp;· это не только код. Это ещё и физическая инфраструктура, которая должна существовать в нужный момент в нужном месте. Я научился на этапе оценки проверять не только наличие технологии, но и доступность всей цепочки её внедрения: поставки оборудования, сроки, альтернативы. С этого проекта в моих оценках появилась отдельная строка&nbsp;· «риск инфраструктуры».</p>
+  </div>
+</section>
+
+<!-- ====== FINALE ====== -->
+<section class="container finale" data-screen-label="04 Finale">
+  <div class="center">
+    <div class="eyebrow">Зачем я об этом рассказываю</div>
+    <h2>Считать раньше, чем кодить.</h2>
+    <div class="body">
+      <p>Я мог бы не упоминать эти проекты. Они под NDA, никто их не увидит, если я не покажу. Но если я не покажу&nbsp;· портфолио будет нечестным.</p>
+      <p>Из обоих провалов вышел с одним и тем же пониманием: считаем экономику и проверяем инфраструктуру до того, как пишем код. Это сейчас определяет, как я работаю с клиентами на этапе оценки. Не «можем ли мы это сделать», а «должны ли мы это делать сейчас и в этих условиях».</p>
+      <p>Поэтому я говорю «нет» примерно одному из четырёх проектов, которые мне приносят. Это не потому, что я разборчив. Это потому, что я уже видел, что бывает, когда говоришь «да» неправильному проекту.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== DUAL CTA ====== -->
+<section class="container dual-cta" data-screen-label="05 CTA">
+  <div class="cta-cell accent">
+    <h3>Хотите обсудить ваш проект?</h3>
+    <p>Начнём со счёта&nbsp;· сколько человеко-часов экономим, сколько стоит разработка и поддержка. Если математика не сходится&nbsp;· скажу прямо.</p>
+    <a href="about.html#contacts" class="btn-primary">Связаться</a>
+  </div>
+  <div class="cta-cell">
+    <h3>Посмотреть успешные кейсы</h3>
+    <p>Десять историй, где математика сошлась и проект вышел в продакшен. С реальными цифрами по выручке, конверсии и срокам.</p>
+    <a href="cases.html" class="btn-outline">Открыть кейсы <span class="arr">→</span></a>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="footer" data-screen-label="06 Footer">
+  <div class="container">
+    <img class="footer-whale" src="assets/svorg-black.png" alt="" aria-hidden="true" />
+    <div class="footer-grid">
+      <div class="footer-left">
+        <div class="f-name">Сергей Воробьев</div>
+        <div class="f-sub">ИИ-решения для российского бизнеса с 2023&nbsp;года</div>
+      </div>
+      <div class="footer-right">Чем глубже смотришь, тем больше видишь.</div>
+    </div>
+    <div class="footer-bottom">SVORG · sparrow-ai.tech · 2026</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('.hamburger')?.addEventListener('click', () => {
+    document.querySelector('.nav-menu')?.classList.toggle('open');
+    document.querySelector('.hamburger')?.classList.toggle('open');
+  });
+</script>
+</body>
+</html>

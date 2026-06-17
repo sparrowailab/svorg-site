@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SVORG · Делаем невидимое прибыльным</title>
+<meta name="description" content="SVORG — ИИ-системы и продукты для российского бизнеса. С 2023: 50+ внедрений, два продукта в проде. Считаем экономику до первой строки кода. Основатель — Сергей Воробьёв." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230E0E10'/%3E%3Ccircle cx='50' cy='50' r='24' fill='none' stroke='%23fff' stroke-width='7'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%23C9F24E'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Forum&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#EDEFF2;
+  --surface:#FFFFFF;
+  --ink:#0E0E10;
+  --ink-2:#1A1A1E;
+  --chip:#1A1A1E;
+  --gray:#3A3D43;
+  --muted:#7E828A;
+  --muted-d:#9DA1A8;
+  --line:#E3E6EA;
+  --line-d:#2B2B30;
+  --lime:#C9F24E;
+  --lime-deep:#BCE633;
+  --lime-text:#3C4A0A;
+  --lime-soft:#EAF6C8;
+  --mint:#DCF0E4;
+  --peach:#FBE6D6;
+  --sky:#E3EEFB;
+  --salmon:#FCE8E8;
+  --container:1180px;
+  --pad:32px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Onest',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:18px;line-height:1.6;font-weight:400;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;
+}
+::selection{background:var(--lime);color:var(--ink);}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--pad);}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;}
+.serif{font-family:'Forum',Georgia,serif;font-weight:400;}
+
+/* mono eyebrow with lime dot */
+.tag{display:inline-flex;align-items:center;gap:9px;
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;
+  letter-spacing:0.13em;text-transform:uppercase;color:var(--muted);}
+.tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);flex:none;}
+.tag.on-dark{color:var(--muted-d);}
+
+/* section titles */
+.s-title{font-family:'Forum',Georgia,serif;font-weight:400;
+  font-size:46px;letter-spacing:-0.01em;line-height:1.08;margin-top:16px;}
+
+/* ============ NAV ============ */
+.nav{position:sticky;top:0;z-index:60;background:rgba(237,239,242,0.86);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 0;}
+.brand-logo{height:42px;width:auto;display:block;}
+.nav-menu{display:flex;align-items:center;gap:4px;}
+.nav-menu>li{position:relative;}
+.nav-link{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  padding:9px 14px;border-radius:9px;font-size:15px;font-weight:500;color:var(--ink);
+  transition:background .18s ease;}
+.nav-link:hover{background:#E1E4E9;}
+.nav-link .caret{font-size:10px;color:var(--muted);transition:transform .2s ease;}
+.has-dd:hover .caret{transform:rotate(180deg);}
+.btn-write{margin-left:8px;padding:10px 18px;border-radius:9px;background:var(--lime);
+  color:var(--lime-text);font-weight:700;font-size:15px;transition:background .18s ease;}
+.btn-write:hover{background:var(--lime-deep);}
+.dd{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(6px);
+  min-width:320px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px;
+  opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease;
+  box-shadow:0 18px 50px -28px rgba(20,30,50,.35);}
+.has-dd:hover .dd{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+.dd::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px;}
+.dd-item{display:flex;align-items:flex-start;gap:12px;padding:13px 14px;border-radius:11px;transition:background .15s ease;}
+.dd-item:hover{background:#F2F4F7;}
+.dd-ic{width:36px;height:36px;border-radius:9px;background:var(--ink);flex:none;display:grid;place-items:center;}
+.dd-ic svg{width:18px;height:18px;}
+.dd-tt{display:flex;align-items:center;gap:6px;font-weight:700;font-size:15px;}
+.dd-tt .ext{color:var(--muted);font-size:13px;}
+.dd-sub{font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px;}
+.hamb{display:none;}
+
+/* ============ HERO ============ */
+.hero{background:var(--ink);color:#fff;border-radius:24px;margin:24px auto 0;position:relative;overflow:hidden;}
+.hero::after{content:"";position:absolute;top:-150px;right:-120px;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,242,78,.16),transparent 64%);pointer-events:none;}
+.hero-in{position:relative;z-index:2;display:grid;grid-template-columns:1.55fr 1fr;gap:56px;align-items:center;padding:78px 56px;}
+.hero h1{font-family:'Forum',Georgia,serif;font-weight:400;font-size:74px;letter-spacing:-0.01em;line-height:1.02;color:#fff;}
+.hero h1 .lime{color:var(--lime);}
+.hero-sub{margin-top:26px;font-size:19px;line-height:1.55;color:var(--muted-d);max-width:540px;}
+.hero-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;}
+.btn-lime{display:inline-flex;align-items:center;gap:10px;padding:18px 28px;border-radius:12px;
+  background:var(--lime);color:var(--lime-text);font-weight:700;font-size:17px;line-height:1;
+  transition:background .18s ease,transform .18s ease;}
+.btn-lime:hover{background:var(--lime-deep);transform:translateY(-1px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:18px 28px;border-radius:12px;
+  border:1px solid var(--line-d);color:#fff;font-weight:600;font-size:17px;line-height:1;transition:border-color .18s ease,color .18s ease;}
+.btn-ghost:hover{border-color:var(--lime);color:var(--lime);}
+.hero-stats{display:flex;flex-direction:column;gap:14px;}
+.stat{background:var(--chip);border:1px solid var(--line-d);border-radius:16px;padding:22px 26px;}
+.stat .n{font-family:'JetBrains Mono',monospace;font-size:38px;font-weight:500;letter-spacing:-0.03em;color:var(--lime);line-height:1;}
+.stat .l{margin-top:8px;font-size:14px;color:var(--muted-d);}
+
+/* ============ SECTION ============ */
+.section{padding-top:116px;}
+.sec-head{max-width:780px;}
+
+/* ============ PROOF (values) ============ */
+.proof-grid{margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.val{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;
+  display:flex;flex-direction:column;justify-content:space-between;min-height:168px;}
+.val .vh{font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;}
+.val .vnum{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:25px;font-weight:500;letter-spacing:-0.02em;line-height:1;}
+.val .vnum .from{color:var(--muted);}
+.val .vnum .arr{color:#5C6B16;padding:0 4px;}
+.val .vnum .to{color:var(--ink);}
+.val .src{margin-top:9px;font-size:13px;color:var(--muted);line-height:1.4;}
+a.val{color:inherit;position:relative;transition:border-color .18s ease,transform .18s ease;}
+a.val:hover{border-color:#CBD0D7;transform:translateY(-2px);}
+a.val .vh{padding-right:30px;}
+.val-go{position:absolute;top:22px;right:22px;font-family:'JetBrains Mono',monospace;font-size:17px;color:var(--muted);opacity:0;transform:translateX(-4px);transition:opacity .18s ease,transform .18s ease,color .18s ease;}
+a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
+
+/* ============ PRODUCTS ============ */
+.do-grid{margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.do-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;display:flex;flex-direction:column;}
+.do-name{font-size:30px;font-weight:800;letter-spacing:-0.025em;margin-top:14px;}
+.do-line{margin-top:12px;font-size:15.5px;line-height:1.55;color:var(--gray);}
+.shot{margin-top:22px;border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#fff;}
+.win-bar{height:34px;display:flex;align-items:center;gap:7px;padding:0 13px;background:#F2F4F7;border-bottom:1px solid var(--line);}
+.win-bar i{width:11px;height:11px;border-radius:50%;background:#D6DAE0;display:block;}
+.shot img{display:block;width:100%;height:200px;object-fit:cover;object-position:top left;}
+.do-foot{margin-top:auto;padding-top:24px;}
+.go-btn{display:inline-flex;align-items:center;gap:9px;padding:14px 22px;border-radius:11px;background:var(--ink);color:#fff;font-weight:600;font-size:15px;line-height:1;transition:background .18s ease;}
+.go-btn:hover{background:var(--ink-2);}
+.go-btn .ar{transition:transform .18s ease;}
+.go-btn:hover .ar{transform:translate(2px,-2px);}
+.go-link{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;color:var(--ink);}
+.go-link .ar{transition:transform .18s ease;}
+.go-link:hover .ar{transform:translateX(3px);}
+.do-card.implement{background:var(--ink);color:#fff;border-color:transparent;}
+.do-card.implement .do-line{color:var(--muted-d);}
+.do-card.implement .tag{color:var(--muted-d);}
+.implement-stat{margin-top:22px;font-family:'JetBrains Mono',monospace;font-size:60px;font-weight:500;letter-spacing:-0.04em;line-height:1;color:var(--lime);}
+.do-card.implement .go-link{color:var(--lime);}
+
+/* ============ WHY (method/trust) ============ */
+.method-grid{margin-top:42px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.method{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--lime);border-radius:14px;padding:22px 24px;}
+.method h3{font-size:18px;font-weight:700;letter-spacing:-0.01em;}
+.method p{margin-top:7px;font-size:15px;color:var(--gray);line-height:1.5;}
+
+/* ============ FOUNDER ============ */
+.founder{margin-top:42px;background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  padding:44px 48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.founder h3{font-family:'Forum',Georgia,serif;font-weight:400;font-size:32px;letter-spacing:-0.01em;line-height:1.12;}
+.founder p{font-size:17px;line-height:1.65;color:var(--gray);}
+.founder p .hl{background:var(--lime-soft);box-shadow:inset 0 -0.4em 0 var(--lime-soft);padding:0 2px;}
+
+/* ============ PARTNERS ============ */
+.partners{padding-top:116px;}
+.partners .tag{margin-bottom:22px;}
+.plist{display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;}
+.plist span{font-size:20px;font-weight:600;letter-spacing:-0.01em;}
+.plist .nda{font-size:15px;font-weight:400;color:var(--muted);font-style:italic;}
+.plist .dot{width:5px;height:5px;border-radius:50%;background:var(--lime);}
+
+/* ============ FLAGSHIP ============ */
+.flag{margin-top:116px;background:var(--ink);color:#fff;border-radius:24px;padding:62px 56px;position:relative;overflow:hidden;}
+.flag::after{content:"";position:absolute;bottom:-160px;left:-100px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(201,242,78,.12),transparent 64%);}
+.flag-top{position:relative;z-index:2;display:grid;grid-template-columns:1.5fr auto;gap:40px;align-items:end;}
+.flag h2{font-family:'Forum',Georgia,serif;font-weight:400;font-size:60px;letter-spacing:-0.01em;line-height:1.02;margin-top:18px;}
+.flag-line{margin-top:20px;font-size:18px;line-height:1.55;color:var(--muted-d);max-width:620px;}
+.flag-stats{position:relative;z-index:2;margin-top:42px;display:flex;flex-wrap:wrap;gap:28px 64px;padding-top:34px;border-top:1px solid var(--line-d);}
+.fs{min-width:150px;}
+.fs .fs-n{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:500;letter-spacing:-0.03em;color:var(--lime);line-height:1;white-space:nowrap;}
+.fs .fs-l{margin-top:9px;font-size:14px;color:var(--muted-d);}
+
+/* ============ FINAL / PROMISE ============ */
+.final{margin-top:116px;background:var(--ink);color:#fff;border-radius:24px;padding:88px 56px;text-align:center;position:relative;overflow:hidden;}
+.final::after{content:"";position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:520px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(201,242,78,.14),transparent 62%);pointer-events:none;}
+.final .in{position:relative;z-index:2;}
+.final h2{font-family:'Forum',Georgia,serif;font-weight:400;font-size:54px;letter-spacing:-0.005em;line-height:1.08;max-width:880px;margin:18px auto 0;}
+.final h2 .lime{color:var(--lime);}
+.final p{margin-top:24px;font-size:18px;line-height:1.55;color:var(--muted-d);max-width:580px;margin-left:auto;margin-right:auto;}
+.final .btn-lime{margin-top:34px;}
+.final .signoff{margin-top:18px;font-size:14px;color:var(--muted-d);}
+
+/* ============ FOOTER ============ */
+.footer{padding:78px 0 54px;}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;}
+.foot-logo{height:44px;width:auto;display:block;}
+.foot-tag{margin-top:18px;font-size:15px;color:var(--muted);max-width:320px;line-height:1.5;}
+.foot-mono{margin-top:14px;font-size:12px;color:var(--muted);letter-spacing:0.04em;}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
+.foot-col li{margin-bottom:11px;}
+.foot-col a{font-size:15px;display:inline-flex;align-items:center;gap:6px;transition:color .15s ease;}
+.foot-col a:hover{text-decoration:underline;text-underline-offset:3px;}
+.foot-col a .ext{font-size:12px;color:var(--muted);}
+.foot-bottom{margin-top:54px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:13px;color:var(--muted);}
+.foot-bottom .mono{letter-spacing:0.04em;}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:980px){
+  .hero-in{grid-template-columns:1fr;gap:40px;padding:54px 36px;}
+  .hero-stats{flex-direction:row;flex-wrap:wrap;}
+  .stat{flex:1;min-width:150px;}
+  .proof-grid{grid-template-columns:repeat(2,1fr);}
+  .do-grid{grid-template-columns:1fr;}
+  .method-grid{grid-template-columns:1fr;}
+  .founder{grid-template-columns:1fr;gap:24px;padding:36px 28px;}
+  .flag-top{grid-template-columns:1fr;align-items:start;}
+}
+@media (max-width:680px){
+  :root{--pad:20px;}
+  .nav-menu{display:none;}
+  .hamb{display:flex;flex-direction:column;gap:5px;padding:8px;}
+  .hamb span{width:22px;height:2px;background:var(--ink);border-radius:2px;}
+  .brand-logo{height:34px;}
+  .hero{margin-top:16px;border-radius:18px;}
+  .hero-in{padding:40px 24px;}
+  .hero h1{font-size:44px;}
+  .hero-sub{font-size:17px;}
+  .stat .n{font-size:30px;}
+  .proof-grid{grid-template-columns:1fr;}
+  .section{padding-top:76px;}
+  .s-title{font-size:32px;}
+  .partners{padding-top:76px;}
+  .flag{margin-top:76px;padding:40px 26px;border-radius:18px;}
+  .flag h2{font-size:42px;}
+  .final{margin-top:76px;padding:56px 26px;border-radius:18px;}
+  .final h2{font-size:34px;}
+  .foot-grid{grid-template-columns:1fr;gap:32px;}
+  .foot-bottom{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" aria-label="SVORG · фокус на тебя">
+      <img class="brand-logo" src="assets/svorg-black.png" alt="SVORG" />
+    </a>
+    <nav>
+      <ul class="nav-menu">
+        <li class="has-dd">
+          <a class="nav-link" href="products.html">Продукты <span class="caret">▾</span></a>
+          <div class="dd">
+            <a class="dd-item" href="https://meet.micmiky.ru" target="_blank" rel="noopener">
+              <span class="dd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#C9F24E" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="3" width="6" height="9" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v3M9 20h6"/></svg></span>
+              <span>
+                <span class="dd-tt">Micmiky · AI для встреч <span class="ext mono">↗</span></span>
+                <span class="dd-sub">Запись без бота, задачи и КП после встречи</span>
+              </span>
+            </a>
+            <a class="dd-item" href="https://ozon-calculator.ru" target="_blank" rel="noopener">
+              <span class="dd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#C9F24E" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg></span>
+              <span>
+                <span class="dd-tt">Ozon-юнит · юнит-экономика <span class="ext mono">↗</span></span>
+                <span class="dd-sub">Маржа за 30 секунд, 15+ статей расходов</span>
+              </span>
+            </a>
+          </div>
+        </li>
+        <li><a class="nav-link" href="cases.html">Кейсы</a></li>
+        <li><a class="nav-link" href="#why">Почему мы</a></li>
+        <li><a class="nav-link" href="about.html">О компании</a></li>
+        <li><a class="btn-write" href="https://t.me/SergChina" target="_blank" rel="noopener">Написать</a></li>
+      </ul>
+    </nav>
+    <button class="hamb" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="container" data-screen-label="01 Hero">
+  <div class="hero">
+    <div class="hero-in">
+      <div class="hero-text">
+        <span class="tag on-dark">ИИ-системы для бизнеса · с 2023</span>
+        <h1 style="margin-top:24px;">Делаем невидимое <span class="lime">прибыльным</span></h1>
+        <p class="hero-sub">Не внедрение ИИ как услуга и не презентации. Системы в продакшене, за которые платят. Считаем экономику до первой строки кода.</p>
+        <div class="hero-cta">
+          <a class="btn-lime" href="https://t.me/SergChina" target="_blank" rel="noopener">Покажите, где теряете деньги</a>
+          <a class="btn-ghost" href="cases.html">Смотреть кейсы</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="n">50+</div><div class="l">внедрений с 2023</div></div>
+        <div class="stat"><div class="n">2</div><div class="l">продукта в проде</div></div>
+        <div class="stat"><div class="n">×90</div><div class="l">ускорение в кейсе</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROOF / VALUES ============ -->
+<section class="container section" data-screen-label="02 Proof">
+  <div class="sec-head">
+    <span class="tag">Результат · доказано цифрой</span>
+    <h2 class="s-title">Что делаем — и чем доказано.</h2>
+  </div>
+  <div class="proof-grid">
+    <a class="val" href="cases/north-west-parts.html">
+      <div class="vh">Закрываем утечки денег</div>
+      <div><div class="vnum"><span class="from">9%</span><span class="arr">→</span><span class="to">1%</span></div>
+      <div class="src">возвраты на 19 000 SKU · North West Parts</div></div>
+      <span class="val-go arr">→</span>
+    </a>
+    <a class="val" href="cases/bank-broker.html">
+      <div class="vh">Ускоряем в разы, не на проценты</div>
+      <div><div class="vnum"><span class="from">3 ч</span><span class="arr">→</span><span class="to">2 мин</span></div>
+      <div class="src">анализ заёмщика, ×90 · банковский брокер</div></div>
+      <span class="val-go arr">→</span>
+    </a>
+    <a class="val" href="cases/wowmebel.html">
+      <div class="vh">Даём рост без найма</div>
+      <div><div class="vnum"><span class="to">+100%</span></div>
+      <div class="src">прибыль за квартал · WowМебель</div></div>
+      <span class="val-go arr">→</span>
+    </a>
+    <a class="val" href="cases/help-me.html">
+      <div class="vh">Выжимаем больше из того же потока</div>
+      <div><div class="vnum"><span class="from">3,2%</span><span class="arr">→</span><span class="to">14%</span></div>
+      <div class="src">конверсия в встречу · Help Me</div></div>
+      <span class="val-go arr">→</span>
+    </a>
+    <a class="val" href="cases/werman.html">
+      <div class="vh">Сокращаем цикл сделки</div>
+      <div><div class="vnum"><span class="from">21</span><span class="arr">→</span><span class="to">6 дней</span></div>
+      <div class="src">продажа станков · Werman</div></div>
+      <span class="val-go arr">→</span>
+    </a>
+    <a class="val" href="cases/mpshine.html">
+      <div class="vh">Убираем человеческий фактор</div>
+      <div><div class="vnum"><span class="to">до −95%</span></div>
+      <div class="src">ошибок отгрузки · MPShine</div></div>
+      <span class="val-go arr">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section class="container section" id="products" data-screen-label="03 Products">
+  <div class="sec-head">
+    <span class="tag">Два продукта в проде · внедрения под ключ</span>
+    <h2 class="s-title">Делаем себе — и за это платят.</h2>
+  </div>
+  <div class="do-grid">
+
+    <div class="do-card">
+      <span class="tag">Продукт · AI для встреч</span>
+      <div class="do-name">Micmiky</div>
+      <p class="do-line">AI, который помнит каждого, с кем вы говорили. Запись без бота, задачи и КП после встречи.</p>
+      <div class="shot">
+        <div class="win-bar"><i></i><i></i><i></i></div>
+        <img src="assets/shot-micmiky.png" alt="Интерфейс Micmiky" />
+      </div>
+      <div class="do-foot">
+        <a class="go-btn" href="https://meet.micmiky.ru" target="_blank" rel="noopener">Открыть Micmiky <span class="ar mono">↗</span></a>
+      </div>
+    </div>
+
+    <div class="do-card">
+      <span class="tag">Продукт · юнит-экономика</span>
+      <div class="do-name">Ozon-юнит</div>
+      <p class="do-line">Точная юнит-экономика для селлеров: 15+ статей расходов, маржа за 30 секунд.</p>
+      <div class="shot">
+        <div class="win-bar"><i></i><i></i><i></i></div>
+        <img src="assets/shot-ozon.png" alt="Калькулятор Ozon-юнит" />
+      </div>
+      <div class="do-foot">
+        <a class="go-btn" href="https://ozon-calculator.ru" target="_blank" rel="noopener">Открыть Ozon-юнит <span class="ar mono">↗</span></a>
+      </div>
+    </div>
+
+    <div class="do-card implement">
+      <span class="tag">Направление</span>
+      <div class="do-name">Внедрения под ключ</div>
+      <p class="do-line">ИИ-системы под задачу бизнеса: e-commerce, производство, финтех, телеком. 11 кейсов собраны публично, часть под NDA.</p>
+      <div class="implement-stat">50+</div>
+      <div class="do-foot">
+        <a class="go-link" href="cases.html">Открыть кейсы <span class="ar">→</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ WHY US ============ -->
+<section class="container section" id="why" data-screen-label="04 Why us">
+  <div class="sec-head">
+    <span class="tag">Метод и доверие · почему мы</span>
+    <h2 class="s-title">Делаем работающее. И берёмся не за всё.</h2>
+  </div>
+  <div class="method-grid">
+    <div class="method"><h3>Проектируем агента, а не «подключаем нейросеть»</h3><p>Задаём контекст, роль и поведение — как обучающую систему. Методология из педагогики. Поэтому агент делает дело, а не галлюцинирует.</p></div>
+    <div class="method"><h3>Строим под задачу, а не под коробку</h3><p>Не курс и не шаблон. Смотрим, что теряет именно ваш бизнес, и строим под это.</p></div>
+    <div class="method"><h3>Считаем экономику до первой строки кода</h3><p>Проверяем окупаемость до старта. Клиент не платит за красивый эксперимент.</p></div>
+    <div class="method"><h3>Делаем под ключ, до работающего результата</h3><p>Система в продакшене, а не презентация с рекомендациями.</p></div>
+    <div class="method"><h3>Заходим туда, где высока цена ошибки</h3><p>Финтех, телеком, брокеридж. Серверы в России, 152-ФЗ.</p></div>
+    <div class="method"><h3>Не технари и не инфоцыгане</h3><p>Делаем работающее, объясняем по-человечески, спокойно берём цену. Без хайпа.</p></div>
+  </div>
+
+  <!-- founder -->
+  <div class="founder" data-screen-label="04b Founder">
+    <div>
+      <span class="tag">За SVORG — Сергей Воробьёв</span>
+      <h3 style="margin-top:16px;">10 лет учил людей. Потом понял, что ИИ-агента проектируют так&nbsp;же.</h3>
+    </div>
+    <div>
+      <p>Десять лет в обучении: методист, преподаватель, проектировщик учебных программ. В 2023 году пришёл в ИИ через педагогику и понял главное — <span class="hl">проектирование агента — это та же работа, что проектирование обучающей программы</span>. Та же логика контекста, ролей и результата.</p>
+      <a class="go-link" href="about.html" style="margin-top:22px;">Полная история <span class="ar">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section class="container partners" id="partners" data-screen-label="05 Partners">
+  <span class="tag">Работали с</span>
+  <div class="plist">
+    <span>Skillbox</span><span class="dot"></span>
+    <span>MPShine</span><span class="dot"></span>
+    <span>Help Me</span><span class="dot"></span>
+    <span>North West Parts</span><span class="dot"></span>
+    <span>Werman</span><span class="dot"></span>
+    <span>Инвестиции России</span><span class="dot"></span>
+    <span class="nda">+ ещё 40+ кейсов, часть под NDA</span>
+  </div>
+</section>
+
+<!-- ============ FLAGSHIP ============ -->
+<section class="container" data-screen-label="06 MPShine">
+  <div class="flag">
+    <div class="flag-top">
+      <div>
+        <span class="tag on-dark">Флагман · складская автоматизация</span>
+        <h2>MPShine</h2>
+        <p class="flag-line">Операционная система для селлера вместо связки Excel-макросов. Упаковщик видит заработок в реальном времени, менеджер мониторит операции, владелец — биллинг по фулфилмент-клиентам.</p>
+      </div>
+      <a class="btn-lime" href="cases/mpshine.html">Открыть разбор <span class="mono">→</span></a>
+    </div>
+    <div class="flag-stats">
+      <div class="fs"><div class="fs-n">до −95%</div><div class="fs-l">ошибок при отгрузке</div></div>
+      <div class="fs"><div class="fs-n">real-time</div><div class="fs-l">заработок упаковщика</div></div>
+      <div class="fs"><div class="fs-n">3 роли</div><div class="fs-l">интерфейса в одной системе</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL / PROMISE ============ -->
+<section class="container" data-screen-label="07 Promise">
+  <div class="final">
+    <div class="in">
+      <span class="tag on-dark" style="justify-content:center;">Обещание SVORG</span>
+      <h2>Покажите, где теряете деньги. Построим систему, которая их зарабатывает. Или честно скажем, что не <span class="lime">возьмёмся.</span></h2>
+      <p>Считаем экономику до первой строки кода. Решит ИИ — обсудим. Не решит — скажем прямо. Два проекта мы закрыли сами, потому что экономика не сошлась.</p>
+      <a class="btn-lime" href="https://t.me/SergChina" target="_blank" rel="noopener">Написать в Telegram</a>
+      <div class="signoff">Отвечает основатель, не менеджер.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="container footer" data-screen-label="08 Footer">
+  <div class="foot-grid">
+    <div>
+      <img class="foot-logo" src="assets/svorg-black.png" alt="SVORG" />
+      <p class="foot-tag">ИИ-системы и продукты для российского бизнеса. Два продукта в проде и внедрения под ключ.</p>
+      <div class="foot-mono mono">С 2023 · 50+ внедрений · основатель Сергей Воробьёв</div>
+    </div>
+    <div class="foot-col">
+      <h4>Навигация</h4>
+      <ul>
+        <li><a href="products.html">Продукты</a></li>
+        <li><a href="cases.html">Кейсы</a></li>
+        <li><a href="#why">Почему мы</a></li>
+        <li><a href="about.html">О компании</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Продукты и связь</h4>
+      <ul>
+        <li><a href="https://meet.micmiky.ru" target="_blank" rel="noopener">Micmiky <span class="ext mono">↗</span></a></li>
+        <li><a href="https://ozon-calculator.ru" target="_blank" rel="noopener">Ozon-юнит <span class="ext mono">↗</span></a></li>
+        <li><a href="https://t.me/SergChina" target="_blank" rel="noopener">Telegram лично</a></li>
+        <li><a href="https://t.me/sparrow_ai_channel" target="_blank" rel="noopener">Канал «Sparrow AI»</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>SVORG · sparrow-ai.tech · 2026</span>
+    <span class="mono">Фокус на тебя · делаем невидимое прибыльным</span>
+  </div>
+</footer>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#0E0E10"/><circle cx="50" cy="50" r="26" fill="none" stroke="#fff" stroke-width="7"/><circle cx="50" cy="50" r="8" fill="#C9F24E"/></svg>
+</template>
+
+</body>
+</html>
