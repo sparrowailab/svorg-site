@@ -3,6 +3,5 @@ Allow: /
 Disallow: /_screenshots/
 Disallow: /uploads/
 Disallow: /directions.html
-Disallow: /lessons.html
 
 Sitemap: https://sparrow-ai.tech/sitemap.xml

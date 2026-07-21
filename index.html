@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SVORG · Делаем невидимое прибыльным</title>
-<meta name="description" content="SVORG — ИИ-системы и продукты для российского бизнеса. С 2023: 50+ внедрений, два продукта в проде. Считаем экономику до первой строки кода. Основатель — Сергей Воробьёв." />
+<title>SVORG · Сергей Воробьёв · сооснователь OpenCowork, 50+ внедрений ИИ</title>
+<meta name="description" content="Три года собирал ИИ-системы руками — 50+ внедрений. Потом собрал из этого продукт: OpenCowork, AI-сотрудник для бизнес-задач, начать бесплатно. Внедрение под ваш процесс — от 100 000 ₽ за месяц." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230E0E10'/%3E%3Ccircle cx='50' cy='50' r='24' fill='none' stroke='%23fff' stroke-width='7'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%23C9F24E'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -106,9 +106,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:18px 28px;border-radius:12px;
   border:1px solid var(--line-d);color:#fff;font-weight:600;font-size:17px;line-height:1;transition:border-color .18s ease,color .18s ease;}
 .btn-ghost:hover{border-color:var(--lime);color:var(--lime);}
+.hero-note{margin-top:20px;display:inline-flex;align-items:flex-start;gap:9px;
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--muted-d);}
+.hero-note::before{content:"";width:8px;height:8px;margin-top:5px;border-radius:50%;background:var(--lime);flex:none;}
 .hero-stats{display:flex;flex-direction:column;gap:14px;}
 .stat{background:var(--chip);border:1px solid var(--line-d);border-radius:16px;padding:22px 26px;}
-.stat .n{font-family:'JetBrains Mono',monospace;font-size:38px;font-weight:500;letter-spacing:-0.03em;color:var(--lime);line-height:1;}
+.stat .n{font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:500;letter-spacing:-0.035em;color:var(--lime);line-height:1;white-space:nowrap;}
 .stat .l{margin-top:8px;font-size:14px;color:var(--muted-d);}
 
 /* ============ SECTION ============ */
@@ -154,6 +158,166 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 .implement-stat{margin-top:22px;font-family:'JetBrains Mono',monospace;font-size:60px;font-weight:500;letter-spacing:-0.04em;line-height:1;color:var(--lime);}
 .do-card.implement .go-link{color:var(--lime);}
 
+/* ============ PRICE ============ */
+.price-grid{margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.price-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px;display:flex;flex-direction:column;}
+.price-card.top{background:var(--ink);color:#fff;border-color:transparent;}
+.price-card.top .tag{color:var(--muted-d);}
+.pc-sum{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:500;letter-spacing:-0.035em;line-height:1;}
+.pc-sum .unit{font-size:19px;color:var(--muted);letter-spacing:-0.01em;}
+.price-card.top .pc-sum{color:var(--lime);}
+.price-card.top .pc-sum .unit{color:var(--muted-d);}
+.pc-what{margin-top:15px;font-size:15.5px;line-height:1.55;color:var(--gray);}
+.price-card.top .pc-what{color:var(--muted-d);}
+.pc-drivers{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);}
+.price-card.top .pc-drivers{border-top-color:var(--line-d);}
+.pc-drivers .dl{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:11px;}
+.pc-drivers li{font-size:14px;color:var(--gray);line-height:1.5;padding-left:15px;position:relative;margin-bottom:5px;}
+.pc-drivers li::before{content:"·";position:absolute;left:3px;color:#5C6B16;font-weight:700;}
+.price-card.top .pc-drivers li{color:var(--muted-d);}
+.price-card.top .pc-drivers li::before{color:var(--lime);}
+.pc-ref{margin-top:auto;padding-top:22px;display:flex;flex-wrap:wrap;gap:7px;}
+.pc-ref a{font-size:13px;font-weight:600;padding:7px 12px;border-radius:8px;background:#F2F4F7;color:var(--ink);transition:background .15s ease;}
+.pc-ref a:hover{background:var(--lime-soft);}
+.pc-ref a.go-link{background:none;padding:0;color:var(--lime);}
+.pc-ref a.go-link:hover{background:none;}
+
+/* payback */
+.payback{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--lime);
+  border-radius:16px;padding:28px 32px;display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;}
+.payback h3{font-size:20px;font-weight:700;letter-spacing:-0.01em;line-height:1.35;}
+.payback p{margin-top:8px;font-size:15px;color:var(--gray);line-height:1.5;}
+.payback .pb-n{font-family:'JetBrains Mono',monospace;font-size:42px;font-weight:500;letter-spacing:-0.035em;color:#5C6B16;line-height:1;white-space:nowrap;}
+.payback .pb-l{margin-top:9px;font-size:13px;color:var(--muted);text-align:right;}
+
+/* terms */
+.terms{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 32px;}
+.term .tn{font-weight:700;font-size:15.5px;letter-spacing:-0.01em;}
+.term .td{margin-top:6px;font-size:13.5px;color:var(--muted);line-height:1.45;}
+
+/* steps */
+.steps{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:30px 34px;}
+.steps h3{font-family:'Forum',Georgia,serif;font-weight:400;font-size:28px;letter-spacing:-0.01em;line-height:1.15;margin-top:14px;}
+.steps-list{margin-top:24px;}
+.st{display:grid;grid-template-columns:200px 1fr;gap:28px;padding:17px 0;border-top:1px solid var(--line);}
+.st:first-child{border-top:none;padding-top:0;}
+.st .st-w{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:0.1em;
+  text-transform:uppercase;color:#5C6B16;padding-top:4px;}
+.st .st-t{font-size:16px;color:var(--gray);line-height:1.55;}
+.st .st-t b{color:var(--ink);font-weight:700;}
+
+/* handover */
+.hand-head{margin-top:34px;}
+.handover{margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.hv{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 30px;display:flex;flex-direction:column;}
+.hv-top{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding-bottom:18px;border-bottom:1px solid var(--line);}
+.hv h3{font-size:20px;font-weight:700;letter-spacing:-0.015em;}
+.hv .hv-p{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;color:#5C6B16;white-space:nowrap;}
+.hv .hv-p.muted{color:var(--muted);}
+.hv ul{margin-top:18px;}
+.hv li{font-size:15px;color:var(--gray);line-height:1.5;padding-left:25px;position:relative;margin-bottom:10px;}
+.hv li::before{content:"✓";position:absolute;left:1px;top:1px;color:#5C6B16;font-weight:700;font-size:13px;}
+.hv .hv-note{margin-top:auto;padding-top:20px;font-size:14px;color:var(--muted);line-height:1.5;}
+
+/* bonus */
+.bonus{margin-top:16px;background:var(--lime-soft);border:1px solid #DBE9B2;border-radius:16px;padding:30px 34px;}
+.bonus h3{font-family:'Forum',Georgia,serif;font-weight:400;font-size:28px;letter-spacing:-0.01em;line-height:1.15;margin-top:14px;}
+.bonus .tag{color:#5C6B16;}
+.bonus-list{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.bn{background:var(--surface);border:1px solid #E4EFCB;border-radius:14px;padding:24px 26px;}
+.bn-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.bn .bn-t{font-weight:700;font-size:17px;letter-spacing:-0.01em;}
+.bn .bn-v{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:#5C6B16;white-space:nowrap;}
+.bn .bn-d{margin-top:12px;font-size:15px;color:var(--gray);line-height:1.55;}
+
+/* guarantee */
+.guar{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:30px 34px;}
+.guar h3{font-family:'Forum',Georgia,serif;font-weight:400;font-size:28px;letter-spacing:-0.01em;line-height:1.15;margin-top:14px;}
+.guar-list{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px 28px;}
+.gu{border-left:3px solid var(--lime);padding:2px 0 2px 18px;}
+.gu .gu-t{font-weight:700;font-size:17px;letter-spacing:-0.01em;line-height:1.3;}
+.gu .gu-d{margin-top:9px;font-size:15px;color:var(--gray);line-height:1.55;}
+.gu .gu-l{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-weight:700;color:var(--ink);
+  border-bottom:1px solid #CBD0D7;transition:border-color .15s ease;}
+.gu .gu-l:hover{border-bottom-color:var(--lime-deep);}
+.gu .gu-l .ar{transition:transform .18s ease;}
+.gu .gu-l:hover .ar{transform:translateX(3px);}
+
+/* cost of waiting */
+.wait{margin-top:34px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.wt{background:var(--chip);border:1px solid var(--line-d);border-radius:16px;padding:24px 26px;}
+.wt .wt-n{font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:500;letter-spacing:-0.03em;
+  color:var(--lime);line-height:1;white-space:nowrap;}
+.wt .wt-l{margin-top:10px;font-size:14.5px;color:var(--muted-d);line-height:1.5;}
+
+/* first step */
+.first-step{margin-top:16px;background:var(--ink);color:#fff;border-radius:20px;padding:38px 40px;
+  display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;position:relative;overflow:hidden;}
+.first-step::after{content:"";position:absolute;top:-140px;right:-90px;width:380px;height:380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,242,78,.13),transparent 64%);pointer-events:none;}
+.first-step .fs-in{position:relative;z-index:2;}
+.first-step h3{font-family:'Forum',Georgia,serif;font-weight:400;font-size:32px;line-height:1.14;}
+.first-step p{margin-top:12px;font-size:16px;color:var(--muted-d);line-height:1.55;max-width:620px;}
+.fs-limit{margin-top:16px;display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;
+  font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--lime);}
+.fs-limit::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);flex:none;}
+.first-step .btn-lime{position:relative;z-index:2;}
+
+/* ============ LEARNED ============ */
+.learned{margin-top:42px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.lr{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--lime);
+  border-radius:14px;padding:26px 28px;display:flex;flex-direction:column;transition:transform .18s ease,border-color .18s ease;}
+a.lr:hover{transform:translateY(-2px);border-color:#CBD0D7;border-left-color:var(--lime-deep);}
+.lr .lq{font-size:19px;line-height:1.45;letter-spacing:-0.012em;color:var(--ink);}
+.lr .lq em{font-style:normal;background:var(--lime-soft);box-shadow:inset 0 -0.35em 0 var(--lime-soft);padding:0 2px;}
+.lr .lf{margin-top:auto;padding-top:20px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.lr .lc{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.11em;
+  text-transform:uppercase;color:var(--muted);}
+.lr .la{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--muted);
+  opacity:0;transform:translateX(-4px);transition:opacity .18s ease,transform .18s ease,color .18s ease;}
+a.lr:hover .la{opacity:1;transform:translateX(0);color:#5C6B16;}
+
+/* ============ VOICES ============ */
+.voices{margin-top:42px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.voice{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 32px;
+  display:flex;flex-direction:column;position:relative;}
+.voice::before{content:"“";position:absolute;top:14px;right:28px;font-family:'Forum',Georgia,serif;
+  font-size:70px;line-height:1;color:var(--lime);opacity:.55;pointer-events:none;}
+.voice .q{position:relative;z-index:2;padding-right:52px;font-size:20px;line-height:1.48;
+  letter-spacing:-0.012em;color:var(--ink);}
+.voice .who{margin-top:auto;padding-top:24px;}
+.voice .nm{font-weight:700;font-size:15.5px;letter-spacing:-0.01em;}
+.voice .rl{margin-top:3px;font-size:13.5px;color:var(--muted);line-height:1.4;}
+
+/* ============ LADDER ============ */
+.lead{margin-top:18px;font-size:17px;line-height:1.6;color:var(--gray);max-width:700px;}
+.ladder{margin-top:42px;display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:16px;align-items:stretch;}
+.lad{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px 28px;
+  display:flex;flex-direction:column;color:inherit;transition:transform .18s ease,border-color .18s ease;}
+a.lad:hover{transform:translateY(-2px);border-color:#CBD0D7;}
+.lad-top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+.lad-p{font-size:13px;font-weight:500;letter-spacing:-0.01em;color:#5C6B16;white-space:nowrap;}
+.lad-n{margin-top:18px;font-size:40px;font-weight:800;letter-spacing:-0.03em;line-height:1;}
+.lad-n.sm{font-size:27px;letter-spacing:-0.025em;}
+.lad-d{margin-top:14px;font-size:15.5px;line-height:1.55;color:var(--gray);}
+.lad-f{margin-top:auto;padding-top:22px;}
+.lad-col{display:flex;flex-direction:column;gap:16px;}
+.lad-col .lad{flex:1;}
+
+.lad.main{background:var(--ink);color:#fff;border-color:transparent;position:relative;overflow:hidden;}
+.lad.main::after{content:"";position:absolute;top:-120px;right:-90px;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,242,78,.15),transparent 64%);pointer-events:none;}
+.lad.main>*{position:relative;z-index:2;}
+.lad.main .lad-n{color:var(--lime);}
+.lad.main .lad-d{color:var(--muted-d);}
+.lad.main .lad-p{color:var(--lime);}
+.lad.main .go-link{color:var(--lime);}
+a.lad.main:hover{transform:translateY(-2px);}
+
+.lad.hand{border-left:3px solid var(--lime);}
+
 /* ============ WHY (method/trust) ============ */
 .method-grid{margin-top:42px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
 .method{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--lime);border-radius:14px;padding:22px 24px;}
@@ -166,14 +330,24 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 .founder h3{font-family:'Forum',Georgia,serif;font-weight:400;font-size:32px;letter-spacing:-0.01em;line-height:1.12;}
 .founder p{font-size:17px;line-height:1.65;color:var(--gray);}
 .founder p .hl{background:var(--lime-soft);box-shadow:inset 0 -0.4em 0 var(--lime-soft);padding:0 2px;}
+/* ============ TEAM ============ */
+.team{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:36px 40px;}
+.team h3{font-family:'Forum',Georgia,serif;font-weight:400;font-size:28px;letter-spacing:-0.01em;line-height:1.15;margin-top:14px;}
+.team-rows{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.tm{border:1px solid var(--line);border-radius:14px;padding:22px 24px;}
+.tm .tm-n{font-weight:700;font-size:16.5px;letter-spacing:-0.01em;}
+.tm .tm-r{margin-top:7px;font-size:14.5px;color:var(--gray);line-height:1.5;}
+.team-note{margin-top:22px;padding-top:22px;border-top:1px solid var(--line);
+  font-size:16px;line-height:1.6;color:var(--gray);}
+.team-note .hl{background:var(--lime-soft);box-shadow:inset 0 -0.4em 0 var(--lime-soft);padding:0 2px;}
 
 /* ============ PARTNERS ============ */
-.partners{padding-top:116px;}
-.partners .tag{margin-bottom:22px;}
-.plist{display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;}
-.plist span{font-size:20px;font-weight:600;letter-spacing:-0.01em;}
-.plist .nda{font-size:15px;font-weight:400;color:var(--muted);font-style:italic;}
-.plist .dot{width:5px;height:5px;border-radius:50%;background:var(--lime);}
+.pgrid{margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.pc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px;}
+.pc .pc-n{font-size:22px;font-weight:700;letter-spacing:-0.02em;line-height:1.2;}
+.pc .pc-i{margin-top:9px;font-size:14px;color:var(--muted);line-height:1.5;}
+.pnda{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:16px;color:var(--gray);line-height:1.6;max-width:760px;}
 
 /* ============ FLAGSHIP ============ */
 .flag{margin-top:116px;background:var(--ink);color:#fff;border-radius:24px;padding:62px 56px;position:relative;overflow:hidden;}
@@ -216,9 +390,31 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
   .hero-stats{flex-direction:row;flex-wrap:wrap;}
   .stat{flex:1;min-width:150px;}
   .proof-grid{grid-template-columns:repeat(2,1fr);}
+  .pgrid{grid-template-columns:repeat(2,1fr);}
+  .ladder{grid-template-columns:1fr;}
+  .lad-col{flex-direction:row;}
+  .lad-n{font-size:34px;}
+  .learned{grid-template-columns:1fr;}
+  .voices{grid-template-columns:1fr;}
+  .price-grid{grid-template-columns:1fr;}
+  .terms{grid-template-columns:repeat(2,1fr);}
+  .handover{grid-template-columns:1fr;}
+  .bonus-list{grid-template-columns:1fr;}
+  .bonus{padding:26px 24px;}
+  .guar-list{grid-template-columns:1fr;gap:18px;}
+  .guar{padding:26px 24px;}
+  .wait{grid-template-columns:1fr;}
+  .steps{padding:26px 24px;}
+  .st{grid-template-columns:1fr;gap:7px;}
+  .st .st-w{padding-top:0;}
+  .payback{grid-template-columns:1fr;gap:20px;}
+  .payback .pb-l{text-align:left;}
+  .first-step{grid-template-columns:1fr;gap:26px;}
   .do-grid{grid-template-columns:1fr;}
   .method-grid{grid-template-columns:1fr;}
   .founder{grid-template-columns:1fr;gap:24px;padding:36px 28px;}
+  .team{padding:30px 28px;}
+  .team-rows{grid-template-columns:1fr;}
   .flag-top{grid-template-columns:1fr;align-items:start;}
 }
 @media (max-width:680px){
@@ -233,9 +429,17 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
   .hero-sub{font-size:17px;}
   .stat .n{font-size:30px;}
   .proof-grid{grid-template-columns:1fr;}
+  .terms{grid-template-columns:1fr;gap:18px;padding:24px;}
+  .price-card{padding:24px;}
+  .payback{padding:24px;}
+  .first-step{padding:30px 24px;}
+  .first-step h3{font-size:25px;}
   .section{padding-top:76px;}
   .s-title{font-size:32px;}
-  .partners{padding-top:76px;}
+  .pgrid{grid-template-columns:1fr;}
+  .lad-col{flex-direction:column;}
+  .lad{padding:24px;}
+  .lad-n{font-size:30px;}
   .flag{margin-top:76px;padding:40px 26px;border-radius:18px;}
   .flag h2{font-size:42px;}
   .final{margin-top:76px;padding:56px 26px;border-radius:18px;}
@@ -258,7 +462,14 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
         <li class="has-dd">
           <a class="nav-link" href="products.html">Продукты <span class="caret">▾</span></a>
           <div class="dd">
-            <a class="dd-item" href="https://meet.micmiky.ru" target="_blank" rel="noopener">
+            <a class="dd-item" href="https://opencowork.ru" target="_blank" rel="noopener">
+              <span class="dd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#C9F24E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg></span>
+              <span>
+                <span class="dd-tt">OpenCowork · AI-сотрудник <span class="ext mono">↗</span></span>
+                <span class="dd-sub">Ставите задачу — агент делает и возвращает результат</span>
+              </span>
+            </a>
+            <a class="dd-item" href="https://micmiky.ru" target="_blank" rel="noopener">
               <span class="dd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#C9F24E" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="3" width="6" height="9" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v3M9 20h6"/></svg></span>
               <span>
                 <span class="dd-tt">Micmiky · AI для встреч <span class="ext mono">↗</span></span>
@@ -275,7 +486,7 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
           </div>
         </li>
         <li><a class="nav-link" href="cases.html">Кейсы</a></li>
-        <li><a class="nav-link" href="#why">Почему мы</a></li>
+        <li><a class="nav-link" href="#why">Почему я</a></li>
         <li><a class="nav-link" href="about.html">О компании</a></li>
         <li><a class="btn-write" href="https://t.me/SergChina" target="_blank" rel="noopener">Написать</a></li>
       </ul>
@@ -290,17 +501,18 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
     <div class="hero-in">
       <div class="hero-text">
         <span class="tag on-dark">ИИ-системы для бизнеса · с 2023</span>
-        <h1 style="margin-top:24px;">Делаем невидимое <span class="lime">прибыльным</span></h1>
-        <p class="hero-sub">Не внедрение ИИ как услуга и не презентации. Системы в продакшене, за которые платят. Считаем экономику до первой строки кода.</p>
+        <h1 style="margin-top:24px;">Бизнес теряет деньги там, куда <span class="lime">никто не смотрит</span></h1>
+        <p class="hero-sub">Заявка пришла в два ночи — ответили утром, клиент уже купил у других. Кладовщик собрал не тот артикул — товар едет назад за ваш счёт. Менеджер третий час читает документ, который читается за две минуты.<br><br>Три года я закрывал такие дыры руками. Пятьдесят раз. Потом собрал из этого продукт — он называется OpenCowork, и начать в нём можно бесплатно.</p>
         <div class="hero-cta">
-          <a class="btn-lime" href="https://t.me/SergChina" target="_blank" rel="noopener">Покажите, где теряете деньги</a>
-          <a class="btn-ghost" href="cases.html">Смотреть кейсы</a>
+          <a class="btn-lime" href="https://opencowork.ru" target="_blank" rel="noopener">Открыть OpenCowork <span class="mono">↗</span></a>
+          <a class="btn-ghost" href="#price">Сколько стоит руками</a>
         </div>
+        <div class="hero-note">Разбор бесплатно · пять в месяц · отвечает основатель</div>
       </div>
       <div class="hero-stats">
-        <div class="stat"><div class="n">50+</div><div class="l">внедрений с 2023</div></div>
-        <div class="stat"><div class="n">2</div><div class="l">продукта в проде</div></div>
-        <div class="stat"><div class="n">×90</div><div class="l">ускорение в кейсе</div></div>
+        <div class="stat"><div class="n">50+</div><div class="l">систем собрал руками с 2023</div></div>
+        <div class="stat"><div class="n">от 0 ₽</div><div class="l">начать в OpenCowork, без карты</div></div>
+        <div class="stat"><div class="n">100–350к</div><div class="l">если нужно руками, под вас</div></div>
       </div>
     </div>
   </div>
@@ -309,8 +521,8 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 <!-- ============ PROOF / VALUES ============ -->
 <section class="container section" data-screen-label="02 Proof">
   <div class="sec-head">
-    <span class="tag">Результат · доказано цифрой</span>
-    <h2 class="s-title">Что делаем — и чем доказано.</h2>
+    <span class="tag">Что уже починил</span>
+    <h2 class="s-title">Шесть мест, где у людей утекали деньги.</h2>
   </div>
   <div class="proof-grid">
     <a class="val" href="cases/north-west-parts.html">
@@ -352,49 +564,328 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
   </div>
 </section>
 
-<!-- ============ PRODUCTS ============ -->
-<section class="container section" id="products" data-screen-label="03 Products">
+<!-- ============ PARTNERS ============ -->
+<section class="container section" id="partners" data-screen-label="02a Partners">
   <div class="sec-head">
-    <span class="tag">Два продукта в проде · внедрения под ключ</span>
-    <h2 class="s-title">Делаем себе — и за это платят.</h2>
+    <span class="tag">Кому уже строил</span>
+    <h2 class="s-title">Эти компании пустили меня в свои процессы.</h2>
   </div>
-  <div class="do-grid">
+  <div class="pgrid">
+    <div class="pc"><div class="pc-n">MPShine</div><div class="pc-i">фулфилмент · складская операционная система</div></div>
+    <div class="pc"><div class="pc-n">North West Parts</div><div class="pc-i">автозапчасти · 19 000 SKU без пересорта</div></div>
+    <div class="pc"><div class="pc-n">Skillbox</div><div class="pc-i">образование · методология курса по ИИ</div></div>
+    <div class="pc"><div class="pc-n">Help Me</div><div class="pc-i">списание долгов · захват лидов голосом и текстом</div></div>
+    <div class="pc"><div class="pc-n">Werman</div><div class="pc-i">станки · продажи без техконсультаций</div></div>
+    <div class="pc"><div class="pc-n">Инвестиции России</div><div class="pc-i">финтех · квалификация инвесторов</div></div>
+  </div>
+  <div class="pnda">И ещё сорок с лишним проектов, о которых я не могу рассказать. Финтех, телеком, крупный B2B — там NDA, и я его не нарушаю даже когда очень хочется.</div>
+</section>
 
-    <div class="do-card">
-      <span class="tag">Продукт · AI для встреч</span>
-      <div class="do-name">Micmiky</div>
-      <p class="do-line">AI, который помнит каждого, с кем вы говорили. Запись без бота, задачи и КП после встречи.</p>
-      <div class="shot">
-        <div class="win-bar"><i></i><i></i><i></i></div>
-        <img src="assets/shot-micmiky.png" alt="Интерфейс Micmiky" />
+<!-- ============ LADDER ============ -->
+<section class="container section" id="products" data-screen-label="02b Ladder">
+  <div class="sec-head">
+    <span class="tag">Три двери</span>
+    <h2 class="s-title">От нуля рублей до «сделайте за меня».</h2>
+    <p class="lead">Задача у всех одна: снять с людей работу, которую можно не делать руками. Разница только в том, сколько вы делаете сами.</p>
+  </div>
+
+  <div class="ladder">
+
+    <a class="lad main" href="https://opencowork.ru" target="_blank" rel="noopener">
+      <div class="lad-top">
+        <span class="tag on-dark">Главный фокус · сооснователь</span>
+        <span class="lad-p mono">от 0 ₽</span>
       </div>
-      <div class="do-foot">
-        <a class="go-btn" href="https://meet.micmiky.ru" target="_blank" rel="noopener">Открыть Micmiky <span class="ar mono">↗</span></a>
+      <div class="lad-n">OpenCowork</div>
+      <p class="lad-d">Ставите задачу — агент собирает контекст, делает работу и возвращает результат команде на проверку. Тендеры, документы, сверки, отчёты. Начать можно бесплатно, без карты.</p>
+      <div class="lad-f"><span class="go-link">Открыть OpenCowork <span class="ar mono">↗</span></span></div>
+    </a>
+
+    <div class="lad-col">
+      <a class="lad" href="https://micmiky.ru" target="_blank" rel="noopener">
+        <div class="lad-top"><span class="tag">Свой продукт</span><span class="lad-p mono">от 0 ₽</span></div>
+        <div class="lad-n sm">Micmiky</div>
+        <p class="lad-d">Пишет встречу без бота в звонке, а после — задачи, резюме и черновик КП.</p>
+        <div class="lad-f"><span class="go-link">micmiky.ru <span class="ar mono">↗</span></span></div>
+      </a>
+      <a class="lad" href="https://ozon-calculator.ru" target="_blank" rel="noopener">
+        <div class="lad-top"><span class="tag">Свой продукт</span><span class="lad-p mono">бесплатно</span></div>
+        <div class="lad-n sm">Ozon-юнит</div>
+        <p class="lad-d">Реальная маржа селлера с учётом 15+ статей расходов. Считает за тридцать секунд.</p>
+        <div class="lad-f"><span class="go-link">ozon-calculator.ru <span class="ar mono">↗</span></span></div>
+      </a>
+    </div>
+
+    <a class="lad hand" href="#price">
+      <div class="lad-top"><span class="tag">Делаю я, руками</span><span class="lad-p mono">100–350 тыс ₽</span></div>
+      <div class="lad-n sm">Внедрение под вас</div>
+      <p class="lad-d">Когда коробка не ложится на ваш процесс. Смотрю, где именно теряются деньги, и собираю систему под это. Месяц работы, пятьдесят таких за спиной.</p>
+      <div class="lad-f"><span class="go-link">Сколько это стоит <span class="ar">→</span></span></div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============ LEARNED ============ -->
+<section class="container section" data-screen-label="02c Learned">
+  <div class="sec-head">
+    <span class="tag">Что понял по ходу</span>
+    <h2 class="s-title">Что оказалось совсем не так, как я думал.</h2>
+  </div>
+  <div class="learned">
+
+    <a class="lr" href="cases/wowmebel.html">
+      <div class="lq">Ночной трафик оказался не «низкокачественным». Он <em>просто никем не обрабатывался</em>.</div>
+      <div class="lf"><span class="lc">WowМебель · продажи 24/7</span><span class="la">→</span></div>
+    </a>
+
+    <a class="lr" href="cases/federal-provider.html">
+      <div class="lq">«Нет покрытия» — это <em>не отказ, а сегмент</em>. Перестали выбрасывать таких клиентов — статья дохода появилась за неделю.</div>
+      <div class="lf"><span class="lc">Федеральный провайдер · телеком</span><span class="la">→</span></div>
+    </a>
+
+    <a class="lr" href="cases/help-me.html">
+      <div class="lq">Юридический клиент не «не берёт трубку». Он <em>не берёт трубку у незнакомого номера</em>. Задача была не уговорить, а попасть в короткий момент, когда человек готов говорить.</div>
+      <div class="lf"><span class="lc">Help Me · списание долгов</span><span class="la">→</span></div>
+    </a>
+
+    <a class="lr" href="cases/north-west-parts.html">
+      <div class="lq">Никакая нейросеть не спасёт, если данные о складе неактуальны. Половина работы здесь — <em>не ИИ, а инженерия данных</em>.</div>
+      <div class="lf"><span class="lc">North West Parts · 19 000 SKU</span><span class="la">→</span></div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============ PRICE ============ -->
+<section class="container section" id="price" data-screen-label="02d Price">
+  <div class="sec-head">
+    <span class="tag">Цены</span>
+    <h2 class="s-title">Сколько это стоит.</h2>
+  </div>
+
+  <div class="price-grid">
+
+    <div class="price-card">
+      <span class="tag">01 · Бот или интеграция</span>
+      <div class="pc-sum">100–200 <span class="unit">тыс&nbsp;₽</span></div>
+      <p class="pc-what">ИИ-ассистент принимает заявку за 30 секунд, квалифицирует, консультирует, бронирует встречу. Менеджеру достаются только горячие.</p>
+      <div class="pc-drivers">
+        <div class="dl">От чего зависит цена</div>
+        <ul>
+          <li>сколько каналов: Telegram, WhatsApp, Max, сайт</li>
+          <li>объём входящего потока</li>
+          <li>сколько документации агент держит в голове</li>
+        </ul>
+      </div>
+      <div class="pc-ref">
+        <a href="cases/wowmebel.html">WowМебель</a>
+        <a href="cases/werman.html">Werman</a>
+        <a href="cases/help-me.html">Help&nbsp;Me</a>
+        <a href="cases/bank-broker.html">Банковский брокер</a>
       </div>
     </div>
 
-    <div class="do-card">
-      <span class="tag">Продукт · юнит-экономика</span>
-      <div class="do-name">Ozon-юнит</div>
-      <p class="do-line">Точная юнит-экономика для селлеров: 15+ статей расходов, маржа за 30 секунд.</p>
-      <div class="shot">
-        <div class="win-bar"><i></i><i></i><i></i></div>
-        <img src="assets/shot-ozon.png" alt="Калькулятор Ozon-юнит" />
+    <div class="price-card">
+      <span class="tag">02 · Система с интерфейсами</span>
+      <div class="pc-sum">от 200 <span class="unit">тыс&nbsp;₽</span></div>
+      <p class="pc-what">Процесс оцифровывается целиком: свой интерфейс под каждую роль, учёт, логика, отчёты. Не надстройка над Excel, а замена ему.</p>
+      <div class="pc-drivers">
+        <div class="dl">От чего зависит цена</div>
+        <ul>
+          <li>сколько ролей у системы</li>
+          <li>сколько складов, точек, номенклатуры</li>
+          <li>нужен ли биллинг сторонним клиентам</li>
+        </ul>
       </div>
-      <div class="do-foot">
-        <a class="go-btn" href="https://ozon-calculator.ru" target="_blank" rel="noopener">Открыть Ozon-юнит <span class="ar mono">↗</span></a>
+      <div class="pc-ref">
+        <a href="cases/mpshine.html">MPShine</a>
+        <a href="cases/north-west-parts.html">North West Parts</a>
       </div>
     </div>
 
-    <div class="do-card implement">
-      <span class="tag">Направление</span>
-      <div class="do-name">Внедрения под ключ</div>
-      <p class="do-line">ИИ-системы под задачу бизнеса: e-commerce, производство, финтех, телеком. 11 кейсов собраны публично, часть под NDA.</p>
-      <div class="implement-stat">50+</div>
-      <div class="do-foot">
-        <a class="go-link" href="cases.html">Открыть кейсы <span class="ar">→</span></a>
+    <div class="price-card top">
+      <span class="tag">03 · Потолок на сегодня</span>
+      <div class="pc-sum">350 <span class="unit">тыс&nbsp;₽</span></div>
+      <p class="pc-what">Самый крупный проект за три года. Складская операционная система с нуля: интерфейсы, логика, учёт, биллинг, три роли пользователей. Аналог «Мой склад» плюс CRM, собранный под один конкретный бизнес.</p>
+      <div class="pc-drivers">
+        <div class="dl">Что вошло</div>
+        <ul>
+          <li>расчёт зарплаты упаковщика в реальном времени</li>
+          <li>контроль аномалий и пересорта</li>
+          <li>личный кабинет и счета для фулфилмент-клиентов</li>
+        </ul>
+      </div>
+      <div class="pc-ref">
+        <a class="go-link" href="cases/mpshine.html">Открыть разбор <span class="ar">→</span></a>
       </div>
     </div>
+
+  </div>
+
+  <!-- окупаемость -->
+  <div class="payback">
+    <div>
+      <h3>Платите один раз. Экономит каждый месяц.</h3>
+      <p>North West Parts экономит 340 000 ₽ ежемесячно на складе, где раньше 9% заказов уезжало обратно из-за пересорта. Система обошлась от 200 000 ₽.</p>
+    </div>
+    <div>
+      <div class="pb-n">3 недели</div>
+      <div class="pb-l">и дальше она просто зарабатывает</div>
+    </div>
+  </div>
+
+  <!-- условия -->
+  <div class="terms">
+    <div class="term"><div class="tn">Оплата</div><div class="td">50% предоплата, 50% после сдачи.</div></div>
+    <div class="term"><div class="tn">Рассрочка</div><div class="td">Например, четыре недели по 25%. Или под ваш кэшфлоу — обсуждаемо.</div></div>
+    <div class="term"><div class="tn">Срок</div><div class="td">До месяца от старта до продакшена. Не «квартал на обследование».</div></div>
+    <div class="term"><div class="tn">Документы</div><div class="td">Договор, счёт, закрывающие. Реквизиты&nbsp;· по запросу.</div></div>
+  </div>
+
+  <!-- как всё пойдёт -->
+  <div class="steps">
+    <span class="tag">Что будет происходить</span>
+    <h3>Как это пойдёт, по дням.</h3>
+    <div class="steps-list">
+      <div class="st">
+        <div class="st-w">Сегодня</div>
+        <div class="st-t"><b>Вы пишете в Telegram.</b> Отвечаю я, не менеджер. Договариваемся, когда созвонимся.</div>
+      </div>
+      <div class="st">
+        <div class="st-w">Через день-два</div>
+        <div class="st-t"><b>Сорок минут разговора.</b> Вы рассказываете, где болит. Я считаю вслух, сколько это стоит вам в месяц. Бесплатно.</div>
+      </div>
+      <div class="st">
+        <div class="st-w">Ещё пара дней</div>
+        <div class="st-t"><b>Присылаю смету.</b> Что делаю, сколько стоит, когда сдам. Если по моим же расчётам не окупится — напишу и это, такое уже было дважды.</div>
+      </div>
+      <div class="st">
+        <div class="st-w">Договорились</div>
+        <div class="st-t"><b>Половину вперёд, и я начал.</b> Показываю по ходу, а не пропадаю на месяц. Спрашиваю, когда упираюсь.</div>
+      </div>
+      <div class="st">
+        <div class="st-w">Через месяц</div>
+        <div class="st-t"><b>Работает.</b> Ваши люди пользуются, вы платите вторую половину. Ключи у вас уже давно.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- что получает клиент -->
+  <div class="hand-head">
+    <span class="tag">Что останется у вас</span>
+  </div>
+  <div class="handover">
+
+    <div class="hv">
+      <div class="hv-top">
+        <h3>Забираете всё себе</h3>
+        <span class="hv-p muted">без абонплаты</span>
+      </div>
+      <ul>
+        <li>Полностью рабочий продукт, а не прототип</li>
+        <li>Все доступы и ключи</li>
+        <li>Вся инфраструктура — полная передача</li>
+      </ul>
+      <div class="hv-note">Дальше система ваша целиком. Серверы и токены оплачиваете напрямую, дорабатывать можете кем угодно. Мы больше не нужны — и это нормально.</div>
+    </div>
+
+    <div class="hv">
+      <div class="hv-top">
+        <h3>Оставляете на нас</h3>
+        <span class="hv-p">от 25 000 ₽ / мес</span>
+      </div>
+      <ul>
+        <li>Токены, серверы, хостинг оплачиваем мы</li>
+        <li>Техническое обслуживание системы</li>
+        <li>Работает — не ваша забота</li>
+      </ul>
+      <div class="hv-note">Одна строка расхода в месяц вместо десяти счетов от разных сервисов. Вы про инфраструктуру не думаете вообще.</div>
+    </div>
+
+  </div>
+
+  <!-- что сверху -->
+  <div class="bonus">
+    <span class="tag">Что сверху, без доплаты</span>
+    <h3>Две вещи, из-за которых автоматизация чаще всего и не взлетает.</h3>
+    <div class="bonus-list">
+      <div class="bn">
+        <div class="bn-top">
+          <div class="bn-t">Первый месяц сопровождения</div>
+          <div class="bn-v">25 000 ₽ → 0</div>
+        </div>
+        <div class="bn-d">Токены, серверы, хостинг и обслуживание — первый месяц за мой счёт. За этот месяц вы сами поймёте, нужно ли вам сопровождение дальше. Не нужно — забираете ключи и уходите, я не обижусь.</div>
+      </div>
+      <div class="bn">
+        <div class="bn-top">
+          <div class="bn-t">Обучение ваших людей</div>
+          <div class="bn-v">входит</div>
+        </div>
+        <div class="bn-d">Систему поставили, а работать продолжают по-старому — вот от чего автоматизация умирает чаще всего. Поэтому сажусь с вашими людьми и объясняю, пока не начнут пользоваться сами.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- а если не сработает -->
+  <div class="guar">
+    <span class="tag">А если не сработает</span>
+    <h3>Четыре причины, по которым вы почти ничем не рискуете.</h3>
+    <div class="guar-list">
+      <div class="gu">
+        <div class="gu-t">Половину платите после сдачи</div>
+        <div class="gu-d">Предоплата 50%, остальное — когда система сдана. Пока не сдал, из ваших денег у меня только первый платёж.</div>
+      </div>
+      <div class="gu">
+        <div class="gu-t">Правки по ТЗ — бесплатно</div>
+        <div class="gu-d">Что записали в задании на старте, то и довожу — сколько бы заходов ни понадобилось. Захотите сверх того, о чём не договаривались, — посчитаю и назову цену до того, как начну.</div>
+      </div>
+      <div class="gu">
+        <div class="gu-t">Скажу «нет», если не окупится</div>
+        <div class="gu-d">Считаю до старта. Не сходится — так и напишу. Дважды я отказался от проектов, которые уже был готов делать, и оба раза остался без денег. Не жалею. <a class="gu-l" href="lessons.html">Оба разбора здесь <span class="ar">→</span></a></div>
+      </div>
+      <div class="gu">
+        <div class="gu-t">Ключи у вас с первого дня</div>
+        <div class="gu-d">Не понравится, как я работаю — забираете доступы и уходите к другим. У меня на стороне ничего не заперто.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- первый шаг -->
+  <div class="first-step">
+    <div class="fs-in">
+      <h3>Первый разговор — бесплатно.</h3>
+      <p>Сорок минут. Считаем вслух: сколько часов уходит на операцию, сколько заявок теряется за ночь, во что обходится одна ошибка. В конце у вас на руках расчёт. Он ваш, даже если дальше мы не работаем.<br><br>Не сойдётся — скажу прямо и не возьмусь.</p>
+      <div class="fs-limit">Пять разборов в месяц · дальше очередь</div>
+    </div>
+    <a class="btn-lime" href="https://t.me/SergChina" target="_blank" rel="noopener">Забрать разбор</a>
+  </div>
+</section>
+
+
+<!-- ============ VOICES ============ -->
+<section class="container section" data-screen-label="03b Voices">
+  <div class="sec-head">
+    <span class="tag">Говорят те, кто пользуется</span>
+    <h2 class="s-title">Что пишут те, кто пользуется.</h2>
+  </div>
+  <div class="voices">
+
+    <figure class="voice">
+      <blockquote class="q">Micmiky стал незаменимым. Такое ощущение, что я живу в будущем.</blockquote>
+      <figcaption class="who">
+        <div class="nm">Алексей Смирнов</div>
+        <div class="rl">директор по продажам · пользователь Micmiky</div>
+      </figcaption>
+    </figure>
+
+    <figure class="voice">
+      <blockquote class="q">Теперь я выхожу с каждой встречи с чётким планом и готовым письмом. Это изменило мою работу с клиентами.</blockquote>
+      <figcaption class="who">
+        <div class="nm">Анна Соколова</div>
+        <div class="rl">Head of Sales · пользователь Micmiky</div>
+      </figcaption>
+    </figure>
 
   </div>
 </section>
@@ -402,16 +893,16 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 <!-- ============ WHY US ============ -->
 <section class="container section" id="why" data-screen-label="04 Why us">
   <div class="sec-head">
-    <span class="tag">Метод и доверие · почему мы</span>
-    <h2 class="s-title">Делаем работающее. И берёмся не за всё.</h2>
+    <span class="tag">Почему я</span>
+    <h2 class="s-title">Почему я, а не студия на двадцать человек.</h2>
   </div>
   <div class="method-grid">
-    <div class="method"><h3>Проектируем агента, а не «подключаем нейросеть»</h3><p>Задаём контекст, роль и поведение — как обучающую систему. Методология из педагогики. Поэтому агент делает дело, а не галлюцинирует.</p></div>
-    <div class="method"><h3>Строим под задачу, а не под коробку</h3><p>Не курс и не шаблон. Смотрим, что теряет именно ваш бизнес, и строим под это.</p></div>
-    <div class="method"><h3>Считаем экономику до первой строки кода</h3><p>Проверяем окупаемость до старта. Клиент не платит за красивый эксперимент.</p></div>
-    <div class="method"><h3>Делаем под ключ, до работающего результата</h3><p>Система в продакшене, а не презентация с рекомендациями.</p></div>
-    <div class="method"><h3>Заходим туда, где высока цена ошибки</h3><p>Финтех, телеком, брокеридж. Серверы в России, 152-ФЗ.</p></div>
-    <div class="method"><h3>Не технари и не инфоцыгане</h3><p>Делаем работающее, объясняем по-человечески, спокойно берём цену. Без хайпа.</p></div>
+    <div class="method"><h3>Агента надо учить, как нового сотрудника</h3><p>Десять лет я писал учебные программы. Агенту нужно ровно то же: объяснить роль, правила и что делать, когда всё пошло не по плану. Поэтому мои агенты работают, а не выдумывают.</p></div>
+    <div class="method"><h3>Коробочных решений у меня нет</h3><p>Сначала смотрю, что теряет именно ваш бизнес. Потом строю под это. Чужой шаблон, натянутый на ваш процесс, разваливается на второй неделе.</p></div>
+    <div class="method"><h3>Сначала считаю, потом пишу код</h3><p>Если система будет стоить дороже, чем сэкономит, я скажу вам об этом до того, как вы заплатите. Два проекта я так и закрыл.</p></div>
+    <div class="method"><h3>Довожу до конца</h3><p>Не презентация с рекомендациями. Работающая система, которой каждый день пользуются ваши люди.</p></div>
+    <div class="method"><h3>Беру задачи, где ошибка дорого стоит</h3><p>Финтех, телеком, брокеридж. Серверы в России, 152-ФЗ соблюдаю.</p></div>
+    <div class="method"><h3>Объясняю по-человечески</h3><p>Не гружу аббревиатурами и не продаю «цифровую трансформацию». Говорю, что будет делать система и сколько вы на ней заработаете.</p></div>
   </div>
 
   <!-- founder -->
@@ -425,21 +916,31 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
       <a class="go-link" href="about.html" style="margin-top:22px;">Полная история <span class="ar">→</span></a>
     </div>
   </div>
-</section>
 
-<!-- ============ PARTNERS ============ -->
-<section class="container partners" id="partners" data-screen-label="05 Partners">
-  <span class="tag">Работали с</span>
-  <div class="plist">
-    <span>Skillbox</span><span class="dot"></span>
-    <span>MPShine</span><span class="dot"></span>
-    <span>Help Me</span><span class="dot"></span>
-    <span>North West Parts</span><span class="dot"></span>
-    <span>Werman</span><span class="dot"></span>
-    <span>Инвестиции России</span><span class="dot"></span>
-    <span class="nda">+ ещё 40+ кейсов, часть под NDA</span>
+  <!-- team -->
+  <div class="team" data-screen-label="04c Team">
+    <span class="tag">Кто делает</span>
+    <h3>Нас трое. Это вся команда.</h3>
+    <div class="team-rows">
+      <div class="tm">
+        <div class="tm-n">Сергей Воробьёв — это я</div>
+        <div class="tm-r">Продумываю систему, делаю интерфейсы, считаю экономику. И спорю с вами о том, что на самом деле надо строить. В Telegram отвечаю тоже я.</div>
+      </div>
+      <div class="tm">
+        <div class="tm-n">Ведущий разработчик</div>
+        <div class="tm-r">Финтех, до этого Т-Банк. Ему достаётся всё, что не получается у меня.</div>
+      </div>
+      <div class="tm">
+        <div class="tm-n">Второй разработчик</div>
+        <div class="tm-r">Держит то, что уже работает. Упало в субботу ночью — это к нему.</div>
+      </div>
+    </div>
+    <p class="team-note">Трое — это мало.<br><br>
+    Поэтому не беру всё подряд. Поэтому разборов пять в месяц, а не сорок. И поэтому <span class="hl">ключи с доступами уходят вам в первый же день</span> — случись что со мной, система продолжит работать без меня.<br><br>
+    Так спокойнее. Обоим.</p>
   </div>
 </section>
+
 
 <!-- ============ FLAGSHIP ============ -->
 <section class="container" data-screen-label="06 MPShine">
@@ -464,11 +965,16 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 <section class="container" data-screen-label="07 Promise">
   <div class="final">
     <div class="in">
-      <span class="tag on-dark" style="justify-content:center;">Обещание SVORG</span>
-      <h2>Покажите, где теряете деньги. Построим систему, которая их зарабатывает. Или честно скажем, что не <span class="lime">возьмёмся.</span></h2>
-      <p>Считаем экономику до первой строки кода. Решит ИИ — обсудим. Не решит — скажем прямо. Два проекта мы закрыли сами, потому что экономика не сошлась.</p>
-      <a class="btn-lime" href="https://t.me/SergChina" target="_blank" rel="noopener">Написать в Telegram</a>
-      <div class="signoff">Отвечает основатель, не менеджер.</div>
+      <span class="tag on-dark" style="justify-content:center;">Что дальше</span>
+      <h2>Расскажите, где у вас утекает. Посчитаю. Если не окупится — так и <span class="lime">скажу.</span></h2>
+      <p>Пока вы думаете, счётчик тикает. У North West Parts он показывал 340 000 ₽ в месяц на пересорте. У WowМебель — 850 000 ₽ упущенной прибыли, пока ночные заявки висели до утра. Ваша цифра другая. Но она не ноль, и вы её не видите — как не видели они.</p>
+      <div class="wait">
+        <div class="wt"><div class="wt-n">340 000 ₽</div><div class="wt-l">столько склад терял каждый месяц, пока не построили систему за 200 000</div></div>
+        <div class="wt"><div class="wt-n">850 000 ₽</div><div class="wt-l">столько уходило в месяц, пока заявки лежали до утра</div></div>
+      </div>
+      <p style="margin-top:26px;">Сорок минут, расчёт на бумаге, ноль рублей. Решит ИИ вашу задачу — обсудим. Не решит — скажу сразу.</p>
+      <a class="btn-lime" href="https://t.me/SergChina" target="_blank" rel="noopener">Забрать бесплатный разбор</a>
+      <div class="signoff">Пять разборов в месяц · отвечает основатель, не менеджер</div>
     </div>
   </div>
 </section>
@@ -486,14 +992,14 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
       <ul>
         <li><a href="products.html">Продукты</a></li>
         <li><a href="cases.html">Кейсы</a></li>
-        <li><a href="#why">Почему мы</a></li>
+        <li><a href="#why">Почему я</a></li>
         <li><a href="about.html">О компании</a></li>
       </ul>
     </div>
     <div class="foot-col">
       <h4>Продукты и связь</h4>
       <ul>
-        <li><a href="https://meet.micmiky.ru" target="_blank" rel="noopener">Micmiky <span class="ext mono">↗</span></a></li>
+        <li><a href="https://micmiky.ru" target="_blank" rel="noopener">Micmiky <span class="ext mono">↗</span></a></li>
         <li><a href="https://ozon-calculator.ru" target="_blank" rel="noopener">Ozon-юнит <span class="ext mono">↗</span></a></li>
         <li><a href="https://t.me/SergChina" target="_blank" rel="noopener">Telegram лично</a></li>
         <li><a href="https://t.me/sparrow_ai_channel" target="_blank" rel="noopener">Канал «Sparrow AI»</a></li>

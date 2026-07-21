@@ -62,7 +62,7 @@
     <div class="hero-inner">
       <div class="eyebrow">Кейсы</div>
       <h1 class="display">Одиннадцать компаний,<br>которые перестали терять.</h1>
-      <p class="hero-sub">За три года&nbsp;· больше пятидесяти внедрений ИИ в российский бизнес. Здесь одиннадцать самых показательных: с реальными цифрами выручки, конверсии и сроков. Сделаны лично или с моей командой.</p>
+      <p class="hero-sub">За три года&nbsp;· больше пятидесяти внедрений ИИ в российский бизнес. Здесь одиннадцать самых показательных: с реальными цифрами выручки, конверсии и сроков. Сделаны мной и командой из трёх человек.</p>
     </div>
     <img class="hero-whale" src="assets/svorg-black.png" alt="" aria-hidden="true" />
   </div>
@@ -237,9 +237,9 @@
       <h3 class="cc-title">Micmiky</h3>
       <div class="cc-sub">AI-операционная система для встреч. Запись, анализ, задачи в трекере, черновик КП.</div>
       <div class="cc-divider"></div>
-      <div class="cc-metric mono">MVP</div>
-      <p class="cc-metric-label">Текущий этап</p>
-      <div class="cc-metric-base mono">50 тестовых пользователей на май 2026</div>
+      <div class="cc-metric mono">В проде</div>
+      <p class="cc-metric-label">Текущий статус</p>
+      <div class="cc-metric-base mono">платные тарифы · десктоп Windows и macOS</div>
       <div class="cc-foot"><span></span><span class="cc-arrow"><span class="arr">→</span></span></div>
     </a>
 
@@ -271,7 +271,7 @@
       <li><strong>Автопроверка отчётов о&nbsp;выбросах</strong> · экология, регуляторика, 2025. Экономика закупки исходных данных не сложилась&nbsp;· стоимость единицы проверки не окупала себя.</li>
       <li><strong>Голосовой ассистент для торговой сети</strong> · общепит, франшиза, 2026. Инфраструктура франшизы оказалась несовместима с единым голосовым контуром.</li>
     </ul>
-    <div class="fail-foot">Оба под NDA. Подробности&nbsp;· лично, если уместно.</div>
+    <div class="fail-foot">Оба под NDA, названия не раскрываю. Но что именно пошло не так и что я из этого вынес&nbsp;· <a href="lessons.html">разобрал подробно <span class="arr">→</span></a></div>
   </div>
 </section>
 
@@ -294,7 +294,7 @@
       <div class="fr-col">
         <div class="fr-name">SVORG</div>
         <div class="fr-tag">ИИ-решения для российского бизнеса</div>
-        <div class="fr-tag-mono mono">С&nbsp;2023 · 50+ внедрений · 2 продукта + внедрения</div>
+        <div class="fr-tag-mono mono">С&nbsp;2023 · 50+ внедрений · 3 продукта + внедрения</div>
       </div>
       <div class="fr-col">
         <div class="fr-lbl">Навигация</div>
@@ -310,7 +310,7 @@
         <ul class="fr-list">
           <li><a href="https://t.me/SergChina">Telegram лично</a></li>
           <li><a href="https://t.me/sparrow_ai_channel">Канал «Sparrow AI»</a></li>
-          <li><a href="https://meet.micmiky.ru">meet.micmiky.ru</a></li>
+          <li><a href="https://micmiky.ru">micmiky.ru</a></li>
           <li><a href="https://ozon-calculator.ru">ozon-calculator.ru</a></li>
         </ul>
       </div>
@@ -321,7 +321,7 @@
     </div>
     <div class="footer-bottom">
       <span>SVORG · sparrow-ai.tech · 2026</span>
-      <span class="mono">Обновлено май 2026</span>
+      
     </div>
   </div>
 </footer>
@@ -374,6 +374,7 @@
       const prefix = el.dataset.prefix || '';
       const suffix = el.dataset.suffix || '';
       el.textContent = prefix + target + suffix;
+      el.dataset.settled = '1';
     };
     if (reduceMotion) {
       numbers.forEach(setFinal);
@@ -391,15 +392,28 @@
         const val = Math.round(target * ease);
         el.textContent = prefix + val + suffix;
         if (p < 1) requestAnimationFrame(tick);
-        else el.textContent = prefix + target + suffix;
+        else setFinal(el);
       };
       requestAnimationFrame(tick);
     };
+    // В фоновой вкладке rAF замирает и число застревает на промежуточном
+    // значении: вместо «50+» человек возвращается и видит «3+». Таймеры там
+    // тоже throttled, поэтому единственная надёжная точка — момент, когда
+    // вкладка снова становится видимой.
+    const settleAll = () => {
+      numbers.forEach(el => {
+        if (el.dataset.done && !el.dataset.settled) setFinal(el);
+      });
+    };
+    // Уходит в фон — досчитывать некому и незачем, ставим финал сразу.
+    // Возвращается — добираем всё, что осталось незакрытым.
+    document.addEventListener('visibilitychange', settleAll);
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !entry.target.dataset.done) {
           entry.target.dataset.done = '1';
-          animate(entry.target);
+          if (document.hidden) setFinal(entry.target);
+          else animate(entry.target);
         }
       });
     }, { threshold: 0.5 });
