@@ -341,11 +341,24 @@ a.lad.main:hover{transform:translateY(-2px);}
   font-size:16px;line-height:1.6;color:var(--gray);}
 .team-note .hl{background:var(--lime-soft);box-shadow:inset 0 -0.4em 0 var(--lime-soft);padding:0 2px;}
 
+/* proof → все кейсы */
+.proof-more{margin-top:26px;padding-top:26px;border-top:1px solid var(--line);
+  display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;}
+.proof-more p{font-size:16px;line-height:1.6;color:var(--gray);max-width:640px;}
+.btn-dark{display:inline-flex;align-items:center;gap:10px;padding:16px 26px;border-radius:11px;
+  background:var(--ink);color:#fff;font-weight:700;font-size:16px;line-height:1;white-space:nowrap;
+  transition:background .18s ease;}
+.btn-dark:hover{background:var(--ink-2);}
+
 /* ============ PARTNERS ============ */
 .pgrid{margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .pc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px;}
 .pc .pc-n{font-size:22px;font-weight:700;letter-spacing:-0.02em;line-height:1.2;}
 .pc .pc-i{margin-top:9px;font-size:14px;color:var(--muted);line-height:1.5;}
+a.pc{color:inherit;display:block;transition:transform .18s ease,border-color .18s ease;}
+a.pc:hover{transform:translateY(-2px);border-color:#CBD0D7;}
+.pc-go{font-size:15px;color:var(--muted);opacity:0;transition:opacity .18s ease,color .18s ease;}
+a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 .pnda{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);
   font-size:16px;color:var(--gray);line-height:1.6;max-width:760px;}
 
@@ -437,6 +450,7 @@ a.lad.main:hover{transform:translateY(-2px);}
   .section{padding-top:76px;}
   .s-title{font-size:32px;}
   .pgrid{grid-template-columns:1fr;}
+  .proof-more{grid-template-columns:1fr;gap:18px;}
   .lad-col{flex-direction:column;}
   .lad{padding:24px;}
   .lad-n{font-size:30px;}
@@ -562,6 +576,10 @@ a.lad.main:hover{transform:translateY(-2px);}
       <span class="val-go arr">→</span>
     </a>
   </div>
+  <div class="proof-more">
+    <p>Здесь шесть. Всего в публичной подборке одиннадцать — с выручкой, конверсией, сроками и тем, что именно пошло не так по дороге. Плюс сорок с лишним под NDA.</p>
+    <a class="btn-dark" href="cases.html">Открыть все одиннадцать кейсов <span class="mono">→</span></a>
+  </div>
 </section>
 
 <!-- ============ PARTNERS ============ -->
@@ -571,12 +589,12 @@ a.lad.main:hover{transform:translateY(-2px);}
     <h2 class="s-title">Эти компании пустили меня в свои процессы.</h2>
   </div>
   <div class="pgrid">
-    <div class="pc"><div class="pc-n">MPShine</div><div class="pc-i">фулфилмент · складская операционная система</div></div>
-    <div class="pc"><div class="pc-n">North West Parts</div><div class="pc-i">автозапчасти · 19 000 SKU без пересорта</div></div>
+    <a class="pc" href="cases/mpshine.html"><div class="pc-n">MPShine <span class="pc-go mono">→</span></div><div class="pc-i">фулфилмент · складская операционная система</div></a>
+    <a class="pc" href="cases/north-west-parts.html"><div class="pc-n">North West Parts <span class="pc-go mono">→</span></div><div class="pc-i">автозапчасти · 19 000 SKU без пересорта</div></a>
     <div class="pc"><div class="pc-n">Skillbox</div><div class="pc-i">образование · методология курса по ИИ</div></div>
-    <div class="pc"><div class="pc-n">Help Me</div><div class="pc-i">списание долгов · захват лидов голосом и текстом</div></div>
-    <div class="pc"><div class="pc-n">Werman</div><div class="pc-i">станки · продажи без техконсультаций</div></div>
-    <div class="pc"><div class="pc-n">Инвестиции России</div><div class="pc-i">финтех · квалификация инвесторов</div></div>
+    <a class="pc" href="cases/help-me.html"><div class="pc-n">Help Me <span class="pc-go mono">→</span></div><div class="pc-i">списание долгов · захват лидов голосом и текстом</div></a>
+    <a class="pc" href="cases/werman.html"><div class="pc-n">Werman <span class="pc-go mono">→</span></div><div class="pc-i">станки · продажи без техконсультаций</div></a>
+    <a class="pc" href="cases/investments.html"><div class="pc-n">Инвестиции России <span class="pc-go mono">→</span></div><div class="pc-i">финтех · квалификация инвесторов</div></a>
   </div>
   <div class="pnda">И ещё сорок с лишним проектов, о которых я не могу рассказать. Финтех, телеком, крупный B2B — там NDA, и я его не нарушаю даже когда очень хочется.</div>
 </section>
@@ -1009,7 +1027,7 @@ a.lad.main:hover{transform:translateY(-2px);}
   </div>
   <div class="foot-bottom">
     <span>SVORG · sparrow-ai.tech · 2026</span>
-    <span class="mono">Фокус на тебя · делаем невидимое прибыльным</span>
+    <span class="mono">Чем глубже смотришь, тем больше видишь</span>
   </div>
 </footer>
 
