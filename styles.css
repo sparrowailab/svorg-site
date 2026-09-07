@@ -1,5 +1,5 @@
 /* ============================================
-   SVORG — Design System (unified)
+   Sparrow — Design System (unified)
    Onest + Forum (serif) + JetBrains Mono · lime #C9F24E
    ============================================ */
 
@@ -17,10 +17,6 @@
   --lime-deep:#BCE633;
   --lime-text:#3C4A0A;
   --lime-soft:#EAF6C8;
-  --mint:#DCF0E4;
-  --peach:#FBE6D6;
-  --sky:#E3EEFB;
-  --salmon:#FCE8E8;
 
   /* legacy aliases */
   --paper:#EDEFF2;
@@ -70,9 +66,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .nav{position:sticky;top:0;z-index:60;background:rgba(237,239,242,0.86);
   backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
 .nav-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 0;}
-.brand{display:flex;align-items:center;gap:12px;}
-.brand-mark{height:42px;width:auto;display:block;}
-.brand-name{display:none;}
+.brand{display:flex;align-items:center;gap:18px;}
+.brand-mark{height:34px;width:auto;display:block;}
+.brand-name{font-family:'Forum',Georgia,serif;font-size:33px;line-height:1;letter-spacing:0.01em;color:var(--ink);}
 .nav-menu{display:flex;align-items:center;gap:4px;}
 .nav-menu a{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
   padding:9px 14px;border-radius:9px;font-size:15px;font-weight:500;color:var(--ink);transition:background .18s ease;}
@@ -433,7 +429,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .footer{margin-top:96px;border-top:1px solid var(--line);padding:72px 0 48px;}
 .footer-whale{height:42px;width:auto;display:block;margin-bottom:24px;}
 .footer-grid-rich{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;}
-.fr-name{font-size:18px;font-weight:800;letter-spacing:-0.01em;color:var(--ink);}
+.fr-name{font-family:'Forum',Georgia,serif;font-size:30px;font-weight:400;line-height:1;letter-spacing:0.01em;color:var(--ink);}
 .fr-tag{margin-top:10px;font-size:15px;color:var(--muted);max-width:280px;line-height:1.5;}
 .fr-tag-mono{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.04em;}
 .fr-lbl{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:14px;}
@@ -476,7 +472,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .nav-menu.open{display:flex;}
   .nav-menu a{padding:13px 10px;font-size:16px;}
   .btn-write{margin-left:0;margin-top:8px;text-align:center;justify-content:center;}
-  .brand-mark{height:34px;}
+  .brand-mark{height:26px;}
+  .brand-name{font-size:25px;}
+  .brand{gap:13px;}
   .display,h1.display{font-size:40px;}
   .products-hero .display,.about-hero .display,.lessons-hero .display{font-size:38px;}
   .case-hero h1{font-size:40px;}

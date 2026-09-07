@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SVORG · ИИ-системы под ключ · от 100 000 ₽ за месяц</title>
+<title>Sparrow · ИИ-системы под ключ · от 100 000 ₽ за месяц</title>
 <meta name="description" content="Собираю ИИ-системы под ваш процесс: от 100 000 ₽, месяц работы, 50+ внедрений с 2023. Пересорт 9%→1%, анализ заёмщика 3 часа→2 минуты, +100% прибыли за квартал. Свои продукты — OpenCowork, Micmiky, Ozon-юнит. Разбор бесплатно." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230E0E10'/%3E%3Ccircle cx='50' cy='50' r='24' fill='none' stroke='%23fff' stroke-width='7'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%23C9F24E'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,10 +25,6 @@
   --lime-deep:#BCE633;
   --lime-text:#3C4A0A;
   --lime-soft:#EAF6C8;
-  --mint:#DCF0E4;
-  --peach:#FBE6D6;
-  --sky:#E3EEFB;
-  --salmon:#FCE8E8;
   --container:1180px;
   --pad:32px;
 }
@@ -63,7 +59,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .nav{position:sticky;top:0;z-index:60;background:rgba(237,239,242,0.86);
   backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 0;}
-.brand-logo{height:42px;width:auto;display:block;}
+.brand{display:flex;align-items:center;gap:18px;}
+.brand-logo{height:34px;width:auto;display:block;}
+.brand-name{font-family:'Forum',Georgia,serif;font-size:33px;line-height:1;letter-spacing:0.01em;color:var(--ink);}
 .nav-menu{display:flex;align-items:center;gap:4px;}
 .nav-menu>li{position:relative;}
 .nav-link{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
@@ -386,7 +384,9 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 /* ============ FOOTER ============ */
 .footer{padding:78px 0 54px;}
 .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;}
-.foot-logo{height:44px;width:auto;display:block;}
+.foot-brand{display:flex;align-items:center;gap:22px;}
+.foot-logo{height:40px;width:auto;display:block;}
+.foot-name{font-family:'Forum',Georgia,serif;font-size:39px;line-height:1;letter-spacing:0.01em;color:var(--ink);}
 .foot-tag{margin-top:18px;font-size:15px;color:var(--muted);max-width:320px;line-height:1.5;}
 .foot-mono{margin-top:14px;font-size:12px;color:var(--muted);letter-spacing:0.04em;}
 .foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
@@ -435,7 +435,9 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   .nav-menu{display:none;}
   .hamb{display:flex;flex-direction:column;gap:5px;padding:8px;}
   .hamb span{width:22px;height:2px;background:var(--ink);border-radius:2px;}
-  .brand-logo{height:34px;}
+  .brand-logo{height:26px;}
+  .brand-name{font-size:25px;}
+  .brand{gap:13px;}
   .hero{margin-top:16px;border-radius:18px;}
   .hero-in{padding:40px 24px;}
   .hero h1{font-size:44px;}
@@ -468,8 +470,9 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 <!-- ============ NAV ============ -->
 <header class="nav">
   <div class="container nav-inner">
-    <a href="index.html" aria-label="SVORG · фокус на тебя">
-      <img class="brand-logo" src="assets/svorg-black.png" alt="SVORG" />
+    <a class="brand" href="index.html" aria-label="Sparrow · на главную">
+      <img class="brand-logo" src="assets/sparrow-mark-dark.svg" alt="" />
+      <span class="brand-name">Sparrow</span>
     </a>
     <nav>
       <ul class="nav-menu">
@@ -927,7 +930,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   <!-- founder -->
   <div class="founder" data-screen-label="04b Founder">
     <div>
-      <span class="tag">За SVORG — Сергей Воробьёв</span>
+      <span class="tag">За Sparrow — Сергей Воробьёв</span>
       <h3 style="margin-top:16px;">10 лет учил людей. Потом понял, что ИИ-агента проектируют так&nbsp;же.</h3>
     </div>
     <div>
@@ -1002,7 +1005,10 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 <footer class="container footer" data-screen-label="08 Footer">
   <div class="foot-grid">
     <div>
-      <img class="foot-logo" src="assets/svorg-black.png" alt="SVORG" />
+      <div class="foot-brand">
+        <img class="foot-logo" src="assets/sparrow-mark-dark.svg" alt="" />
+        <span class="foot-name">Sparrow</span>
+      </div>
       <p class="foot-tag">ИИ-системы и продукты для российского бизнеса. Два продукта в проде и внедрения под ключ.</p>
       <div class="foot-mono mono">С 2023 · 50+ внедрений · основатель Сергей Воробьёв</div>
     </div>
@@ -1026,7 +1032,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     </div>
   </div>
   <div class="foot-bottom">
-    <span>SVORG · sparrow-ai.tech · 2026</span>
+    <span>Sparrow · sparrow-ai.tech · 2026 · юрлицо SVORG</span>
     <span class="mono">Чем глубже смотришь, тем больше видишь</span>
   </div>
 </footer>
