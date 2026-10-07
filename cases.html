@@ -350,7 +350,8 @@
   const cards = document.querySelectorAll('#grid .case-card');
 
   // Compute counts
-  const counts = { all: cards.length };
+  const flagship = document.querySelectorAll('.flagship-card').length;
+  const counts = { all: cards.length + flagship };
   cards.forEach(card => {
     const tags = (card.dataset.tags || '').split(',');
     tags.forEach(t => { if (t) counts[t] = (counts[t] || 0) + 1; });
