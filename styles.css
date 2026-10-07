@@ -48,29 +48,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .top-stripe{display:none;}
 .ornament{display:none;}
 
-/* ============ ДВИЖЕНИЕ ============ */
-/* Всё внутри no-preference: при «меньше движения» страницы статичны по умолчанию. */
-@media (prefers-reduced-motion: no-preference){
-  /* заголовок раскрывается построчно из-под маски */
-  .display.lines .mask{display:block;overflow:hidden;}
-  .display.lines .mask > span{display:block;transform:translateY(105%);
-    animation:line-rise .9s cubic-bezier(.22,1,.36,1) forwards;
-    animation-delay:calc(.1s + var(--i) * .09s);}
-  @keyframes line-rise{to{transform:translateY(0)}}
-
-  /* фотография: раскрывается снизу вверх и очень медленно наезжает */
-  .about-portrait{clip-path:inset(100% 0 0 0);animation:photo-open 1.1s cubic-bezier(.22,1,.36,1) .35s forwards;}
-  .about-portrait img{transform:scale(1.08);animation:photo-settle 2.4s cubic-bezier(.22,1,.36,1) .35s forwards;
-    will-change:transform;}
-  @keyframes photo-open{to{clip-path:inset(0 0 0 0)}}
-  @keyframes photo-settle{to{transform:scale(1)}}
-
-  /* снимки интерфейсов в кейсах чуть приближаются при наведении */
-  .shot-frame .shot-pic img{transition:transform .5s cubic-bezier(.22,1,.36,1);}
-  .shot-frame:hover .shot-pic img{transform:scale(1.03);}
-  .shots-grid.full .shot-frame:hover .shot-pic img{transform:scale(1.02);}
-}
-
 /* ============ ДОВОДКА §14.10A ============ */
 /* перенос строк: заголовки балансируем, короткие абзацы и подписи — pretty */
 h1,h2,h3,h4,.display,.f-title,.cc-title,.rc-title,.d-title,.lad-n,.pc-title{text-wrap:balance;}

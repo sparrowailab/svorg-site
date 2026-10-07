@@ -55,39 +55,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .s-title{font-family:'Forum',Georgia,serif;font-weight:400;
   font-size:46px;letter-spacing:-0.01em;line-height:1.08;margin-top:16px;}
 
-/* ============ ДВИЖЕНИЕ ============ */
-/* Всё внутри no-preference: при «меньше движения» страница статична по умолчанию. */
-@media (prefers-reduced-motion: no-preference){
-  /* обложка: заголовок выезжает из-под маски, остальное подтягивается лесенкой */
-  .hero-text .mask{display:block;overflow:hidden;}
-  .hero-text .mask > span{display:block;transform:translateY(105%);
-    animation:rise-in .85s cubic-bezier(.22,1,.36,1) .15s forwards;}
-  .hero-text > .tag,.hero-text > .hero-sub,.hero-text > .hero-cta,.hero-text > .hero-note,.hero-stats > .stat{
-    opacity:0;transform:translateY(14px);
-    animation:fade-up .6s cubic-bezier(.22,1,.36,1) forwards;}
-  .hero-text > .tag{animation-delay:.05s}
-  .hero-text > .hero-sub{animation-delay:.5s}
-  .hero-text > .hero-cta{animation-delay:.62s}
-  .hero-text > .hero-note{animation-delay:.72s}
-  .hero-stats > .stat:nth-child(1){animation-delay:.60s}
-  .hero-stats > .stat:nth-child(2){animation-delay:.70s}
-  .hero-stats > .stat:nth-child(3){animation-delay:.80s}
-  @keyframes rise-in{to{transform:translateY(0)}}
-  @keyframes fade-up{to{opacity:1;transform:none}}
-
-  /* лаймовое свечение обложки медленно дышит */
-  .hero::after{animation:glow-drift 22s ease-in-out infinite alternate;will-change:transform;}
-  @keyframes glow-drift{to{transform:translate3d(-7%,5%,0) scale(1.1)}}
-
-  /* блоки появляются при прокрутке: один раз, без возврата */
-  [data-rise]{opacity:0;transform:translateY(20px);
-    transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);}
-  [data-rise].in{opacity:1;transform:none;}
-  [data-rise][data-delay="1"]{transition-delay:.08s}
-  [data-rise][data-delay="2"]{transition-delay:.16s}
-  [data-rise][data-delay="3"]{transition-delay:.24s}
-}
-
 /* ============ ДОВОДКА §14.10A ============ */
 /* перенос строк: заголовки балансируем, короткие абзацы и подписи — pretty */
 h1,h2,h3,h4,.display,.f-title,.cc-title,.rc-title,.d-title,.lad-n,.pc-title{text-wrap:balance;}
@@ -570,7 +537,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     <div class="hero-in">
       <div class="hero-text">
         <span class="tag on-dark">ИИ-системы для бизнеса · с 2023</span>
-        <h1 style="margin-top:24px;"><span class="mask"><span>Бизнес теряет деньги там, куда <span class="lime">никто не смотрит</span></span></span></h1>
+        <h1 style="margin-top:24px;">Бизнес теряет деньги там, куда <span class="lime">никто не смотрит</span></h1>
         <p class="hero-sub">Заявка пришла в два ночи — ответили утром, клиент уже купил у других. Кладовщик собрал не тот артикул — товар едет назад за ваш счёт. Менеджер третий час читает документ, который читается за две минуты.<br><br>Найду такие места, посчитаю в рублях и соберу систему, которая их закроет. Месяц работы, от 100 000 ₽.</p>
         <div class="hero-cta">
           <a class="btn-lime" href="#price">Сколько это стоит <span class="mono">→</span></a>
@@ -1093,29 +1060,5 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#0E0E10"/><circle cx="50" cy="50" r="26" fill="none" stroke="#fff" stroke-width="7"/><circle cx="50" cy="50" r="8" fill="#C9F24E"/></svg>
 </template>
 
-<script>
-// Появление блоков при прокрутке. Один раз, без возврата: повторная анимация
-// при каждом проходе мимо блока раздражает и мешает читать.
-(function(){
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const groups = [
-    ['.proof-card', 1], ['.lad', 1], ['.pnda', 1], ['.voice', 1],
-    ['.why-card', 1], ['.tm-card', 1], ['.section > h2', 0], ['.section > .label', 0]
-  ];
-  const items = [];
-  groups.forEach(([sel]) => document.querySelectorAll(sel).forEach(el => items.push(el)));
-  if (!items.length || !('IntersectionObserver' in window)) return;
-  items.forEach(el => {
-    el.setAttribute('data-rise','');
-    const sibs = [...(el.parentElement ? el.parentElement.children : [])].filter(s => s.tagName === el.tagName);
-    const i = sibs.indexOf(el);
-    if (i > 0 && i < 4) el.setAttribute('data-delay', String(i));
-  });
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-  items.forEach(el => io.observe(el));
-})();
-</script>
 </body>
 </html>
