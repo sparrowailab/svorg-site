@@ -471,7 +471,10 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   .case-grid{grid-template-columns:repeat(2,1fr);}
   .case-card.featured{grid-column:span 2;flex-direction:column;}
   .flagship-card{grid-template-columns:1fr;}
-  .flagship-right{align-items:flex-start;text-align:left;}
+  /* grid-column:2 в одной колонке ставил блок в несуществующую колонку:
+     на 320 он вылезал за карточку, на 375 весь флагман жил в 154px вместо 335 */
+  .flagship-right{grid-column:1;grid-row:2;align-items:flex-start;text-align:left;}
+  .flagship-metrics{grid-row:3;}
   .metrics-grid{grid-template-columns:repeat(2,1fr);}
   .solution-grid{grid-template-columns:1fr;}
   .cta-row{grid-template-columns:1fr;}
@@ -480,6 +483,14 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 }
 @media (max-width:680px){
   :root{--pad:20px;}
+  /* таблицы «До и после»: без отступов ячейки сходились вплотную,
+     а длинные слова и суммы разгоняли таблицу шире контейнера (investments 340 при 280).
+     Размер и отступ плавные: на 320 таблица влезает в 280, к 680 возвращается к обычному.
+     Перенос по слогам — только в первой колонке, числа и суммы остаются целыми */
+  .compare th{font-size:clamp(9px,2.7vw,11px);padding:12px 0;}
+  .compare td{font-size:clamp(13px,4vw,17px);padding:15px 0;}
+  .compare th+th,.compare td+td{padding-left:clamp(8px,2.6vw,16px);}
+  .compare th:first-child,.compare td:first-child{-webkit-hyphens:auto;hyphens:auto;}
   /* «автоматизировать?» неразрывно: в 34px слово задавало минимум шире экрана на 320 */
   .products-cta{padding:28px;}
   .products-cta h2{font-size:26px;}
