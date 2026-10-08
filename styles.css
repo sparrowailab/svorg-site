@@ -480,6 +480,9 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 }
 @media (max-width:680px){
   :root{--pad:20px;}
+  /* «автоматизировать?» неразрывно: в 34px слово задавало минимум шире экрана на 320 */
+  .products-cta{padding:28px;}
+  .products-cta h2{font-size:26px;}
   /* мобильное меню: до этого .hamburger был display:none навсегда,
      а .nav-menu никогда не пряталось — меню вылезало за край экрана */
   .hamburger{display:flex;flex-direction:column;gap:5px;padding:8px;}
@@ -531,6 +534,9 @@ a.lad:hover{transform:translateY(-2px);border-color:#CBD0D7;}
 .lad-f{margin-top:auto;padding-top:22px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:9px;}
 .lad-col{display:flex;flex-direction:column;gap:16px;}
 .lad-col .lad{flex:1;}
+.lad-nums{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:16px 14px;}
+.lad-nums .n{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:500;letter-spacing:-0.02em;line-height:1;color:var(--ink);}
+.lad-nums .l{margin-top:6px;font-size:12.5px;line-height:1.35;color:var(--muted);}
 .lad.main{background:var(--ink);color:#fff;border-color:transparent;position:relative;overflow:hidden;}
 .lad.main::after{content:"";position:absolute;top:-120px;right:-90px;width:340px;height:340px;border-radius:50%;
   background:radial-gradient(circle,rgba(201,242,78,.15),transparent 64%);pointer-events:none;}
@@ -549,3 +555,9 @@ a.lad:hover{transform:translateY(-2px);border-color:#CBD0D7;}
   .lad{padding:24px;}
   .lad-n{font-size:30px;}
 }
+
+/* Кейс с тремя плашками вместо четырёх: иначе четвёртая колонка пустует,
+   а крупные числа рвутся в узких колонках. Брейкпоинты — как у .metrics-grid. */
+.metrics-grid.three{grid-template-columns:repeat(3,1fr);}
+@media (max-width:980px){.metrics-grid.three{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:680px){.metrics-grid.three{grid-template-columns:1fr;}}

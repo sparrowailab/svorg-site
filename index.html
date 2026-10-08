@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sparrow · ИИ-системы под ключ · от 100 000 ₽ за месяц</title>
-<meta name="description" content="Собираю ИИ-системы под ваш процесс: от 100 000 ₽, месяц работы, 50+ внедрений с 2023. Пересорт 9%→1%, анализ заёмщика 3 часа→2 минуты, +100% прибыли за квартал. Свои продукты — OpenCowork, Micmiky, Ozon-юнит. Разбор бесплатно." />
+<title>Sparrow · ИИ-системы под ключ · от 100 000 ₽ за 1–3 месяца</title>
+<meta name="description" content="Собираю ИИ-системы под ваш процесс: от 100 000 ₽, 1–3 месяца работы, 50+ внедрений с 2023. Пересорт 9%→1%, анализ заёмщика 3 часа→2 минуты, +100% прибыли за квартал. Свои продукты — OpenCowork, Micmiky, Ozon-юнит. Разбор бесплатно." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230E0E10'/%3E%3Ccircle cx='50' cy='50' r='24' fill='none' stroke='%23fff' stroke-width='7'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%23C9F24E'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -322,6 +322,9 @@ a.lad:hover{transform:translateY(-2px);border-color:#CBD0D7;}
 .lad-f{margin-top:auto;padding-top:22px;}
 .lad-col{display:flex;flex-direction:column;gap:16px;}
 .lad-col .lad{flex:1;}
+.lad-nums{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:16px 14px;}
+.lad-nums .n{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:500;letter-spacing:-0.02em;line-height:1;color:var(--ink);}
+.lad-nums .l{margin-top:6px;font-size:12.5px;line-height:1.35;color:var(--muted);}
 
 .lad.main{background:var(--ink);color:#fff;border-color:transparent;position:relative;overflow:hidden;}
 .lad.main::after{content:"";position:absolute;top:-120px;right:-90px;width:340px;height:340px;border-radius:50%;
@@ -463,6 +466,9 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   .hero-sub{font-size:17px;}
   .stat .n{font-size:30px;}
   .proof-grid{grid-template-columns:1fr;}
+  /* nowrap-кнопка задавала минимум шире экрана: страница скроллилась вбок на 320 */
+  .proof-more{grid-template-columns:1fr;gap:18px;}
+  .btn-dark{white-space:normal;justify-content:center;text-align:center;padding:15px 22px;}
   .terms{grid-template-columns:1fr;gap:18px;padding:24px;}
   .price-card{padding:24px;}
   .payback{padding:24px;}
@@ -538,7 +544,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
       <div class="hero-text">
         <span class="tag on-dark">ИИ-системы для бизнеса · с 2023</span>
         <h1 style="margin-top:24px;">Бизнес теряет деньги там, куда <span class="lime">никто не смотрит</span></h1>
-        <p class="hero-sub">Заявка пришла в два ночи — ответили утром, клиент уже купил у других. Кладовщик собрал не тот артикул — товар едет назад за ваш счёт. Менеджер третий час читает документ, который читается за две минуты.<br><br>Найду такие места, посчитаю в рублях и соберу систему, которая их закроет. Месяц работы, от 100 000 ₽.</p>
+        <p class="hero-sub">Заявка пришла в два ночи — ответили утром, клиент уже купил у других. Кладовщик собрал не тот артикул — товар едет назад за ваш счёт. Менеджер третий час читает документ, который читается за две минуты.<br><br>Найду такие места, посчитаю в рублях и соберу систему, которая их закроет. 1–3 месяца работы, от&nbsp;100 000&nbsp;₽.</p>
         <div class="hero-cta">
           <a class="btn-lime" href="#price">Сколько это стоит <span class="mono">→</span></a>
           <a class="btn-ghost" href="cases.html">Смотреть кейсы</a>
@@ -547,7 +553,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
       </div>
       <div class="hero-stats">
         <div class="stat"><div class="n">50+</div><div class="l">систем собрал руками с 2023</div></div>
-        <div class="stat"><div class="n">от 100к</div><div class="l">под ключ, за месяц работы</div></div>
+        <div class="stat"><div class="n">от 100к</div><div class="l">под ключ, за 1–3 месяца</div></div>
         <div class="stat"><div class="n">3 недели</div><div class="l">окупаемость в кейсе North West Parts</div></div>
       </div>
     </div>
@@ -563,8 +569,8 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   <div class="proof-grid">
     <a class="val" href="cases/north-west-parts.html">
       <div class="vh">Склад перестал терять на пересорте</div>
-      <div><div class="vnum"><span class="to">340к ₽</span><span class="from" style="font-size:16px;"> / мес</span></div>
-      <div class="src">возвраты 9% → 1% на 19 000 SKU · North West Parts</div></div>
+      <div><div class="vnum"><span class="from">9%</span><span class="arr">→</span><span class="to">1%</span></div>
+      <div class="src">возвраты из-за пересортицы на 19 000 SKU · North West Parts</div></div>
       <span class="val-go arr">→</span>
     </a>
     <a class="val" href="cases/wowmebel.html">
@@ -576,7 +582,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     <a class="val" href="cases/werman.html">
       <div class="vh">Средний чек вырос в полтора раза</div>
       <div><div class="vnum"><span class="from">890к</span><span class="arr">→</span><span class="to">1,34 млн</span></div>
-      <div class="src">цикл сделки сократился с 21 дня до 6 · Werman</div></div>
+      <div class="src">цикл сделки сократился с 14 дней до 4 · Werman</div></div>
       <span class="val-go arr">→</span>
     </a>
     <a class="val" href="cases/bank-broker.html">
@@ -592,9 +598,9 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
       <span class="val-go arr">→</span>
     </a>
     <a class="val" href="cases/mpshine.html">
-      <div class="vh">Ошибки при отгрузке почти исчезли</div>
-      <div><div class="vnum"><span class="to">до −95%</span></div>
-      <div class="src">складская система на три роли · MPShine</div></div>
+      <div class="vh">Склад ушёл из Excel в систему</div>
+      <div><div class="vnum"><span class="to">20 листов</span></div>
+      <div class="src">Excel-макросов заменила одна система на пять ролей · MPShine</div></div>
       <span class="val-go arr">→</span>
     </a>
   </div>
@@ -626,7 +632,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   <div class="sec-head">
     <span class="tag">Чем занимаюсь</span>
     <h2 class="s-title">Главное — собрать систему под ваш процесс.</h2>
-    <p class="lead">Плюс три своих продукта. Они здесь не для продажи, а как доказательство: то, что я ставлю клиентам, я сначала делаю себе и живу с этим.</p>
+    <p class="lead">Плюс три своих продукта. Я сначала делаю себе и живу с этим — поэтому они стоят рядом с основной работой, а не в сноске.</p>
   </div>
 
   <div class="ladder">
@@ -637,30 +643,35 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
         <span class="lad-p mono">100–350 тыс ₽</span>
       </div>
       <div class="lad-n">Разработка под вас</div>
-      <p class="lad-d">Смотрю, где именно в вашем процессе теряются деньги, считаю окупаемость до первой строки кода и собираю систему под это. Боты и интеграции, веб-интерфейсы, складской учёт, аналитика документов. Месяц от старта до продакшена. Пятьдесят таких за спиной, двенадцать разобраны публично с цифрами.</p>
+      <p class="lad-d">Смотрю, где именно в вашем процессе теряются деньги, считаю окупаемость до первой строки кода и собираю систему под это. Боты и интеграции, веб-интерфейсы, складской учёт, аналитика документов. 1–3 месяца от старта до продакшена. Пятьдесят таких за спиной, двенадцать разобраны публично с цифрами.</p>
       <div class="lad-f"><span class="go-link">Сколько это стоит <span class="ar">→</span></span></div>
     </a>
 
-    <a class="lad" href="https://opencowork.ru" target="_blank" rel="noopener">
-      <div class="lad-top"><span class="tag">Флагман</span><span class="lad-p mono">от 0 ₽</span></div>
-      <div class="lad-n sm">OpenCowork</div>
-      <p class="lad-d">AI-сотрудник для многошаговых задач: ставите задачу — агент собирает контекст, делает работу и возвращает результат команде на проверку. Тендеры, документы, сверки, отчёты.</p>
-      <p class="lad-d" style="margin-top:10px;opacity:.75;font-size:14.5px;">Делаю как сооснователь.</p>
-      <div class="lad-f"><span class="go-link">opencowork.ru <span class="ar mono">↗</span></span></div>
+    <a class="lad" href="https://ozon-calculator.ru" target="_blank" rel="noopener">
+      <div class="lad-top"><span class="tag">Свой продукт</span><span class="lad-p mono">от 1 690 ₽/мес</span></div>
+      <div class="lad-n sm">Ozon-юнит</div>
+      <p class="lad-d">Реальная маржа селлера с учётом 15+ статей расходов. Считает за тридцать секунд, подключается за минуту через Ozon Seller API. Первые три дня бесплатно.</p>
+      <div class="lad-nums">
+        <div><div class="n mono">12 847</div><div class="l">расчётов сделано</div></div>
+        <div><div class="n mono">~200</div><div class="l">активных селлеров</div></div>
+        <div><div class="n mono">9 507</div><div class="l">категорий Ozon с живыми комиссиями</div></div>
+        <div><div class="n mono">18</div><div class="l">статей расходов в расчёте</div></div>
+      </div>
+      <div class="lad-f"><span class="go-link">ozon-calculator.ru <span class="ar mono">↗</span></span></div>
     </a>
 
     <div class="lad-col">
+      <a class="lad" href="https://opencowork.ru" target="_blank" rel="noopener">
+        <div class="lad-top"><span class="tag">Флагман</span><span class="lad-p mono">от 0 ₽</span></div>
+        <div class="lad-n sm">OpenCowork</div>
+        <p class="lad-d">AI-сотрудник для многошаговых задач: ставите задачу — агент собирает контекст, делает работу и возвращает результат на проверку. Делаю как сооснователь.</p>
+        <div class="lad-f"><span class="go-link">opencowork.ru <span class="ar mono">↗</span></span></div>
+      </a>
       <a class="lad" href="https://micmiky.ru" target="_blank" rel="noopener">
         <div class="lad-top"><span class="tag">Свой продукт</span><span class="lad-p mono">от 0 ₽</span></div>
         <div class="lad-n sm">Micmiky</div>
         <p class="lad-d">Пишет встречу без бота в звонке. После — задачи, резюме и черновик КП.</p>
         <div class="lad-f"><span class="go-link">micmiky.ru <span class="ar mono">↗</span></span></div>
-      </a>
-      <a class="lad" href="https://ozon-calculator.ru" target="_blank" rel="noopener">
-        <div class="lad-top"><span class="tag">Свой продукт</span><span class="lad-p mono">бесплатно</span></div>
-        <div class="lad-n sm">Ozon-юнит</div>
-        <p class="lad-d">Реальная маржа селлера с учётом 15+ статей расходов. Считает за тридцать секунд.</p>
-        <div class="lad-f"><span class="go-link">ozon-calculator.ru <span class="ar mono">↗</span></span></div>
       </a>
     </div>
 
@@ -942,7 +953,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     <div class="method"><h3>Коробочных решений у меня нет</h3><p>Сначала смотрю, что теряет именно ваш бизнес. Потом строю под это. Чужой шаблон, натянутый на ваш процесс, разваливается на второй неделе.</p></div>
     <div class="method"><h3>Сначала считаю, потом пишу код</h3><p>Если система будет стоить дороже, чем сэкономит, я скажу вам об этом до того, как вы заплатите. Два проекта я так и закрыл.</p></div>
     <div class="method"><h3>Довожу до конца</h3><p>Не презентация с рекомендациями. Работающая система, которой каждый день пользуются ваши люди.</p></div>
-    <div class="method"><h3>Беру задачи, где ошибка дорого стоит</h3><p>Финтех, телеком, брокеридж. Серверы в России, 152-ФЗ соблюдаю.</p></div>
+    <div class="method"><h3>Беру задачи, где ошибка дорого стоит</h3><p>Финтех, телеком, брокеридж.</p></div>
     <div class="method"><h3>Объясняю по-человечески</h3><p>Не гружу аббревиатурами и не продаю «цифровую трансформацию». Говорю, что будет делать система и сколько вы на ней заработаете.</p></div>
   </div>
 
@@ -995,9 +1006,9 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
       <a class="btn-lime" href="cases/mpshine.html">Открыть разбор <span class="mono">→</span></a>
     </div>
     <div class="flag-stats">
-      <div class="fs"><div class="fs-n">до −95%</div><div class="fs-l">ошибок при отгрузке</div></div>
+      <div class="fs"><div class="fs-n">20 листов</div><div class="fs-l">Excel-макросов заменила система</div></div>
       <div class="fs"><div class="fs-n">real-time</div><div class="fs-l">заработок упаковщика</div></div>
-      <div class="fs"><div class="fs-n">3 роли</div><div class="fs-l">интерфейса в одной системе</div></div>
+      <div class="fs"><div class="fs-n">5 ролей</div><div class="fs-l">интерфейса в одной системе</div></div>
     </div>
   </div>
 </section>
