@@ -69,7 +69,7 @@ for f in styles.css index.html; do
     | cmp -s - "$f" || die "$f на домене не совпадает с локальным — отдаётся другая версия"
   printf '  %-32s совпадает побайтово\n' "/$f"
 done
-for path in /cases.html /assets/sparrow-mark-dark.svg; do
+for path in /cases.html /assets/sparrow-mark-dark.svg /motion.css /motion.js; do
   code=$(http "$path"); [ "$code" = "200" ] || die "$path отдаёт $code"
   printf '  %-32s %s\n' "$path" "$code"
 done

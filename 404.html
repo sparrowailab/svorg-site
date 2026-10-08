@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="assets/sparrow-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Forum&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Forum&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   .err-wrap {
@@ -60,6 +60,7 @@
     .err-h { font-size: 44px; }
   }
 </style>
+<link rel="stylesheet" href="motion.css" />
 </head>
 <body>
 <div class="top-stripe"></div>
@@ -70,14 +71,14 @@
       <img class="brand-mark" src="assets/sparrow-mark-dark.svg" alt="" />
       <span class="brand-name">Sparrow</span>
     </a>
-    <nav class="nav-menu" aria-label="Main">
+    <nav class="nav-menu" id="site-menu" aria-label="Основное меню">
       <a href="products.html"><span class="nav-num mono">01</span>Продукты</a>
       <a href="cases.html"><span class="nav-num mono">02</span>Кейсы</a>
       <a href="about.html"><span class="nav-num mono">03</span>О себе</a>
       <a href="about.html#contacts"><span class="nav-num mono">04</span>Контакты</a>
       <a class="btn-write" href="https://t.me/SergChina" target="_blank" rel="noopener">Написать</a>
     </nav>
-    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="hamburger" aria-label="Меню" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -88,17 +89,17 @@
     <h1 class="err-h">Здесь пусто.</h1>
     <p class="err-sub">Возможно, ссылка устарела или адрес неверный. Можно вернуться на главную или посмотреть кейсы.</p>
     <div class="err-actions">
-      <a href="index.html" class="btn-primary-lg">На главную <span class="arr">→</span></a>
+      <a href="index.html" class="btn-primary-lg">На главную</a>
       <a href="cases.html" class="btn-secondary">Смотреть кейсы</a>
     </div>
   </div>
 </main>
 
 <script>
-  document.querySelector('.hamburger')?.addEventListener('click', () => {
-    document.querySelector('.nav-menu')?.classList.toggle('open');
-    document.querySelector('.hamburger')?.classList.toggle('open');
-  });
+  (function(){var h=document.querySelector('.hamburger'),m=document.querySelector('.nav-menu');if(!h||!m)return;
+    h.addEventListener('click',function(){var o=m.classList.toggle('open');h.classList.toggle('open',o);h.setAttribute('aria-expanded',o);});
+    m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');h.classList.remove('open');h.setAttribute('aria-expanded','false');});});})();
 </script>
+<script src="motion.js" defer></script>
 </body>
 </html>

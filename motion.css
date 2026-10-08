@@ -1,0 +1,87 @@
+/* ==========================================================
+   Движение Sparrow · общий файл для всех страниц
+   Спека: claude.ai/artifact/Wjr8iM9rhJtXa56xeiys8f
+   fast 140 · base 220 · slow 360 · exit 120 · ease (.23,1,.32,1)
+   Правило: один оркестрованный момент на экран, без «дыхания»,
+   без fade-up на каждую секцию. Двигаются только transform/opacity.
+   ========================================================== */
+:root{
+  --m-fast:140ms; --m-base:220ms; --m-slow:360ms; --m-exit:120ms;
+  --m-ease:cubic-bezier(.23,1,.32,1);
+}
+
+@keyframes m-rise{from{opacity:0;transform:translateY(16px);clip-path:inset(0 0 100% 0);}
+  to{opacity:1;transform:none;clip-path:inset(-10% -2% -20% -2%);}}
+@keyframes m-up{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+@keyframes m-fade{from{opacity:0;}to{opacity:1;}}
+@keyframes m-arrive{from{opacity:0;transform:translateY(.14em);}to{opacity:1;transform:none;}}
+
+/* ---------- 1. Hero главной: строки из маски, лайм последним ---------- */
+@media (prefers-reduced-motion: no-preference){
+  .hero-text > .tag{animation:m-rise var(--m-slow) var(--m-ease) 0ms both;}
+  .hero-text > h1{animation:m-rise var(--m-slow) var(--m-ease) 80ms both;}
+  .hero-text > h1 .lime{display:inline-block;animation:m-arrive var(--m-slow) var(--m-ease) 420ms both;}
+  .hero-text > .hero-sub{animation:m-up var(--m-slow) var(--m-ease) 160ms both;}
+  .hero-text > .hero-cta{animation:m-up var(--m-slow) var(--m-ease) 240ms both;}
+  .hero-text > .hero-note{animation:m-fade var(--m-slow) var(--m-ease) 300ms both;}
+  .hero-stats > .stat{animation:m-up var(--m-slow) var(--m-ease) both;}
+  .hero-stats > .stat:nth-child(1){animation-delay:200ms;}
+  .hero-stats > .stat:nth-child(2){animation-delay:270ms;}
+  .hero-stats > .stat:nth-child(3){animation-delay:340ms;}
+
+  /* страница кейса: карточки цифр входят лесенкой 70 мс */
+  .metrics-grid > .metric-card{animation:m-up var(--m-base) var(--m-ease) both;}
+  .metrics-grid > .metric-card:nth-child(1){animation-delay:120ms;}
+  .metrics-grid > .metric-card:nth-child(2){animation-delay:190ms;}
+  .metrics-grid > .metric-card:nth-child(3){animation-delay:260ms;}
+  .metrics-grid > .metric-card:nth-child(4){animation-delay:330ms;}
+
+  /* счётчики: не мигают финальным числом до старта */
+  .cs-n[data-target]{animation:m-fade var(--m-base) var(--m-ease) 80ms both;}
+}
+
+/* ---------- 2. Пара «было → стало»: «стало» приходит вторым ---------- */
+.ba .ba-arr,.ba .ba-to{transition:opacity var(--m-base) var(--m-ease),transform var(--m-base) var(--m-ease);}
+.ba .ba-to{transition:opacity var(--m-base) var(--m-ease) 70ms,transform var(--m-base) var(--m-ease) 70ms,
+  text-decoration-color var(--m-slow) var(--m-ease) 220ms;}
+.ba.ba-wait .ba-arr,.ba.ba-wait .ba-to{opacity:0;transform:translateX(-.2em);}
+.ba.ba-wait .ba-to{text-decoration-color:transparent;}
+
+/* ---------- 3. Нажатие: .97 за 100 мс ---------- */
+.btn-lime,.btn-ghost,.btn-dark,.btn-primary,.btn-primary-lg,.btn-write,.chip,.hamb,.hamburger{
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.btn-lime:active,.btn-ghost:active,.btn-dark:active,.btn-primary:active,.btn-primary-lg:active,
+.btn-write:active,.chip:active{transform:scale(.97);transition-duration:100ms;}
+
+/* ---------- 4. Переходы между страницами (View Transitions) ---------- */
+@view-transition{navigation:auto;}
+/* шапка стоит на месте, страница под ней меняется */
+.nav{view-transition-name:site-nav;}
+::view-transition-group(site-nav){animation:none;}
+::view-transition-old(site-nav){display:none;}
+::view-transition-new(site-nav){animation:none;}
+
+::view-transition-old(root){animation:m-vt-out var(--m-exit) ease-in both;}
+::view-transition-new(root){animation:m-vt-in var(--m-base) var(--m-ease) 60ms both;}
+@keyframes m-vt-out{to{opacity:0;}}
+@keyframes m-vt-in{from{opacity:0;transform:translateY(8px);}}
+
+/* общий элемент: название кейса в карточке → заголовок страницы кейса */
+.cc-title[style*="view-transition-name"],.f-title[style*="view-transition-name"],
+.case-hero h1[style*="view-transition-name"]{width:fit-content;max-width:100%;view-transition-class:case-title;}
+::view-transition-group(*.case-title){animation-duration:var(--m-slow);animation-timing-function:var(--m-ease);}
+::view-transition-old(*.case-title),::view-transition-new(*.case-title){height:100%;}
+
+/* ---------- 5. Меньше движения: смягчить, не обнулять ---------- */
+@media (prefers-reduced-motion: reduce){
+  /* hero и цифры просто проявляются, без сдвига (специфичность выше, чем у * в базе) */
+  .hero-text > *,.hero-stats > .stat,.metrics-grid > .metric-card{
+    animation:m-fade var(--m-fast) linear both!important;}
+  .ba .ba-arr,.ba .ba-to{transition:none!important;}
+  .btn-lime:active,.btn-ghost:active,.btn-dark:active,.btn-primary:active,.btn-primary-lg:active,
+  .btn-write:active,.chip:active{transform:none;}
+  /* переход страниц: только короткий перекрёстный fade, без полёта заголовка */
+  .cc-title,.f-title,.case-hero h1{view-transition-name:none!important;}
+  ::view-transition-old(root){animation:m-vt-out var(--m-exit) linear both;}
+  ::view-transition-new(root){animation:m-fade var(--m-fast) linear both;}
+}

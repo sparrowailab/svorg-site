@@ -30,8 +30,9 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230E0E10'/%3E%3Ccircle cx='50' cy='50' r='24' fill='none' stroke='%23fff' stroke-width='7'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%23C9F24E'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Forum&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Forum&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="motion.css" />
 </head>
 <body>
 <div class="top-stripe"></div>
@@ -43,14 +44,14 @@
       <img class="brand-mark" src="assets/sparrow-mark-dark.svg" alt="" />
       <span class="brand-name">Sparrow</span>
     </a>
-    <nav class="nav-menu" aria-label="Main">
+    <nav class="nav-menu" id="site-menu" aria-label="Основное меню">
       <a href="products.html"><span class="nav-num mono">01</span>Продукты</a>
       <a href="cases.html"><span class="nav-num mono">02</span>Кейсы</a>
       <a href="about.html" class="active"><span class="nav-num mono">03</span>О себе</a>
       <a href="about.html#contacts"><span class="nav-num mono">04</span>Контакты</a>
       <a class="btn-write" href="https://t.me/SergChina" target="_blank" rel="noopener">Написать</a>
     </nav>
-    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="hamburger" aria-label="Меню" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -133,25 +134,25 @@
       <div class="d-lbl">Флагман своих продуктов · сооснователь</div>
       <div class="d-title">OpenCowork</div>
       <div class="d-sub">AI-сотрудник для многошаговых задач. Ставите задачу&nbsp;· агент собирает контекст, делает работу и возвращает результат команде на проверку. Тендеры, документы, сверки, отчёты. Делаю его вместе с партнёром.</div>
-      <div class="d-link">Разбор продукта <span class="arr">→</span></div>
+      <div class="d-link">Разбор продукта</div>
     </a>
     <a class="direction" href="cases/micmiky.html">
       <div class="d-lbl">Свой продукт</div>
       <div class="d-title">Micmiky</div>
       <div class="d-sub">Пишет встречу без бота в звонке, после отдаёт задачи, резюме и черновик КП. В продакшене: десктоп под Windows и macOS, платные тарифы, девять интеграций.</div>
-      <div class="d-link">micmiky.ru <span class="arr">→</span></div>
+      <div class="d-link">micmiky.ru <span class="arr">↗</span></div>
     </a>
     <a class="direction" href="cases.html">
       <div class="d-lbl">Основная работа</div>
       <div class="d-title">50+ внедрений руками</div>
       <div class="d-sub">Реализованные проекты в e-commerce, производстве, финтехе и юридических услугах. Больше пятидесяти за три года&nbsp;· из них двенадцать самых показательных собраны публично. С реальными цифрами. Делаю сам, сложное и поддержку закрывают два разработчика.</div>
-      <div class="d-link">Открыть кейсы <span class="arr">→</span></div>
+      <div class="d-link">Открыть кейсы</div>
     </a>
     <a class="direction" href="cases/ozon-unit.html">
       <div class="d-lbl">Свой продукт</div>
       <div class="d-title">Ozon-юнит</div>
       <div class="d-sub">Точная юнит-экономика для селлеров маркетплейсов. Показывает реальную маржу с учётом 15+ статей расходов. Работает в продакшене и приносит деньги без моего участия.</div>
-      <div class="d-link">ozon-calculator.ru <span class="arr">→</span></div>
+      <div class="d-link">ozon-calculator.ru <span class="arr">↗</span></div>
     </a>
   </div>
 </section>
@@ -236,11 +237,11 @@
 </footer>
 
 <script>
-  document.querySelector('.hamburger')?.addEventListener('click', () => {
-    document.querySelector('.nav-menu')?.classList.toggle('open');
-    document.querySelector('.hamburger')?.classList.toggle('open');
-  });
+  (function(){var h=document.querySelector('.hamburger'),m=document.querySelector('.nav-menu');if(!h||!m)return;
+    h.addEventListener('click',function(){var o=m.classList.toggle('open');h.classList.toggle('open',o);h.setAttribute('aria-expanded',o);});
+    m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');h.classList.remove('open');h.setAttribute('aria-expanded','false');});});})();
 </script>
 
+<script src="motion.js" defer></script>
 </body>
 </html>

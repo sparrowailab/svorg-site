@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230E0E10'/%3E%3Ccircle cx='50' cy='50' r='24' fill='none' stroke='%23fff' stroke-width='7'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%23C9F24E'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Forum&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Forum&display=swap" rel="stylesheet" />
 <style>
 :root{
   --bg:#EDEFF2;
@@ -17,7 +17,7 @@
   --ink-2:#1A1A1E;
   --chip:#1A1A1E;
   --gray:#3A3D43;
-  --muted:#7E828A;
+  --muted:#636873;
   --muted-d:#9DA1A8;
   --line:#E3E6EA;
   --line-d:#2B2B30;
@@ -48,7 +48,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tag{display:inline-flex;align-items:center;gap:9px;
   font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;
   letter-spacing:0.13em;text-transform:uppercase;color:var(--muted);}
-.tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);flex:none;}
 .tag.on-dark{color:var(--muted-d);}
 
 /* section titles */
@@ -90,7 +89,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .nav-link .caret{font-size:10px;color:var(--muted);transition:transform .2s ease;}
 .has-dd:hover .caret{transform:rotate(180deg);}
 .btn-write{margin-left:8px;padding:10px 18px;border-radius:9px;background:var(--lime);
-  color:var(--lime-text);font-weight:700;font-size:15px;transition:background .18s ease;}
+  color:var(--lime-text);font-weight:600;font-size:15px;transition:background .18s ease;}
 .btn-write:hover{background:var(--lime-deep);}
 .dd{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(6px);
   min-width:320px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px;
@@ -102,22 +101,20 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .dd-item:hover{background:#F2F4F7;}
 .dd-ic{width:36px;height:36px;border-radius:9px;background:var(--ink);flex:none;display:grid;place-items:center;}
 .dd-ic svg{width:18px;height:18px;}
-.dd-tt{display:flex;align-items:center;gap:6px;font-weight:700;font-size:15px;}
+.dd-tt{display:flex;align-items:center;gap:6px;font-weight:600;font-size:15px;}
 .dd-tt .ext{color:var(--muted);font-size:13px;}
 .dd-sub{font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px;}
 .hamb{display:none;}
 
 /* ============ HERO ============ */
 .hero{background:var(--ink);color:#fff;border-radius:24px;margin:24px auto 0;position:relative;overflow:hidden;}
-.hero::after{content:"";position:absolute;top:-150px;right:-120px;width:480px;height:480px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,242,78,.16),transparent 64%);pointer-events:none;}
 .hero-in{position:relative;z-index:2;display:grid;grid-template-columns:1.55fr 1fr;gap:56px;align-items:center;padding:78px 56px;}
 .hero h1{font-family:'Forum',Georgia,serif;font-weight:400;font-size:74px;letter-spacing:-0.01em;line-height:1.02;color:#fff;}
 .hero h1 .lime{color:var(--lime);}
 .hero-sub{margin-top:26px;font-size:19px;line-height:1.55;color:var(--muted-d);max-width:540px;}
 .hero-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;}
 .btn-lime{display:inline-flex;align-items:center;gap:10px;padding:18px 28px;border-radius:12px;
-  background:var(--lime);color:var(--lime-text);font-weight:700;font-size:17px;line-height:1;
+  background:var(--lime);color:var(--lime-text);font-weight:600;font-size:17px;line-height:1;
   transition:background .18s ease,transform .18s ease;}
 .btn-lime:hover{background:var(--lime-deep);transform:translateY(-1px);}
 .btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:18px 28px;border-radius:12px;
@@ -126,7 +123,6 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .hero-note{margin-top:20px;display:inline-flex;align-items:flex-start;gap:9px;
   font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:0.1em;
   text-transform:uppercase;color:var(--muted-d);}
-.hero-note::before{content:"";width:8px;height:8px;margin-top:5px;border-radius:50%;background:var(--lime);flex:none;}
 .hero-stats{display:flex;flex-direction:column;gap:14px;}
 .stat{background:var(--chip);border:1px solid var(--line-d);border-radius:16px;padding:22px 26px;}
 .stat .n{font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:500;letter-spacing:-0.035em;color:var(--lime);line-height:1;white-space:nowrap;}
@@ -140,7 +136,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .proof-grid{margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .val{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;
   display:flex;flex-direction:column;justify-content:space-between;min-height:168px;}
-.val .vh{font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;}
+.val .vh{font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.01em;}
 .val .vnum{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:25px;font-weight:500;letter-spacing:-0.02em;line-height:1;}
 .val .vnum .from{color:var(--muted);}
 .val .vnum .arr{color:#5C6B16;padding:0 4px;}
@@ -155,7 +151,7 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 /* ============ PRODUCTS ============ */
 .do-grid{margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
 .do-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;display:flex;flex-direction:column;}
-.do-name{font-size:30px;font-weight:800;letter-spacing:-0.025em;margin-top:14px;}
+.do-name{font-size:30px;font-weight:600;letter-spacing:-0.025em;margin-top:14px;}
 .do-line{margin-top:12px;font-size:15.5px;line-height:1.55;color:var(--gray);}
 .shot{margin-top:22px;border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#fff;}
 .win-bar{height:34px;display:flex;align-items:center;gap:7px;padding:0 13px;background:#F2F4F7;border-bottom:1px solid var(--line);}
@@ -166,7 +162,7 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 .go-btn:hover{background:var(--ink-2);}
 .go-btn .ar{transition:transform .18s ease;}
 .go-btn:hover .ar{transform:translate(2px,-2px);}
-.go-link{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;color:var(--ink);}
+.go-link{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;color:var(--ink);}
 .go-link .ar{transition:transform .18s ease;}
 .go-link:hover .ar{transform:translateX(3px);}
 .do-card.implement{background:var(--ink);color:#fff;border-color:transparent;}
@@ -190,7 +186,7 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 .price-card.top .pc-drivers{border-top-color:var(--line-d);}
 .pc-drivers .dl{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:11px;}
 .pc-drivers li{font-size:14px;color:var(--gray);line-height:1.5;padding-left:15px;position:relative;margin-bottom:5px;}
-.pc-drivers li::before{content:"·";position:absolute;left:3px;color:#5C6B16;font-weight:700;}
+.pc-drivers li::before{content:"·";position:absolute;left:3px;color:#5C6B16;font-weight:600;}
 .price-card.top .pc-drivers li{color:var(--muted-d);}
 .price-card.top .pc-drivers li::before{color:var(--lime);}
 .pc-ref{margin-top:auto;padding-top:22px;display:flex;flex-wrap:wrap;gap:7px;}
@@ -202,7 +198,7 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 /* payback */
 .payback{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--lime);
   border-radius:16px;padding:28px 32px;display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;}
-.payback h3{font-size:20px;font-weight:700;letter-spacing:-0.01em;line-height:1.35;}
+.payback h3{font-size:20px;font-weight:600;letter-spacing:-0.01em;line-height:1.35;}
 .payback p{margin-top:8px;font-size:15px;color:var(--gray);line-height:1.5;}
 .payback .pb-n{font-family:'JetBrains Mono',monospace;font-size:42px;font-weight:500;letter-spacing:-0.035em;color:#5C6B16;line-height:1;white-space:nowrap;}
 .payback .pb-l{margin-top:9px;font-size:13px;color:var(--muted);text-align:right;}
@@ -210,7 +206,7 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 /* terms */
 .terms{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
   background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 32px;}
-.term .tn{font-weight:700;font-size:15.5px;letter-spacing:-0.01em;}
+.term .tn{font-weight:600;font-size:15.5px;letter-spacing:-0.01em;}
 .term .td{margin-top:6px;font-size:13.5px;color:var(--muted);line-height:1.45;}
 
 /* steps */
@@ -222,7 +218,7 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 .st .st-w{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:0.1em;
   text-transform:uppercase;color:#5C6B16;padding-top:4px;}
 .st .st-t{font-size:16px;color:var(--gray);line-height:1.55;}
-.st .st-t b{color:var(--ink);font-weight:700;}
+.st .st-t b{color:var(--ink);font-weight:600;}
 
 /* handover */
 .hand-head{margin-top:34px;}
@@ -230,12 +226,12 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 .hv{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 30px;display:flex;flex-direction:column;}
 .hv-top{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;
   padding-bottom:18px;border-bottom:1px solid var(--line);}
-.hv h3{font-size:20px;font-weight:700;letter-spacing:-0.015em;}
+.hv h3{font-size:20px;font-weight:600;letter-spacing:-0.015em;}
 .hv .hv-p{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;color:#5C6B16;white-space:nowrap;}
 .hv .hv-p.muted{color:var(--muted);}
 .hv ul{margin-top:18px;}
 .hv li{font-size:15px;color:var(--gray);line-height:1.5;padding-left:25px;position:relative;margin-bottom:10px;}
-.hv li::before{content:"✓";position:absolute;left:1px;top:1px;color:#5C6B16;font-weight:700;font-size:13px;}
+.hv li::before{content:"✓";position:absolute;left:1px;top:1px;color:#5C6B16;font-weight:600;font-size:13px;}
 .hv .hv-note{margin-top:auto;padding-top:20px;font-size:14px;color:var(--muted);line-height:1.5;}
 
 /* bonus */
@@ -245,7 +241,7 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 .bonus-list{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
 .bn{background:var(--surface);border:1px solid #E4EFCB;border-radius:14px;padding:24px 26px;}
 .bn-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;}
-.bn .bn-t{font-weight:700;font-size:17px;letter-spacing:-0.01em;}
+.bn .bn-t{font-weight:600;font-size:17px;letter-spacing:-0.01em;}
 .bn .bn-v{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:#5C6B16;white-space:nowrap;}
 .bn .bn-d{margin-top:12px;font-size:15px;color:var(--gray);line-height:1.55;}
 
@@ -254,9 +250,9 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 .guar h3{font-family:'Forum',Georgia,serif;font-weight:400;font-size:28px;letter-spacing:-0.01em;line-height:1.15;margin-top:14px;}
 .guar-list{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px 28px;}
 .gu{border-left:3px solid var(--lime);padding:2px 0 2px 18px;}
-.gu .gu-t{font-weight:700;font-size:17px;letter-spacing:-0.01em;line-height:1.3;}
+.gu .gu-t{font-weight:600;font-size:17px;letter-spacing:-0.01em;line-height:1.3;}
 .gu .gu-d{margin-top:9px;font-size:15px;color:var(--gray);line-height:1.55;}
-.gu .gu-l{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-weight:700;color:var(--ink);
+.gu .gu-l{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-weight:600;color:var(--ink);
   border-bottom:1px solid #CBD0D7;transition:border-color .15s ease;}
 .gu .gu-l:hover{border-bottom-color:var(--lime-deep);}
 .gu .gu-l .ar{transition:transform .18s ease;}
@@ -272,14 +268,11 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
 /* first step */
 .first-step{margin-top:16px;background:var(--ink);color:#fff;border-radius:20px;padding:38px 40px;
   display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;position:relative;overflow:hidden;}
-.first-step::after{content:"";position:absolute;top:-140px;right:-90px;width:380px;height:380px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,242,78,.13),transparent 64%);pointer-events:none;}
 .first-step .fs-in{position:relative;z-index:2;}
 .first-step h3{font-family:'Forum',Georgia,serif;font-weight:400;font-size:32px;line-height:1.14;}
 .first-step p{margin-top:12px;font-size:16px;color:var(--muted-d);line-height:1.55;max-width:620px;}
 .fs-limit{margin-top:16px;display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;
   font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--lime);}
-.fs-limit::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);flex:none;}
 .first-step .btn-lime{position:relative;z-index:2;}
 
 /* ============ LEARNED ============ */
@@ -288,7 +281,7 @@ a.val:hover .val-go{opacity:1;transform:translateX(0);color:#5C6B16;}
   border-radius:14px;padding:26px 28px;display:flex;flex-direction:column;transition:transform .18s ease,border-color .18s ease;}
 a.lr:hover{transform:translateY(-2px);border-color:#CBD0D7;border-left-color:var(--lime-deep);}
 .lr .lq{font-size:19px;line-height:1.45;letter-spacing:-0.012em;color:var(--ink);}
-.lr .lq em{font-style:normal;background:var(--lime-soft);box-shadow:inset 0 -0.35em 0 var(--lime-soft);padding:0 2px;}
+.lr .lq em{font-style:normal;}
 .lr .lf{margin-top:auto;padding-top:20px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
 .lr .lc{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.11em;
   text-transform:uppercase;color:var(--muted);}
@@ -305,7 +298,7 @@ a.lr:hover .la{opacity:1;transform:translateX(0);color:#5C6B16;}
 .voice .q{position:relative;z-index:2;padding-right:52px;font-size:20px;line-height:1.48;
   letter-spacing:-0.012em;color:var(--ink);}
 .voice .who{margin-top:auto;padding-top:24px;}
-.voice .nm{font-weight:700;font-size:15.5px;letter-spacing:-0.01em;}
+.voice .nm{font-weight:600;font-size:15.5px;letter-spacing:-0.01em;}
 .voice .rl{margin-top:3px;font-size:13.5px;color:var(--muted);line-height:1.4;}
 
 /* ============ LADDER ============ */
@@ -316,8 +309,8 @@ a.lr:hover .la{opacity:1;transform:translateX(0);color:#5C6B16;}
 a.lad:hover{transform:translateY(-2px);border-color:#CBD0D7;}
 .lad-top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
 .lad-p{font-size:13px;font-weight:500;letter-spacing:-0.01em;color:#5C6B16;white-space:nowrap;}
-.lad-n{margin-top:18px;font-size:40px;font-weight:800;letter-spacing:-0.03em;line-height:1;}
-.lad-n.sm{font-size:27px;letter-spacing:-0.025em;}
+.lad-n{margin-top:18px;font-family:'Forum',Georgia,serif;font-size:44px;font-weight:400;letter-spacing:-0.01em;line-height:1.02;}
+.lad-n.sm{font-size:32px;letter-spacing:-0.01em;}
 .lad-d{margin-top:14px;font-size:15.5px;line-height:1.55;color:var(--gray);}
 .lad-f{margin-top:auto;padding-top:22px;}
 .lad-col{display:flex;flex-direction:column;gap:16px;}
@@ -327,10 +320,8 @@ a.lad:hover{transform:translateY(-2px);border-color:#CBD0D7;}
 .lad-nums .l{margin-top:6px;font-size:12.5px;line-height:1.35;color:var(--muted);}
 
 .lad.main{background:var(--ink);color:#fff;border-color:transparent;position:relative;overflow:hidden;}
-.lad.main::after{content:"";position:absolute;top:-120px;right:-90px;width:340px;height:340px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,242,78,.15),transparent 64%);pointer-events:none;}
 .lad.main>*{position:relative;z-index:2;}
-.lad.main .lad-n{color:var(--lime);}
+.lad.main .lad-n{color:#fff;}
 .lad.main .lad-d{color:var(--muted-d);}
 .lad.main .lad-p{color:var(--lime);}
 .lad.main .go-link{color:var(--lime);}
@@ -341,7 +332,7 @@ a.lad.main:hover{transform:translateY(-2px);}
 /* ============ WHY (method/trust) ============ */
 .method-grid{margin-top:42px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
 .method{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--lime);border-radius:14px;padding:22px 24px;}
-.method h3{font-size:18px;font-weight:700;letter-spacing:-0.01em;}
+.method h3{font-size:18px;font-weight:600;letter-spacing:-0.01em;}
 .method p{margin-top:7px;font-size:15px;color:var(--gray);line-height:1.5;}
 
 /* ============ FOUNDER ============ */
@@ -349,31 +340,31 @@ a.lad.main:hover{transform:translateY(-2px);}
   padding:44px 48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
 .founder h3{font-family:'Forum',Georgia,serif;font-weight:400;font-size:32px;letter-spacing:-0.01em;line-height:1.12;}
 .founder p{font-size:17px;line-height:1.65;color:var(--gray);}
-.founder p .hl{background:var(--lime-soft);box-shadow:inset 0 -0.4em 0 var(--lime-soft);padding:0 2px;}
+.founder p .hl{font-weight:500;color:var(--ink);}
 /* ============ TEAM ============ */
 .team{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:36px 40px;}
 .team h3{font-family:'Forum',Georgia,serif;font-weight:400;font-size:28px;letter-spacing:-0.01em;line-height:1.15;margin-top:14px;}
 .team-rows{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .tm{border:1px solid var(--line);border-radius:14px;padding:22px 24px;}
-.tm .tm-n{font-weight:700;font-size:16.5px;letter-spacing:-0.01em;}
+.tm .tm-n{font-weight:600;font-size:16.5px;letter-spacing:-0.01em;}
 .tm .tm-r{margin-top:7px;font-size:14.5px;color:var(--gray);line-height:1.5;}
 .team-note{margin-top:22px;padding-top:22px;border-top:1px solid var(--line);
   font-size:16px;line-height:1.6;color:var(--gray);}
-.team-note .hl{background:var(--lime-soft);box-shadow:inset 0 -0.4em 0 var(--lime-soft);padding:0 2px;}
+.team-note .hl{font-weight:500;color:var(--ink);}
 
 /* proof → все кейсы */
 .proof-more{margin-top:26px;padding-top:26px;border-top:1px solid var(--line);
   display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;}
 .proof-more p{font-size:16px;line-height:1.6;color:var(--gray);max-width:640px;}
 .btn-dark{display:inline-flex;align-items:center;gap:10px;padding:16px 26px;border-radius:11px;
-  background:var(--ink);color:#fff;font-weight:700;font-size:16px;line-height:1;white-space:nowrap;
+  background:var(--ink);color:#fff;font-weight:600;font-size:16px;line-height:1;white-space:nowrap;
   transition:background .18s ease;}
 .btn-dark:hover{background:var(--ink-2);}
 
 /* ============ PARTNERS ============ */
 .pgrid{margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .pc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px;}
-.pc .pc-n{font-size:22px;font-weight:700;letter-spacing:-0.02em;line-height:1.2;}
+.pc .pc-n{font-size:22px;font-weight:600;letter-spacing:-0.02em;line-height:1.2;}
 .pc .pc-i{margin-top:9px;font-size:14px;color:var(--muted);line-height:1.5;}
 a.pc{color:inherit;display:block;transition:transform .18s ease,border-color .18s ease;}
 a.pc:hover{transform:translateY(-2px);border-color:#CBD0D7;}
@@ -384,7 +375,6 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 
 /* ============ FLAGSHIP ============ */
 .flag{margin-top:116px;background:var(--ink);color:#fff;border-radius:24px;padding:62px 56px;position:relative;overflow:hidden;}
-.flag::after{content:"";position:absolute;bottom:-160px;left:-100px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(201,242,78,.12),transparent 64%);}
 .flag-top{position:relative;z-index:2;display:grid;grid-template-columns:1.5fr auto;gap:40px;align-items:end;}
 .flag h2{font-family:'Forum',Georgia,serif;font-weight:400;font-size:60px;letter-spacing:-0.01em;line-height:1.02;margin-top:18px;}
 .flag-line{margin-top:20px;font-size:18px;line-height:1.55;color:var(--muted-d);max-width:620px;}
@@ -395,7 +385,6 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 
 /* ============ FINAL / PROMISE ============ */
 .final{margin-top:116px;background:var(--ink);color:#fff;border-radius:24px;padding:88px 56px;text-align:center;position:relative;overflow:hidden;}
-.final::after{content:"";position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:520px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(201,242,78,.14),transparent 62%);pointer-events:none;}
 .final .in{position:relative;z-index:2;}
 .final h2{font-family:'Forum',Georgia,serif;font-weight:400;font-size:54px;letter-spacing:-0.005em;line-height:1.08;max-width:880px;margin:18px auto 0;}
 .final h2 .lime{color:var(--lime);}
@@ -488,7 +477,51 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   .foot-grid{grid-template-columns:1fr;gap:32px;}
   .foot-bottom{flex-direction:column;align-items:flex-start;}
 }
+
+/* ============ БРЕНД · 8 октября ============ */
+/* Пара «до → после» — фирменная деталь. Лайм только на «после»: на светлом подчёркивание,
+   на тёмном цвет цифры. Синхронно с тем же блоком в styles.css. */
+.ba{display:inline-flex;align-items:baseline;gap:.22em;white-space:nowrap;}
+.ba-from{color:var(--muted);font-size:.6em;letter-spacing:-0.01em;}
+.ba-arr{color:#5C6B16;font-size:.6em;}
+.ba-to{color:var(--ink);text-decoration:underline;text-decoration-color:var(--lime);
+  text-decoration-thickness:.11em;text-underline-offset:.14em;text-decoration-skip-ink:none;}
+.stat .ba-from,.stat .ba-arr,.wt .ba-from,.wt .ba-arr{color:var(--muted-d);}
+.stat .ba-to,.wt .ba-to{color:var(--lime);text-decoration:none;}
+.payback .pb-n{color:var(--ink);}
+/* карточки «что уже починил»: та же пара */
+.val .vnum{font-size:30px;}
+.val .vnum .from{font-size:.6em;}
+.val .vnum .arr{font-size:.6em;padding:0 .2em;}
+.val .vnum .to{text-decoration:underline;text-decoration-color:var(--lime);
+  text-decoration-thickness:.11em;text-underline-offset:.14em;text-decoration-skip-ink:none;}
+
+/* Спокойный отклик карточек-ссылок: 3 px вверх, контур светится лаймом. Только мышь. */
+@media (hover:hover) and (pointer:fine){
+  a.val:hover,a.pc:hover,a.lad:hover{transform:translateY(-3px);border-color:var(--lime-deep);}
+  a.lr:hover{transform:translateY(-3px);border-color:var(--lime-deep);}
+  a.lad.main:hover{border-color:transparent;}
+}
+
+/* Мобильное меню главной: кнопка была, а обработчика не было — меню не открывалось */
+.nav-inner{position:relative;}
+.hamb span{transition:transform .2s ease,opacity .2s ease;}
+@media (max-width:680px){
+  .hamb.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamb.open span:nth-child(2){opacity:0;}
+  .hamb.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .nav-menu.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;
+    background:var(--bg);border-bottom:1px solid var(--line);padding:10px var(--pad) 18px;}
+  .nav-menu.open .nav-link{padding:13px 10px;font-size:16px;}
+  .nav-menu.open .dd,.nav-menu.open .caret{display:none;}
+  .nav-menu.open .btn-write{display:block;margin:8px 0 0;text-align:center;}
+}
+
+/* БРЕНД · заголовки карточек — Forum, как все заголовки (бренд-бук: Forum для заголовков, Onest 400–600 для текста) */
+.do-name{font-family:'Forum',Georgia,serif;font-weight:400;letter-spacing:-0.01em;line-height:1.08;}
+.do-name{font-size:34px;}
 </style>
+<link rel="stylesheet" href="motion.css" />
 </head>
 <body>
 
@@ -546,15 +579,15 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
         <h1 style="margin-top:24px;">Бизнес теряет деньги там, куда <span class="lime">никто не смотрит</span></h1>
         <p class="hero-sub">Заявка пришла в два ночи — ответили утром, клиент уже купил у других. Кладовщик собрал не тот артикул — товар едет назад за ваш счёт. Менеджер третий час читает документ, который читается за две минуты.<br><br>Найду такие места, посчитаю в рублях и соберу систему, которая их закроет. 1–3 месяца работы, от&nbsp;100 000&nbsp;₽.</p>
         <div class="hero-cta">
-          <a class="btn-lime" href="#price">Сколько это стоит <span class="mono">→</span></a>
+          <a class="btn-lime" href="#price">Сколько это стоит</a>
           <a class="btn-ghost" href="cases.html">Смотреть кейсы</a>
         </div>
         <div class="hero-note">Разбор бесплатно · пять в месяц · отвечает основатель</div>
       </div>
       <div class="hero-stats">
-        <div class="stat"><div class="n">50+</div><div class="l">систем собрал руками с 2023</div></div>
+        <div class="stat"><div class="n" data-target="50" data-suffix="+">50+</div><div class="l">систем собрал руками с 2023</div></div>
         <div class="stat"><div class="n">от 100к</div><div class="l">под ключ, за 1–3 месяца</div></div>
-        <div class="stat"><div class="n">3 недели</div><div class="l">окупаемость в кейсе North West Parts</div></div>
+        <div class="stat"><div class="n ba"><span class="ba-from">9%</span><span class="ba-arr">→</span><span class="ba-to">1%</span></div><div class="l">возвраты из-за пересорта · North West Parts</div></div>
       </div>
     </div>
   </div>
@@ -571,42 +604,36 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
       <div class="vh">Склад перестал терять на пересорте</div>
       <div><div class="vnum"><span class="from">9%</span><span class="arr">→</span><span class="to">1%</span></div>
       <div class="src">возвраты из-за пересортицы на 19 000 SKU · North West Parts</div></div>
-      <span class="val-go arr">→</span>
     </a>
     <a class="val" href="cases/wowmebel.html">
       <div class="vh">Прибыль выросла вдвое за квартал</div>
       <div><div class="vnum"><span class="from">850к</span><span class="arr">→</span><span class="to">1,7 млн</span></div>
       <div class="src">в месяц · с одного замерщика до пяти · WowМебель</div></div>
-      <span class="val-go arr">→</span>
     </a>
     <a class="val" href="cases/werman.html">
       <div class="vh">Средний чек вырос в полтора раза</div>
       <div><div class="vnum"><span class="from">890к</span><span class="arr">→</span><span class="to">1,34 млн</span></div>
       <div class="src">цикл сделки сократился с 14 дней до 4 · Werman</div></div>
-      <span class="val-go arr">→</span>
     </a>
     <a class="val" href="cases/bank-broker.html">
       <div class="vh">Анализ заёмщика вместо трёх часов</div>
       <div><div class="vnum"><span class="from">3 ч</span><span class="arr">→</span><span class="to">2 мин</span></div>
       <div class="src">в девяносто раз быстрее · банковский брокер</div></div>
-      <span class="val-go arr">→</span>
     </a>
     <a class="val" href="cases/help-me.html">
       <div class="vh">Тот же поток лидов, вчетверо больше встреч</div>
       <div><div class="vnum"><span class="from">3,2%</span><span class="arr">→</span><span class="to">14%</span></div>
-      <div class="src">конверсия входящих в встречу · Help Me</div></div>
-      <span class="val-go arr">→</span>
+      <div class="src">конверсия входящих во встречу · Help Me</div></div>
     </a>
     <a class="val" href="cases/mpshine.html">
       <div class="vh">Склад ушёл из Excel в систему</div>
       <div><div class="vnum"><span class="to">20 листов</span></div>
       <div class="src">Excel-макросов заменила одна система на пять ролей · MPShine</div></div>
-      <span class="val-go arr">→</span>
     </a>
   </div>
   <div class="proof-more">
     <p>Здесь шесть. Всего в публичной подборке двенадцать — с выручкой, конверсией, сроками и тем, что именно пошло не так по дороге. Плюс сорок с лишним под NDA.</p>
-    <a class="btn-dark" href="cases.html">Открыть все двенадцать кейсов <span class="mono">→</span></a>
+    <a class="btn-dark" href="cases.html">Открыть все двенадцать кейсов</a>
   </div>
 </section>
 
@@ -617,12 +644,12 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     <h2 class="s-title">Эти компании пустили меня в свои процессы.</h2>
   </div>
   <div class="pgrid">
-    <a class="pc" href="cases/mpshine.html"><div class="pc-n">MPShine <span class="pc-go mono">→</span></div><div class="pc-i">фулфилмент · складская операционная система</div></a>
-    <a class="pc" href="cases/north-west-parts.html"><div class="pc-n">North West Parts <span class="pc-go mono">→</span></div><div class="pc-i">автозапчасти · 19 000 SKU без пересорта</div></a>
+    <a class="pc" href="cases/mpshine.html"><div class="pc-n">MPShine</div><div class="pc-i">фулфилмент · складская операционная система</div></a>
+    <a class="pc" href="cases/north-west-parts.html"><div class="pc-n">North West Parts</div><div class="pc-i">автозапчасти · 19 000 SKU без пересорта</div></a>
     <div class="pc"><div class="pc-n">Skillbox</div><div class="pc-i">образование · методология курса по ИИ</div></div>
-    <a class="pc" href="cases/help-me.html"><div class="pc-n">Help Me <span class="pc-go mono">→</span></div><div class="pc-i">списание долгов · захват лидов голосом и текстом</div></a>
-    <a class="pc" href="cases/werman.html"><div class="pc-n">Werman <span class="pc-go mono">→</span></div><div class="pc-i">станки · продажи без техконсультаций</div></a>
-    <a class="pc" href="cases/investments.html"><div class="pc-n">Инвестиции России <span class="pc-go mono">→</span></div><div class="pc-i">финтех · квалификация инвесторов</div></a>
+    <a class="pc" href="cases/help-me.html"><div class="pc-n">Help Me</div><div class="pc-i">списание долгов · захват лидов голосом и текстом</div></a>
+    <a class="pc" href="cases/werman.html"><div class="pc-n">Werman</div><div class="pc-i">станки · продажи без техконсультаций</div></a>
+    <a class="pc" href="cases/investments.html"><div class="pc-n">Инвестиции России</div><div class="pc-i">финтех · квалификация инвесторов</div></a>
   </div>
   <div class="pnda">И ещё сорок с лишним проектов, о которых я не могу рассказать. Финтех, телеком, крупный B2B — там NDA, и я его не нарушаю даже когда очень хочется.</div>
 </section>
@@ -644,7 +671,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
       </div>
       <div class="lad-n">Разработка под вас</div>
       <p class="lad-d">Смотрю, где именно в вашем процессе теряются деньги, считаю окупаемость до первой строки кода и собираю систему под это. Боты и интеграции, веб-интерфейсы, складской учёт, аналитика документов. 1–3 месяца от старта до продакшена. Пятьдесят таких за спиной, двенадцать разобраны публично с цифрами.</p>
-      <div class="lad-f"><span class="go-link">Сколько это стоит <span class="ar">→</span></span></div>
+      <div class="lad-f"><span class="go-link">Сколько это стоит</span></div>
     </a>
 
     <a class="lad" href="https://ozon-calculator.ru" target="_blank" rel="noopener">
@@ -688,22 +715,22 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 
     <a class="lr" href="cases/wowmebel.html">
       <div class="lq">Ночной трафик оказался не «низкокачественным». Он <em>просто никем не обрабатывался</em>.</div>
-      <div class="lf"><span class="lc">WowМебель · продажи 24/7</span><span class="la">→</span></div>
+      <div class="lf"><span class="lc">WowМебель · продажи 24/7</span></div>
     </a>
 
     <a class="lr" href="cases/federal-provider.html">
       <div class="lq">«Нет покрытия» — это <em>не отказ, а сегмент</em>. Перестали выбрасывать таких клиентов — статья дохода появилась за неделю.</div>
-      <div class="lf"><span class="lc">Федеральный провайдер · телеком</span><span class="la">→</span></div>
+      <div class="lf"><span class="lc">Федеральный провайдер · телеком</span></div>
     </a>
 
     <a class="lr" href="cases/help-me.html">
       <div class="lq">Юридический клиент не «не берёт трубку». Он <em>не берёт трубку у незнакомого номера</em>. Задача была не уговорить, а попасть в короткий момент, когда человек готов говорить.</div>
-      <div class="lf"><span class="lc">Help Me · списание долгов</span><span class="la">→</span></div>
+      <div class="lf"><span class="lc">Help Me · списание долгов</span></div>
     </a>
 
     <a class="lr" href="cases/north-west-parts.html">
       <div class="lq">Никакая нейросеть не спасёт, если данные о складе неактуальны. Половина работы здесь — <em>не ИИ, а инженерия данных</em>.</div>
-      <div class="lf"><span class="lc">North West Parts · 19 000 SKU</span><span class="la">→</span></div>
+      <div class="lf"><span class="lc">North West Parts · 19 000 SKU</span></div>
     </a>
 
   </div>
@@ -769,7 +796,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
         </ul>
       </div>
       <div class="pc-ref">
-        <a class="go-link" href="cases/mpshine.html">Открыть разбор <span class="ar">→</span></a>
+        <a class="go-link" href="cases/mpshine.html">Открыть разбор</a>
       </div>
     </div>
 
@@ -778,12 +805,12 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   <!-- окупаемость -->
   <div class="payback">
     <div>
-      <h3>Платите один раз. Экономит каждый месяц.</h3>
-      <p>North West Parts экономит 340 000 ₽ ежемесячно на складе, где раньше 9% заказов уезжало обратно из-за пересорта. Система обошлась от 200 000 ₽.</p>
+      <h3>Платите один раз. Работает каждый день.</h3>
+      <p>У North West Parts 9% заказов уезжало обратно из-за пересорта. После системы&nbsp;— 1% на 19&nbsp;000 SKU. Система осталась у клиента целиком, без абонплаты.</p>
     </div>
     <div>
-      <div class="pb-n">3 недели</div>
-      <div class="pb-l">и дальше она просто зарабатывает</div>
+      <div class="pb-n ba"><span class="ba-from">9%</span><span class="ba-arr">→</span><span class="ba-to">1%</span></div>
+      <div class="pb-l">возвраты из-за пересорта</div>
     </div>
   </div>
 
@@ -894,7 +921,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
       </div>
       <div class="gu">
         <div class="gu-t">Скажу «нет», если не окупится</div>
-        <div class="gu-d">Считаю до старта. Не сходится — так и напишу. Дважды я отказался от проектов, которые уже был готов делать, и оба раза остался без денег. Не жалею. <a class="gu-l" href="lessons.html">Оба разбора здесь <span class="ar">→</span></a></div>
+        <div class="gu-d">Считаю до старта. Не сходится — так и напишу. Дважды я отказался от проектов, которые уже был готов делать, и оба раза остался без денег. Не жалею. <a class="gu-l" href="lessons.html">Оба разбора здесь</a></div>
       </div>
       <div class="gu">
         <div class="gu-t">Ключи у вас с первого дня</div>
@@ -965,7 +992,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     </div>
     <div>
       <p>Десять лет в обучении: методист, преподаватель, проектировщик учебных программ. В 2023 году пришёл в ИИ через педагогику и понял главное — <span class="hl">проектирование агента — это та же работа, что проектирование обучающей программы</span>. Та же логика контекста, ролей и результата.</p>
-      <a class="go-link" href="about.html" style="margin-top:22px;">Полная история <span class="ar">→</span></a>
+      <a class="go-link" href="about.html" style="margin-top:22px;">Полная история</a>
     </div>
   </div>
 
@@ -1003,7 +1030,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
         <h2>MPShine</h2>
         <p class="flag-line">Операционная система для селлера вместо связки Excel-макросов. Упаковщик видит заработок в реальном времени, менеджер мониторит операции, владелец — биллинг по фулфилмент-клиентам.</p>
       </div>
-      <a class="btn-lime" href="cases/mpshine.html">Открыть разбор <span class="mono">→</span></a>
+      <a class="btn-lime" href="cases/mpshine.html">Открыть разбор</a>
     </div>
     <div class="flag-stats">
       <div class="fs"><div class="fs-n">20 листов</div><div class="fs-l">Excel-макросов заменила система</div></div>
@@ -1019,10 +1046,10 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     <div class="in">
       <span class="tag on-dark" style="justify-content:center;">Что дальше</span>
       <h2>Расскажите, где у вас утекает. Посчитаю. Если не окупится — так и <span class="lime">скажу.</span></h2>
-      <p>Пока вы думаете, счётчик тикает. У North West Parts он показывал 340 000 ₽ в месяц на пересорте. У WowМебель — 850 000 ₽ упущенной прибыли, пока ночные заявки висели до утра. Ваша цифра другая. Но она не ноль, и вы её не видите — как не видели они.</p>
+      <p>У North West Parts каждый одиннадцатый заказ уезжал обратно из-за пересорта. У WowМебель ночные заявки ждали утра, и до замера доходила одна из восьми. Ваша цифра другая. Но она не ноль, и вы её не видите&nbsp;— как не видели они.</p>
       <div class="wait">
-        <div class="wt"><div class="wt-n">340 000 ₽</div><div class="wt-l">столько склад терял каждый месяц, пока не построили систему за 200 000</div></div>
-        <div class="wt"><div class="wt-n">850 000 ₽</div><div class="wt-l">столько уходило в месяц, пока заявки лежали до утра</div></div>
+        <div class="wt"><div class="wt-n ba"><span class="ba-from">9%</span><span class="ba-arr">→</span><span class="ba-to">1%</span></div><div class="wt-l">возвраты из-за пересорта, North West Parts</div></div>
+        <div class="wt"><div class="wt-n ba"><span class="ba-from">12%</span><span class="ba-arr">→</span><span class="ba-to">41%</span></div><div class="wt-l">конверсия в замер, когда заявки перестали ждать утра, WowМебель</div></div>
       </div>
       <p style="margin-top:26px;">Сорок минут, расчёт на бумаге, ноль рублей. Решит ИИ вашу задачу — обсудим. Не решит — скажу сразу.</p>
       <a class="btn-lime" href="https://t.me/SergChina" target="_blank" rel="noopener">Забрать бесплатный разбор</a>
@@ -1071,5 +1098,14 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#0E0E10"/><circle cx="50" cy="50" r="26" fill="none" stroke="#fff" stroke-width="7"/><circle cx="50" cy="50" r="8" fill="#C9F24E"/></svg>
 </template>
 
+<script>
+  // мобильное меню главной
+  (function(){var b=document.querySelector('.hamb'),m=document.querySelector('.nav-menu');if(!b||!m)return;
+    b.setAttribute('aria-expanded','false');
+    b.addEventListener('click',function(){var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',String(o));});
+    m.addEventListener('click',function(e){if(e.target.closest('a')){m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+  })();
+</script>
+<script src="motion.js" defer></script>
 </body>
 </html>

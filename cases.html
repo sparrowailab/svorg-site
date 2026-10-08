@@ -29,8 +29,9 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230E0E10'/%3E%3Ccircle cx='50' cy='50' r='24' fill='none' stroke='%23fff' stroke-width='7'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%23C9F24E'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Forum&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Forum&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="motion.css" />
 </head>
 <body>
 <div class="top-stripe"></div>
@@ -42,14 +43,14 @@
       <img class="brand-mark" src="assets/sparrow-mark-dark.svg" alt="" />
       <span class="brand-name">Sparrow</span>
     </a>
-    <nav class="nav-menu" aria-label="Main">
+    <nav class="nav-menu" id="site-menu" aria-label="Основное меню">
       <a href="products.html"><span class="nav-num mono">01</span>Продукты</a>
       <a href="cases.html" class="active"><span class="nav-num mono">02</span>Кейсы</a>
       <a href="about.html"><span class="nav-num mono">03</span>О себе</a>
       <a href="about.html#contacts"><span class="nav-num mono">04</span>Контакты</a>
       <a class="btn-write" href="https://t.me/SergChina" target="_blank" rel="noopener">Написать</a>
     </nav>
-    <button class="hamburger" aria-label="Menu">
+    <button class="hamburger" aria-label="Меню" aria-expanded="false" aria-controls="site-menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -70,10 +71,10 @@
 <!-- ====== SUMMARY STATS ====== -->
 <section class="container cases-stats" data-screen-label="01b Stats">
   <div class="cs-row">
-    <div class="cs-item"><div class="cs-n mono" data-target="50" data-suffix="+">0</div><div class="cs-l">внедрений за три года</div></div>
-    <div class="cs-item"><div class="cs-n mono" data-target="12">0</div><div class="cs-l">в публичной подборке</div></div>
-    <div class="cs-item"><div class="cs-n mono" data-target="30" data-prefix="~" data-suffix="%">0</div><div class="cs-l">под NDA</div></div>
-    <div class="cs-item"><div class="cs-n mono" data-target="2">0</div><div class="cs-l">остановились на&nbsp;MVP</div></div>
+    <div class="cs-item"><div class="cs-n mono" data-target="50" data-suffix="+">50+</div><div class="cs-l">внедрений за три года</div></div>
+    <div class="cs-item"><div class="cs-n mono" data-target="12">12</div><div class="cs-l">в публичной подборке</div></div>
+    <div class="cs-item"><div class="cs-n mono" data-target="4">4</div><div class="cs-l">из&nbsp;12 без названия компании</div></div>
+    <div class="cs-item"><div class="cs-n mono" data-target="2">2</div><div class="cs-l">остановились на&nbsp;MVP</div></div>
     <div class="cs-item"><div class="cs-n mono">2023–26</div><div class="cs-l">период</div></div>
   </div>
 </section>
@@ -85,11 +86,11 @@
   <a class="flagship-card accent" href="cases/mpshine.html">
     <div class="flagship-left">
       <p class="f-cat"><span class="f-num mono">00 / 12</span> Флагман · Складская автоматизация · <span class="mono">2024–26</span></p>
-      <h2 class="f-title">MPShine</h2>
+      <h2 class="f-title" style="view-transition-name:case-mpshine">MPShine</h2>
       <div class="f-sub">Складская система для селлера маркетплейсов с собственным фулфилмент-направлением. От Excel-макросов к единой операционной системе.</div>
     </div>
     <div class="flagship-right">
-      <div class="f-cta">Открыть кейс <span class="arr">→</span></div>
+      <div class="f-cta">Открыть кейс</div>
       <div class="f-note">Подробный разбор по&nbsp;ролям</div>
     </div>
     <div class="flagship-metrics">
@@ -126,7 +127,7 @@
     <a class="case-card" href="cases/wowmebel.html" data-tags="ecom,b2b">
       <div class="cc-top"><span class="cc-num mono">01 / 12</span><span class="cc-date mono">2024</span></div>
       <p class="cc-cat">E-commerce · Производство</p>
-      <h3 class="cc-title">WowМебель</h3>
+      <h3 class="cc-title" style="view-transition-name:case-wowmebel">WowМебель</h3>
       <div class="cc-sub">От одного замерщика до пяти за три месяца.</div>
       <div class="cc-divider"></div>
       <div class="cc-metric mono">+100%</div>
@@ -139,7 +140,7 @@
     <a class="case-card" href="cases/north-west-parts.html" data-tags="ecom">
       <div class="cc-top"><span class="cc-num mono">02 / 12</span><span class="cc-date mono">2024</span></div>
       <p class="cc-cat">E-commerce · Автозапчасти</p>
-      <h3 class="cc-title">North West Parts</h3>
+      <h3 class="cc-title" style="view-transition-name:case-north-west-parts">North West Parts</h3>
       <div class="cc-sub">Идеальный склад без пересортицы на 19&nbsp;000 SKU.</div>
       <div class="cc-divider"></div>
       <div class="cc-metric mono">−89%</div>
@@ -152,7 +153,7 @@
     <a class="case-card" href="cases/werman.html" data-tags="b2b">
       <div class="cc-top"><span class="cc-num mono">03 / 12</span><span class="cc-date mono">2025</span></div>
       <p class="cc-cat">Производство · B2B</p>
-      <h3 class="cc-title">Werman</h3>
+      <h3 class="cc-title" style="view-transition-name:case-werman">Werman</h3>
       <div class="cc-sub">Продажа станков без бесконечных технических консультаций.</div>
       <div class="cc-divider"></div>
       <div class="cc-metric mono">−70%</div>
@@ -165,12 +166,12 @@
     <a class="case-card" href="cases/federal-provider.html" data-tags="b2b">
       <div class="cc-top"><span class="cc-num mono">04 / 12</span><span class="cc-date mono">2024 · NDA</span></div>
       <p class="cc-cat">Телеком · B2B</p>
-      <h3 class="cc-title">Федеральный интернет-провайдер</h3>
+      <h3 class="cc-title" style="view-transition-name:case-federal-provider">Федеральный интернет-провайдер</h3>
       <div class="cc-sub">Обработка 300&nbsp;000 адресов через ИИ-менеджера.</div>
       <div class="cc-divider"></div>
       <div class="cc-metric mono">+35%</div>
       <p class="cc-metric-label">Конверсия в заявку</p>
-      <div class="cc-metric-base mono">12% → 16,2% на 300 тыс адресов</div>
+      <div class="cc-metric-base mono">рост к базе · 300 тыс адресов</div>
       <div class="cc-foot"><span></span><span class="cc-arrow"><span class="arr">→</span></span></div>
     </a>
 
@@ -180,11 +181,11 @@
         <div class="cc-top"><span class="cc-num mono">05 / 12</span><span class="cc-date mono">2024</span></div>
         <p class="cc-cat">Юридические услуги</p>
         <div class="cc-metric mono">+340%</div>
-        <p class="cc-metric-label">Конверсия в встречу</p>
+        <p class="cc-metric-label">Конверсия во встречу</p>
         <div class="cc-metric-base mono">3,2% → 14% на входящем потоке</div>
       </div>
       <div class="cc-featured-right">
-        <h3 class="cc-title">Help Me</h3>
+        <h3 class="cc-title" style="view-transition-name:case-help-me">Help Me</h3>
         <div class="cc-sub">Захват лидов текстом и голосом для сети по списанию долгов. Голосовой бот квалифицирует, текстовый помощник прогревает, человек закрывает.</div>
         <div class="cc-foot"><span></span><span class="cc-arrow arr"><span class="arr">→</span></span></div>
       </div>
@@ -194,7 +195,7 @@
     <a class="case-card" href="cases/investments.html" data-tags="fin">
       <div class="cc-top"><span class="cc-num mono">06 / 12</span><span class="cc-date mono">2025</span></div>
       <p class="cc-cat">ФинТех · Инвестиции</p>
-      <h3 class="cc-title">Инвестиции России</h3>
+      <h3 class="cc-title" style="view-transition-name:case-investments">Инвестиции России</h3>
       <div class="cc-sub">Квалификация инвесторов, AI-оценка активов и оповещения в трёх мессенджерах.</div>
       <div class="cc-divider"></div>
       <div class="cc-metric mono">+280%</div>
@@ -207,7 +208,7 @@
     <a class="case-card" href="cases/coaching.html" data-tags="info">
       <div class="cc-top"><span class="cc-num mono">07 / 12</span><span class="cc-date mono">2024</span></div>
       <p class="cc-cat">Инфобизнес · Услуги</p>
-      <h3 class="cc-title">Коучинг Михаила</h3>
+      <h3 class="cc-title" style="view-transition-name:case-coaching">Коучинг Михаила</h3>
       <div class="cc-sub">Подписочная модель на автопилоте через ИИ-психолога.</div>
       <div class="cc-divider"></div>
       <div class="cc-metric mono">480 к ₽</div>
@@ -220,7 +221,7 @@
     <a class="case-card" href="cases/bank-broker.html" data-tags="fin">
       <div class="cc-top"><span class="cc-num mono">08 / 12</span><span class="cc-date mono">2025 · NDA</span></div>
       <p class="cc-cat">ФинТех · Брокеридж</p>
-      <h3 class="cc-title">Банковский брокер</h3>
+      <h3 class="cc-title" style="view-transition-name:case-bank-broker">Банковский брокер</h3>
       <div class="cc-sub">Анализ заёмщика за 2&nbsp;минуты вместо 3&nbsp;часов.</div>
       <div class="cc-divider"></div>
       <div class="cc-metric mono">90×</div>
@@ -233,7 +234,7 @@
     <a class="case-card" href="cases/opencowork.html" data-tags="own">
       <div class="cc-top"><span class="cc-num mono">09 / 12</span><span class="cc-date mono">2026</span></div>
       <p class="cc-cat">Свой продукт · AI-сотрудник для команды</p>
-      <h3 class="cc-title">OpenCowork</h3>
+      <h3 class="cc-title" style="view-transition-name:case-opencowork">OpenCowork</h3>
       <div class="cc-sub">Команда ставит задачу, агент собирает контекст проекта и возвращает готовый артефакт на проверку.</div>
       <div class="cc-divider"></div>
       <div class="cc-metric mono">8 сценариев</div>
@@ -246,7 +247,7 @@
     <a class="case-card" href="cases/micmiky.html" data-tags="own">
       <div class="cc-top"><span class="cc-num mono">10 / 12</span><span class="cc-date mono">2025–26</span></div>
       <p class="cc-cat">Свой продукт · AI-OS для встреч</p>
-      <h3 class="cc-title">Micmiky</h3>
+      <h3 class="cc-title" style="view-transition-name:case-micmiky">Micmiky</h3>
       <div class="cc-sub">AI-операционная система для встреч. Запись, анализ, задачи в трекере, черновик КП.</div>
       <div class="cc-divider"></div>
       <div class="cc-metric mono">В проде</div>
@@ -259,7 +260,7 @@
     <a class="case-card" href="cases/ozon-unit.html" data-tags="own">
       <div class="cc-top"><span class="cc-num mono">11 / 12</span><span class="cc-date mono">2024–26</span></div>
       <p class="cc-cat">Свой продукт · Для селлеров</p>
-      <h3 class="cc-title">Ozon-юнит</h3>
+      <h3 class="cc-title" style="view-transition-name:case-ozon-unit">Ozon-юнит</h3>
       <div class="cc-sub">Точная юнит-экономика с учётом 15+ статей расходов.</div>
       <div class="cc-divider"></div>
       <div class="cc-metric mono">12 847</div>
@@ -283,7 +284,7 @@
       <li><strong>Автопроверка отчётов о&nbsp;выбросах</strong> · экология, регуляторика, 2025. Экономика закупки исходных данных не сложилась&nbsp;· стоимость единицы проверки не окупала себя.</li>
       <li><strong>Голосовой ассистент для торговой сети</strong> · общепит, франшиза, 2026. Инфраструктура франшизы оказалась несовместима с единым голосовым контуром.</li>
     </ul>
-    <div class="fail-foot">Оба под NDA, названия не раскрываю. Но что именно пошло не так и что я из этого вынес&nbsp;· <a href="lessons.html">разобрал подробно <span class="arr">→</span></a></div>
+    <div class="fail-foot">Оба под NDA, названия не раскрываю. Но что именно пошло не так и что я из этого вынес&nbsp;· <a href="lessons.html">разобрал подробно</a></div>
   </div>
 </section>
 
@@ -340,10 +341,9 @@
 
 <script>
   // Mobile hamburger toggle
-  document.querySelector('.hamburger')?.addEventListener('click', () => {
-    document.querySelector('.nav-menu')?.classList.toggle('open');
-    document.querySelector('.hamburger')?.classList.toggle('open');
-  });
+  (function(){var h=document.querySelector('.hamburger'),m=document.querySelector('.nav-menu');if(!h||!m)return;
+    h.addEventListener('click',function(){var o=m.classList.toggle('open');h.classList.toggle('open',o);h.setAttribute('aria-expanded',o);});
+    m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');h.classList.remove('open');h.setAttribute('aria-expanded','false');});});})();
 
   // Filter chips + counts
   const chips = document.querySelectorAll('#chips .chip');
@@ -376,62 +376,7 @@
   });
 </script>
 
-<script>
-  // Animated counter on cases-stats numbers (respects prefers-reduced-motion)
-  (function(){
-    const numbers = document.querySelectorAll('.cs-n[data-target]');
-    if (!numbers.length) return;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const setFinal = (el) => {
-      const target = parseInt(el.dataset.target, 10);
-      const prefix = el.dataset.prefix || '';
-      const suffix = el.dataset.suffix || '';
-      el.textContent = prefix + target + suffix;
-      el.dataset.settled = '1';
-    };
-    if (reduceMotion) {
-      numbers.forEach(setFinal);
-      return;
-    }
-    const animate = (el) => {
-      const target = parseInt(el.dataset.target, 10);
-      const prefix = el.dataset.prefix || '';
-      const suffix = el.dataset.suffix || '';
-      const duration = 1200;
-      const start = performance.now();
-      const tick = (now) => {
-        const p = Math.min((now - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - p, 3);
-        const val = Math.round(target * ease);
-        el.textContent = prefix + val + suffix;
-        if (p < 1) requestAnimationFrame(tick);
-        else setFinal(el);
-      };
-      requestAnimationFrame(tick);
-    };
-    // В фоновой вкладке rAF замирает и число застревает на промежуточном
-    // значении: вместо «50+» человек возвращается и видит «3+». Таймеры там
-    // тоже throttled, поэтому единственная надёжная точка — момент, когда
-    // вкладка снова становится видимой.
-    const settleAll = () => {
-      numbers.forEach(el => {
-        if (el.dataset.done && !el.dataset.settled) setFinal(el);
-      });
-    };
-    // Уходит в фон — досчитывать некому и незачем, ставим финал сразу.
-    // Возвращается — добираем всё, что осталось незакрытым.
-    document.addEventListener('visibilitychange', settleAll);
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.dataset.done) {
-          entry.target.dataset.done = '1';
-          if (document.hidden) setFinal(entry.target);
-          else animate(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    numbers.forEach(el => obs.observe(el));
-  })();
-</script>
+
+<script src="motion.js" defer></script>
 </body>
 </html>
