@@ -154,3 +154,36 @@
 }
 @keyframes m-vt-depth-out{to{opacity:0;transform:scale(.965) translateY(-10px);}}
 @keyframes m-vt-depth-in{from{opacity:0;transform:scale(1.025) translateY(16px);}}
+
+/* ---------- «До и после»: колонка «стало» набирается по прокрутке ---------- */
+/* Числа стоят в HTML. Без JS и без scroll-таймлайна таблица видна целиком. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .compare{view-timeline-name:--cmp;view-timeline-axis:block;}
+    .compare tbody td:nth-child(3),
+    .compare tbody td:nth-child(4){
+      animation:cmp-fill linear both;animation-timeline:--cmp;}
+    /* каждая строка набирается чуть позже предыдущей; всё готово к тому
+       моменту, когда таблица встаёт на удобную для чтения высоту */
+    .compare tbody tr:nth-child(1) td:nth-child(3){animation-range:cover 12% cover 24%;}
+    .compare tbody tr:nth-child(1) td:nth-child(4){animation-range:cover 15% cover 27%;}
+    .compare tbody tr:nth-child(2) td:nth-child(3){animation-range:cover 18% cover 30%;}
+    .compare tbody tr:nth-child(2) td:nth-child(4){animation-range:cover 21% cover 33%;}
+    .compare tbody tr:nth-child(3) td:nth-child(3){animation-range:cover 24% cover 36%;}
+    .compare tbody tr:nth-child(3) td:nth-child(4){animation-range:cover 27% cover 39%;}
+    .compare tbody tr:nth-child(4) td:nth-child(3){animation-range:cover 30% cover 42%;}
+    .compare tbody tr:nth-child(4) td:nth-child(4){animation-range:cover 33% cover 45%;}
+  }
+}
+@keyframes cmp-fill{
+  from{opacity:0;transform:translateX(-.22em);}
+  to{opacity:1;transform:none;}}
+
+/* Safari и всё, где нет scroll-таймлайна: та же подача, но разом по строке */
+@supports not (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .compare tbody td{transition:opacity var(--m-base) var(--m-ease),
+      transform var(--m-base) var(--m-ease);}
+    .compare tbody td.cmp-wait{opacity:0;transform:translateX(-.22em);}
+  }
+}

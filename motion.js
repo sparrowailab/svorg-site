@@ -125,3 +125,38 @@
     card.style.removeProperty('--ty');
   }, { passive: true });
 })();
+
+/* ---------- «До и после»: запасной путь там, где нет scroll-таймлайна ---------- */
+(function () {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+  // где есть view()-таймлайн, колонку набирает CSS — JS не нужен
+  if (window.CSS && CSS.supports && CSS.supports('animation-timeline', 'view()')) return;
+
+  var tables = [].slice.call(document.querySelectorAll('.compare'));
+  if (!tables.length) return;
+
+  tables.forEach(function (table) {
+    var cells = [].slice.call(table.querySelectorAll('tbody td:nth-child(3), tbody td:nth-child(4)'));
+    if (!cells.length) return;
+    cells.forEach(function (td) { td.classList.add('cmp-wait'); });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        var rows = [].slice.call(table.querySelectorAll('tbody tr'));
+        rows.forEach(function (tr, i) {
+          setTimeout(function () {
+            [].slice.call(tr.querySelectorAll('td:nth-child(3), td:nth-child(4)'))
+              .forEach(function (td, j) {
+                setTimeout(function () { td.classList.remove('cmp-wait'); }, j * 70);
+              });
+          }, i * 110);
+        });
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.25 });
+
+    io.observe(table);
+  });
+})();
