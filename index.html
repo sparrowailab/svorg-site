@@ -508,6 +508,15 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 /* БРЕНД · заголовки карточек — Forum, как все заголовки (бренд-бук: Forum для заголовков, Onest 400–600 для текста) */
 .do-name{font-family:'Forum',Georgia,serif;font-weight:400;letter-spacing:-0.01em;line-height:1.08;}
 .do-name{font-size:34px;}
+
+/* Касание — не наведение. Базовые правила :hover срабатывают и после тапа:
+   палец убран, а карточка осталась приподнятой до следующего касания.
+   Для экранов без мыши гасим только сдвиг, цвет контура не трогаем. */
+@media (hover:none){
+  .btn-lime:hover,a.val:hover,a.lr:hover,a.lad:hover,a.lad.main:hover,a.pc:hover{transform:none;}
+  a.val:hover .val-go,a.lr:hover .la,
+  .go-btn:hover .ar,.go-link:hover .ar,.gu .gu-l:hover .ar{transform:none;}
+}
 </style>
 <link rel="stylesheet" href="motion.css?v=9" />
 </head>

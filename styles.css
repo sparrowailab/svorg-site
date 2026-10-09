@@ -628,3 +628,16 @@ a.lad:hover{transform:translateY(-2px);border-color:#CBD0D7;}
 .product-card .pc-title,.d-title,.principle h3,.subblock h3{font-family:'Forum',Georgia,serif;font-weight:400;letter-spacing:-0.01em;line-height:1.08;}
 .product-card .pc-title,.d-title,.principle h3{font-size:30px;}
 .subblock h3{font-size:32px;}
+
+/* Касание — не наведение. Базовые правила :hover срабатывают и после тапа:
+   палец убран, а карточка осталась приподнятой до следующего касания.
+   Для экранов без мыши гасим только сдвиг и тень, цвет контура не трогаем. */
+@media (hover:none){
+  .btn-primary:hover,.btn-primary-lg:hover,
+  .product-card:hover,.shot-frame:hover,.flagship-card:hover,
+  .direction:hover,a.lad:hover{transform:none;}
+  .case-card:hover{transform:none;box-shadow:none;}
+  .flagship-card:hover .f-cta,
+  .case-card:hover .cc-metric,
+  .case-card:hover .cc-arrow{transform:none;}
+}
