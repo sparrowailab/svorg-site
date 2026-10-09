@@ -67,13 +67,13 @@ step "4/4 Проверка сайта"
 # vendor/*.js сверяем так же, а не кодом 200: обрезанная копия библиотеки
 # отдаётся с кодом 200, блок снимков от неё молча вернётся к обычной сетке,
 # и по виду страницы этого не заметить.
-for f in styles.css index.html shots-pin.js shots-pin.css \
+for f in styles.css index.html motion.css motion.js shots-pin.js shots-pin.css \
          vendor/gsap.min.js vendor/ScrollTrigger.min.js; do
   curl -sS --max-time 25 -H 'Cache-Control: no-cache' "$SITE/$f?d=$want" \
     | cmp -s - "$f" || die "$f на домене не совпадает с локальным — отдаётся другая версия"
   printf '  %-32s совпадает побайтово\n' "/$f"
 done
-for path in /cases.html /assets/sparrow-mark-dark.svg /motion.css /motion.js \
+for path in /cases.html /assets/sparrow-mark-dark.svg \
             /assets/mp-hero.jpg /assets/mp-anom.jpg /assets/mp-queue.jpg; do
   code=$(http "$path"); [ "$code" = "200" ] || die "$path отдаёт $code"
   printf '  %-32s %s\n' "$path" "$code"

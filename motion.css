@@ -2,8 +2,11 @@
    Движение Sparrow · общий файл для всех страниц
    Спека: claude.ai/artifact/Wjr8iM9rhJtXa56xeiys8f
    fast 140 · base 220 · slow 360 · exit 120 · ease (.23,1,.32,1)
-   Правило: один оркестрованный момент на экран, без «дыхания»,
-   без fade-up на каждую секцию. Двигаются только transform/opacity.
+   Правило: один оркестрованный момент на экран, без «дыхания».
+   Решение 9 октября 2026 отменило запрет на появление секций: сайт ниже
+   первого экрана выглядел неподвижным. Появление вешается на блоки секции,
+   а не на каждый вложенный элемент, — момент остаётся один.
+   Двигаются только transform/opacity.
    ========================================================== */
 :root{
   --m-fast:140ms; --m-base:220ms; --m-slow:360ms; --m-exit:120ms;
@@ -202,6 +205,129 @@
   }
 }
 
+/* ---------- Появление блоков по прокрутке: все страницы ---------- */
+/* Таймлайн у каждого блока свой, а не у секции: секции на главной бывают
+   по 3000 px, и нижние блоки такой секции успевали бы появиться, пока сами
+   ещё далеко за нижней кромкой.
+   Первая секция страницы исключена — первый экран виден сразу, приходить
+   ему неоткуда, а на главной у него своя подача из маски.
+   Стопка снимков, сетка кейсов и таблица «было → стало» исключены: у них
+   свой эффект по прокрутке, две анимации на одном элементе гасили бы друг
+   друга.
+   Диапазон отмерян от окна, а не в долях `cover`: доли считаются от высоты
+   окна плюс высота блока, и появление выходило длиной 100 px у плашки и
+   585 px у большого блока — у первой оно доигрывало за нижней кромкой,
+   у второго тянулось до верха экрана. Здесь начало и конец означают одно
+   и то же для любого блока: приходит, когда вошёл на 140 px снизу, и встаёт
+   на место, когда его верх поднялся до 55% высоты окна.
+   Конец именно в долях окна, а не в пикселях: при 480 px блок доигрывал
+   на 420 px от верха окна — выше середины при окне 900 px, но ниже неё при
+   окне 812 px, и на телефоне читатель встречал текст ещё полупрозрачным
+   ровно посреди экрана. 45vh держит конец выше середины на любой высоте.
+   Привязка линейная: при движении по прокрутке плавность задаёт сам
+   читатель, а ease поверх неё даёт рывок на старте. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    body > section:not(:first-of-type) > *:not(.shots-grid):not(.case-grid):not(.compare){
+      animation-name:m-reveal;
+      animation-timing-function:linear;
+      animation-fill-mode:backwards;
+      animation-timeline:view();
+      animation-range:cover 140px cover 45vh;}
+  }
+}
+@keyframes m-reveal{
+  from{opacity:0;transform:translateY(28px);}
+  to{opacity:1;transform:none;}}
+
+/* ---------- Карточки кейсов: приход из глубины ---------- */
+/* Карточки уже двигаются под курсором: styles.css поднимает их на 6 px,
+   .tilt из этого файла наклоняет по мыши. Анимация в каскаде сильнее
+   обычных объявлений, поэтому fill-mode здесь backwards, а не both:
+   он держит только состояние до входа в диапазон, а когда карточка
+   встала на место — transform снова берётся из обычных правил и курсор
+   работает как раньше. При both анимация висела бы на элементе всегда
+   и подъём с наклоном не применялись бы вовсе.
+   Собрать положение из кастомных свойств и продублировать их в правилах
+   курсора не вышло: пока анимация кастомного свойства активна, любое
+   другое правило transform подставляет не анимированное значение,
+   а initial-value из @property, — карточка под курсором теряла и
+   глубину, и поворот. Замер показывал translateZ 0 вместо −37 px.
+   Пока карточка идёт из глубины, курсор её не наклоняет: анимация
+   сильнее. Так и правильнее — наводят на то, что уже встало на место.
+   Знак поворота чередуется через nth-child, а не привязан к колонке:
+   сетка бывает в три колонки, в две и в одну, и привязка к колонке
+   рассыпалась бы на каждом пороге.
+   Флагманская карточка шириной в две колонки идёт без поворота: на её
+   ширине тот же угол уводит ближний край далеко за пределы сетки.
+   Диапазон и линейная привязка — те же, что у появления блоков выше,
+   по тем же причинам. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .case-grid > .case-card{
+      animation-name:card-in;
+      animation-timing-function:linear;
+      animation-fill-mode:backwards;
+      animation-timeline:view();
+      animation-range:cover 140px cover 45vh;}
+    .case-grid > .case-card:nth-child(even){animation-name:card-in-right;}
+    .case-grid > .case-card.featured{animation-name:card-in-flat;}
+  }
+}
+@keyframes card-in{
+  from{opacity:0;transform:perspective(1000px) translateY(34px) translateZ(-90px) rotateY(14deg);}
+  to{opacity:1;transform:none;}}
+@keyframes card-in-right{
+  from{opacity:0;transform:perspective(1000px) translateY(34px) translateZ(-90px) rotateY(-14deg);}
+  to{opacity:1;transform:none;}}
+@keyframes card-in-flat{
+  from{opacity:0;transform:perspective(1000px) translateY(34px) translateZ(-90px);}
+  to{opacity:1;transform:none;}}
+
+/* ---------- Первый экран кейса и продуктов: слои уходят с разной скоростью ---------- */
+/* Привязка к scroll(), а не к view(): первый экран виден с нулевой
+   прокрутки, и у view() его прогресс на старте уже не нулевой — текст
+   встречал бы читателя сдвинутым и полупрозрачным. У scroll() ноль
+   прокрутки — это ровно начало анимации.
+   Нижние слои отстают сильнее верхних, а не наоборот: так промежутки
+   между строками только растут и ни одна строка не наезжает на другую.
+   Разброс отставания 36 px — глубина читается, а заголовок не отрывается
+   от подписи.
+   Конец диапазона в долях высоты окна, а не в пикселях: на телефоне
+   первый экран уезжает за 500 px, а на большом мониторе столько — ещё
+   половина экрана, и слои доигрывали бы, пока текст стоит на месте.
+   Заполнение forwards обязательно. Без него за концом диапазона слои
+   скачком возвращаются в исходное: на телефоне первый экран к 70vh ещё
+   не весь выше кромки — под шапкой остаётся видимой нижняя строка, и на
+   одном пикселе прокрутки она прыгала на 30 px и вспыхивала с .48 до 1.
+   На десктопе к этому моменту первый экран уже ушёл, и рывка не видно, —
+   поэтому его и легко не заметить. Замерено на 375x812: прокрутка
+   567 -> 569 px, видимой оставалось 60-99 px последней строки. */
+@supports (animation-timeline: scroll()){
+  @media (prefers-reduced-motion: no-preference){
+    .case-hero > *,.mpshine-hero > *,.products-hero > *{
+      animation-timing-function:linear;
+      animation-fill-mode:forwards;
+      animation-timeline:scroll();
+      animation-range:0 70vh;}
+    .case-hero > :nth-child(1),.mpshine-hero > :nth-child(1),.products-hero > :nth-child(1){
+      animation-name:hero-near;}
+    .case-hero > :nth-child(2),.mpshine-hero > :nth-child(2),.products-hero > :nth-child(2){
+      animation-name:hero-mid;}
+    .case-hero > :nth-child(n+3),.mpshine-hero > :nth-child(n+3),.products-hero > :nth-child(n+3){
+      animation-name:hero-far;}
+  }
+}
+@keyframes hero-near{
+  from{opacity:1;transform:none;}
+  to{opacity:.72;transform:perspective(1100px) translateZ(-24px);}}
+@keyframes hero-mid{
+  from{opacity:1;transform:none;}
+  to{opacity:.6;transform:perspective(1100px) translateY(18px) translateZ(-52px);}}
+@keyframes hero-far{
+  from{opacity:1;transform:none;}
+  to{opacity:.48;transform:perspective(1100px) translateY(36px) translateZ(-80px);}}
+
 /* ---------- Снимки интерфейсов: стопка в перспективе, разъезжается по прокрутке ---------- */
 /* Трогаем только три колонки на широком экране. Ниже 900 px сетка и так в одну колонку,
    стопке там взяться неоткуда. Прозрачность не меняем: снимок виден всегда. */
@@ -214,7 +340,7 @@
   @media (min-width: 901px) and (prefers-reduced-motion: no-preference){
     .shots-grid{view-timeline-name:--shots;view-timeline-axis:block;}
     .shot-frame{
-      transform:perspective(1200px) translateX(var(--sx)) translateZ(var(--sz))
+      transform:perspective(900px) translateX(var(--sx)) translateZ(var(--sz))
         rotateY(var(--sry)) scale(var(--ssc));
       will-change:transform;}
     .shot-frame:nth-child(2){position:relative;z-index:2;}
@@ -225,25 +351,28 @@
     .shot-frame:nth-child(1){animation-name:shots-left;}
     .shot-frame:nth-child(2){animation-name:shots-mid;}
     .shot-frame:nth-child(3){animation-name:shots-right;}
+    /* Диапазон отсчитан так, чтобы разъезд шёл, когда сетка уже целиком
+       в окне, а не доигрывал за нижней кромкой: на 10%–40% наклон кончался,
+       пока сетка стояла в нижней трети, и к центру экрана кадры были ровные. */
     .shot-frame:nth-child(1),
-    .shot-frame:nth-child(3){animation-range:cover 10% cover 40%;}
-    .shot-frame:nth-child(2){animation-range:cover 8% cover 32%;}
+    .shot-frame:nth-child(3){animation-range:cover 30% cover 62%;}
+    .shot-frame:nth-child(2){animation-range:cover 28% cover 56%;}
   }
   /* Подъём под курсором остаётся, но поверх позиции в стопке, иначе он сбрасывал наклон */
   @media (hover: hover) and (pointer: fine) and (min-width: 901px)
      and (prefers-reduced-motion: no-preference){
     .shot-frame:hover{
-      transform:perspective(1200px) translateX(var(--sx)) translateZ(var(--sz))
+      transform:perspective(900px) translateX(var(--sx)) translateZ(var(--sz))
         rotateY(var(--sry)) scale(var(--ssc)) translateY(-3px);}
   }
 }
 
 @keyframes shots-left{
-  from{--sx:calc(100% + 18px);--sz:-90px;--sry:16deg;--ssc:.94;}
+  from{--sx:calc(100% + 18px);--sz:-150px;--sry:24deg;--ssc:.88;}
   to{--sx:0px;--sz:0px;--sry:0deg;--ssc:1;}}
 @keyframes shots-mid{
-  from{--sz:-40px;--ssc:.94;}
+  from{--sz:-70px;--ssc:.9;}
   to{--sz:0px;--ssc:1;}}
 @keyframes shots-right{
-  from{--sx:calc(-100% - 18px);--sz:-90px;--sry:-16deg;--ssc:.94;}
+  from{--sx:calc(-100% - 18px);--sz:-150px;--sry:-24deg;--ssc:.88;}
   to{--sx:0px;--sz:0px;--sry:0deg;--ssc:1;}}
