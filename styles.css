@@ -399,6 +399,20 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .role-block{padding-top:80px;}
 .role-block h3{margin-top:12px;font-family:'Forum',Georgia,serif;font-weight:400;font-size:32px;letter-spacing:-0.01em;color:var(--ink);}
 .role-block .role-sub{margin-top:8px;font-size:20px;color:var(--gray);max-width:700px;line-height:1.45;}
+/* Блок роли с кадром рядом: текст слева, экран справа. Текст перестаёт
+   ограничиваться 760 px — ширину теперь держит сама колонка. */
+.role-split{display:grid;grid-template-columns:minmax(0,1fr) 248px;gap:56px;align-items:start;}
+.role-split .long-body{max-width:none;}
+.role-shot{margin-top:28px;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  background:var(--surface);}
+.role-shot .rs-pic{display:block;height:420px;overflow:hidden;background:#EDEFF2;}
+.role-shot .shot-zoom{display:block;height:100%;}
+.role-shot .rs-pic img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.role-shot figcaption{padding:12px 14px 14px;font-size:13px;color:var(--muted);line-height:1.45;}
+@media(max-width:900px){
+  .role-split{grid-template-columns:1fr;gap:0;}
+  .role-shot{max-width:300px;}
+}
 .turning-point{padding-top:48px;max-width:780px;}
 .turning-point h3{margin-top:10px;font-size:24px;font-weight:600;letter-spacing:-0.01em;color:var(--ink);line-height:1.3;}
 .turning-point .tp-body{margin-top:16px;max-width:760px;}
