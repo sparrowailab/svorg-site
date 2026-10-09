@@ -201,3 +201,49 @@
     .compare tbody td.cmp-wait{opacity:0;transform:translateX(-.22em);}
   }
 }
+
+/* ---------- Снимки интерфейсов: стопка в перспективе, разъезжается по прокрутке ---------- */
+/* Трогаем только три колонки на широком экране. Ниже 900 px сетка и так в одну колонку,
+   стопке там взяться неоткуда. Прозрачность не меняем: снимок виден всегда. */
+@property --sx{syntax:'<length-percentage>';inherits:false;initial-value:0px;}
+@property --sz{syntax:'<length>';inherits:false;initial-value:0px;}
+@property --sry{syntax:'<angle>';inherits:false;initial-value:0deg;}
+@property --ssc{syntax:'<number>';inherits:false;initial-value:1;}
+
+@supports (animation-timeline: view()){
+  @media (min-width: 901px) and (prefers-reduced-motion: no-preference){
+    .shots-grid{view-timeline-name:--shots;view-timeline-axis:block;}
+    .shot-frame{
+      transform:perspective(1200px) translateX(var(--sx)) translateZ(var(--sz))
+        rotateY(var(--sry)) scale(var(--ssc));
+      will-change:transform;}
+    .shot-frame:nth-child(2){position:relative;z-index:2;}
+    /* только длинные свойства: сокращённая запись `animation:` сбрасывает
+       animation-timeline, и привязка к прокрутке терялась */
+    .shot-frame{animation-timing-function:linear;animation-fill-mode:both;
+      animation-timeline:--shots;}
+    .shot-frame:nth-child(1){animation-name:shots-left;}
+    .shot-frame:nth-child(2){animation-name:shots-mid;}
+    .shot-frame:nth-child(3){animation-name:shots-right;}
+    .shot-frame:nth-child(1),
+    .shot-frame:nth-child(3){animation-range:cover 10% cover 40%;}
+    .shot-frame:nth-child(2){animation-range:cover 8% cover 32%;}
+  }
+  /* Подъём под курсором остаётся, но поверх позиции в стопке, иначе он сбрасывал наклон */
+  @media (hover: hover) and (pointer: fine) and (min-width: 901px)
+     and (prefers-reduced-motion: no-preference){
+    .shot-frame:hover{
+      transform:perspective(1200px) translateX(var(--sx)) translateZ(var(--sz))
+        rotateY(var(--sry)) scale(var(--ssc)) translateY(-3px);}
+  }
+}
+
+@keyframes shots-left{
+  from{--sx:calc(100% + 18px);--sz:-90px;--sry:16deg;--ssc:.94;}
+  to{--sx:0px;--sz:0px;--sry:0deg;--ssc:1;}}
+@keyframes shots-mid{
+  from{--sz:-40px;--ssc:.94;}
+  to{--sz:0px;--ssc:1;}}
+@keyframes shots-right{
+  from{--sx:calc(-100% - 18px);--sz:-90px;--sry:-16deg;--ssc:.94;}
+  to{--sx:0px;--sz:0px;--sry:0deg;--ssc:1;}}
