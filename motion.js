@@ -50,3 +50,78 @@
   counters.forEach(function (el) { io.observe(el); });
   pairs.forEach(function (el) { io.observe(el); });
 })();
+
+/* ---------- объём: наклон под курсором ---------- */
+(function () {
+  // медиазапросы спрашиваем в момент события: мышь могут подключить позже,
+  // а в превью-панели при загрузке они ещё не устоялись
+  var mqFine = matchMedia('(hover: hover) and (pointer: fine)');
+  var mqCalm = matchMedia('(prefers-reduced-motion: reduce)');
+  function live() { return mqFine.matches && !mqCalm.matches; }
+
+  // знак в первом экране ведёт за курсором
+  var scene = document.querySelector('.hero-3d');
+  var hero = document.querySelector('.hero');
+  if (scene && hero) {
+    var raf = 0, mx = 0, my = 0;
+    hero.addEventListener('pointermove', function (e) {
+      if (!live()) return;
+      var r = hero.getBoundingClientRect();
+      my = ((e.clientX - r.left) / r.width - 0.5) * 7;
+      mx = (0.5 - (e.clientY - r.top) / r.height) * 5;
+      if (!raf) raf = requestAnimationFrame(apply);
+    }, { passive: true });
+    hero.addEventListener('pointerleave', function () {
+      mx = my = 0;
+      if (!raf) raf = requestAnimationFrame(apply);
+    }, { passive: true });
+    function apply() {
+      raf = 0;
+      scene.style.setProperty('--mx', mx.toFixed(2) + 'deg');
+      scene.style.setProperty('--my', my.toFixed(2) + 'deg');
+    }
+  }
+
+  // слои расходятся при прокрутке там, где нет scroll-таймлайна (Safari)
+  var noTimeline = !(window.CSS && CSS.supports && CSS.supports('animation-timeline', 'scroll()'));
+  if (scene && noTimeline && !mqCalm.matches) {
+    var sraf = 0;
+    var onScroll = function () {
+      if (sraf) return;
+      sraf = requestAnimationFrame(function () {
+        sraf = 0;
+        var p = Math.min(1, Math.max(0, window.scrollY / (innerHeight * 0.78)));
+        scene.style.setProperty('--sp', p.toFixed(3));
+      });
+    };
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // карточки наклоняются под курсором
+  var sel = '.case-card, .pc, .direction, .product-card';
+  var craf = 0, pending = null;
+  document.addEventListener('pointermove', function (e) {
+    if (!live()) return;
+    var card = e.target.closest && e.target.closest(sel);
+    if (!card) return;
+    pending = { card: card, x: e.clientX, y: e.clientY };
+    if (craf) return;
+    craf = requestAnimationFrame(function () {
+      craf = 0;
+      if (!pending) return;
+      var c = pending.card, r = c.getBoundingClientRect();
+      c.style.setProperty('--tx', (((pending.x - r.left) / r.width - 0.5) * 8).toFixed(2) + 'deg');
+      c.style.setProperty('--ty', ((0.5 - (pending.y - r.top) / r.height) * 6).toFixed(2) + 'deg');
+      c.classList.add('tilt');
+    });
+  }, { passive: true });
+  document.addEventListener('pointerout', function (e) {
+    var card = e.target.closest && e.target.closest(sel);
+    if (!card || (e.relatedTarget && card.contains(e.relatedTarget))) return;
+    pending = null;
+    card.classList.remove('tilt');
+    card.style.removeProperty('--tx');
+    card.style.removeProperty('--ty');
+  }, { passive: true });
+})();

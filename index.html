@@ -289,17 +289,6 @@ a.lr:hover{transform:translateY(-2px);border-color:#CBD0D7;border-left-color:var
   opacity:0;transform:translateX(-4px);transition:opacity .18s ease,transform .18s ease,color .18s ease;}
 a.lr:hover .la{opacity:1;transform:translateX(0);color:#5C6B16;}
 
-/* ============ VOICES ============ */
-.voices{margin-top:42px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-.voice{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 32px;
-  display:flex;flex-direction:column;position:relative;}
-.voice::before{content:"“";position:absolute;top:14px;right:28px;font-family:'Forum',Georgia,serif;
-  font-size:70px;line-height:1;color:var(--lime);opacity:.55;pointer-events:none;}
-.voice .q{position:relative;z-index:2;padding-right:52px;font-size:20px;line-height:1.48;
-  letter-spacing:-0.012em;color:var(--ink);}
-.voice .who{margin-top:auto;padding-top:24px;}
-.voice .nm{font-weight:600;font-size:15.5px;letter-spacing:-0.01em;}
-.voice .rl{margin-top:3px;font-size:13.5px;color:var(--muted);line-height:1.4;}
 
 /* ============ LADDER ============ */
 .lead{margin-top:18px;font-size:17px;line-height:1.6;color:var(--gray);max-width:700px;}
@@ -419,7 +408,6 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   .lad-col{flex-direction:row;}
   .lad-n{font-size:34px;}
   .learned{grid-template-columns:1fr;}
-  .voices{grid-template-columns:1fr;}
   .price-grid{grid-template-columns:1fr;}
   .terms{grid-template-columns:repeat(2,1fr);}
   .handover{grid-template-columns:1fr;}
@@ -521,7 +509,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 .do-name{font-family:'Forum',Georgia,serif;font-weight:400;letter-spacing:-0.01em;line-height:1.08;}
 .do-name{font-size:34px;}
 </style>
-<link rel="stylesheet" href="motion.css" />
+<link rel="stylesheet" href="motion.css?v=4" />
 </head>
 <body>
 
@@ -573,6 +561,13 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 <!-- ============ HERO ============ -->
 <section class="container" data-screen-label="01 Hero">
   <div class="hero">
+    <div class="hero-3d" aria-hidden="true">
+      <div class="l lime" style="--z:-240px;--i:4;--o:.13"></div>
+      <div class="l" style="--z:-160px;--i:3;--o:.05"></div>
+      <div class="l" style="--z:-95px;--i:2;--o:.065"></div>
+      <div class="l" style="--z:-42px;--i:1;--o:.08"></div>
+      <div class="l" style="--z:12px;--i:0;--o:.10"></div>
+    </div>
     <div class="hero-in">
       <div class="hero-text">
         <span class="tag on-dark">ИИ-системы для бизнеса · с&nbsp;2023</span>
@@ -959,33 +954,6 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 </section>
 
 
-<!-- ============ VOICES ============ -->
-<section class="container section" data-screen-label="03b Voices">
-  <div class="sec-head">
-    <span class="tag">Отзывы</span>
-    <h2 class="s-title">Что пишут те, кто этим пользуется.</h2>
-  </div>
-  <div class="voices">
-
-    <figure class="voice">
-      <blockquote class="q">Micmiky стал незаменимым. Такое ощущение, что я живу в будущем.</blockquote>
-      <figcaption class="who">
-        <div class="nm">Алексей Смирнов</div>
-        <div class="rl">директор по продажам · пользователь Micmiky</div>
-      </figcaption>
-    </figure>
-
-    <figure class="voice">
-      <blockquote class="q">Теперь я выхожу с каждой встречи с чётким планом и готовым письмом. Это изменило мою работу с клиентами.</blockquote>
-      <figcaption class="who">
-        <div class="nm">Анна Соколова</div>
-        <div class="rl">Head of Sales · пользователь Micmiky</div>
-      </figcaption>
-    </figure>
-
-  </div>
-</section>
-
 <!-- ============ WHY US ============ -->
 <section class="container section" id="why" data-screen-label="04 Why us">
   <div class="sec-head">
@@ -1123,6 +1091,6 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     m.addEventListener('click',function(e){if(e.target.closest('a')){m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded','false');}});
   })();
 </script>
-<script src="motion.js" defer></script>
+<script src="motion.js?v=4" defer></script>
 </body>
 </html>

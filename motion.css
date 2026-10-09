@@ -85,3 +85,72 @@
   ::view-transition-old(root){animation:m-vt-out var(--m-exit) linear both;}
   ::view-transition-new(root){animation:m-fade var(--m-fast) linear both;}
 }
+
+/* ==========================================================
+   Объём. Решение 2026-10-09 (docs/DESIGN.md).
+   Всё поверх готовой вёрстки: без JS и без поддержки 3D
+   страница выглядит как раньше. Двигаются transform и opacity.
+   ========================================================== */
+
+/* ---------- 3D-знак в первом экране главной ---------- */
+.hero{perspective:1200px;perspective-origin:72% 42%;}
+.hero-3d{position:absolute;inset:0;z-index:1;pointer-events:none;
+  transform-style:preserve-3d;
+  transform:rotateX(var(--mx,0deg)) rotateY(var(--my,0deg));
+  transition:transform 520ms var(--m-ease);}
+.hero-3d .l{position:absolute;right:-11%;top:0;bottom:0;margin:auto 0;
+  width:min(54vw,540px);height:min(54vw,540px);
+  background:url(assets/sparrow-mark-light.svg) center/contain no-repeat;
+  transform:translateZ(var(--z));opacity:var(--o,.07);}
+.hero-3d .l.lime{background:none;
+  -webkit-mask:url(assets/sparrow-mark-light.svg) center/contain no-repeat;
+          mask:url(assets/sparrow-mark-light.svg) center/contain no-repeat;
+  background-color:var(--lime);}
+
+/* на узком экране знак уходит в нижний угол и гаснет */
+@media (max-width: 860px){
+  .hero-3d .l{right:-20%;top:auto;bottom:-4%;margin:0;
+    width:min(74vw,320px);height:min(74vw,320px);
+    opacity:calc(var(--o,.07) * .62);}
+}
+
+/* слои расходятся по глубине, пока листаешь первый экран */
+@supports (animation-timeline: scroll()){
+  @media (prefers-reduced-motion: no-preference){
+    .hero-3d .l{animation:h3d-spread linear both;
+      animation-timeline:scroll(root block);animation-range:0 78vh;}
+  }
+}
+@keyframes h3d-spread{
+  from{transform:translateZ(var(--z)) translateX(0) rotate(0deg);}
+  to{transform:translateZ(calc(var(--z) * 2.1)) translateX(calc(var(--i) * -22px))
+     rotate(calc(var(--i) * -1.4deg));}}
+/* Safari и всё, где нет scroll-таймлайна: те же числа, но --sp ставит JS */
+@supports not (animation-timeline: scroll()){
+  @media (prefers-reduced-motion: no-preference){
+    .hero-3d .l{
+      transform:translateZ(calc(var(--z) * (1 + var(--sp,0) * 1.1)))
+        translateX(calc(var(--i) * var(--sp,0) * -22px))
+        rotate(calc(var(--i) * var(--sp,0) * -1.4deg));}
+  }
+}
+
+/* ---------- наклон карточек под курсором ---------- */
+@media (hover: hover) and (pointer: fine){
+  @media (prefers-reduced-motion: no-preference){
+    .case-card,.pc,.direction,.product-card{
+      transition:transform var(--m-base) var(--m-ease),box-shadow var(--m-base) var(--m-ease);
+      will-change:transform;}
+    .case-card.tilt,.pc.tilt,.direction.tilt,.product-card.tilt{
+      transform:perspective(900px) rotateX(var(--ty,0deg)) rotateY(var(--tx,0deg)) translateY(-3px);
+      box-shadow:0 20px 44px -26px rgba(14,14,16,.5);}
+  }
+}
+
+/* ---------- переход между страницами: уход в глубину ---------- */
+@media (prefers-reduced-motion: no-preference){
+  ::view-transition-old(root){animation:m-vt-depth-out var(--m-exit) ease-in both;}
+  ::view-transition-new(root){animation:m-vt-depth-in var(--m-slow) var(--m-ease) 60ms both;}
+}
+@keyframes m-vt-depth-out{to{opacity:0;transform:scale(.965) translateY(-10px);}}
+@keyframes m-vt-depth-in{from{opacity:0;transform:scale(1.025) translateY(16px);}}
