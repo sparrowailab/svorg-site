@@ -141,7 +141,7 @@
     .case-card,.pc,.direction,.product-card{
       transition:transform var(--m-base) var(--m-ease),box-shadow var(--m-base) var(--m-ease);
       will-change:transform;}
-    .case-card.tilt,.pc.tilt,.direction.tilt,.product-card.tilt{
+    .case-card.tilt,a.pc.tilt,.pc.tilt,.direction.tilt,.product-card.tilt{
       transform:perspective(900px) rotateX(var(--ty,0deg)) rotateY(var(--tx,0deg)) translateY(-3px);
       box-shadow:0 20px 44px -26px rgba(14,14,16,.5);}
   }
