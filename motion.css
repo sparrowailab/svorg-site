@@ -173,6 +173,20 @@
     .compare tbody tr:nth-child(3) td:nth-child(4){animation-range:cover 27% cover 39%;}
     .compare tbody tr:nth-child(4) td:nth-child(3){animation-range:cover 30% cover 42%;}
     .compare tbody tr:nth-child(4) td:nth-child(4){animation-range:cover 33% cover 45%;}
+    /* На узких экранах строка таблицы разворачивается в карточку, таблица становится
+       вдвое выше, и диапазон `cover` растягивается: при той же прокрутке прогресс идёт
+       медленнее. Поэтому здесь набор укладывается в первую треть диапазона — к высоте
+       чтения колонка уже набрана полностью. */
+    @media (max-width: 560px){
+      .compare tbody tr:nth-child(1) td:nth-child(3){animation-range:cover 8% cover 16%;}
+      .compare tbody tr:nth-child(1) td:nth-child(4){animation-range:cover 9.5% cover 17.5%;}
+      .compare tbody tr:nth-child(2) td:nth-child(3){animation-range:cover 11% cover 19%;}
+      .compare tbody tr:nth-child(2) td:nth-child(4){animation-range:cover 12.5% cover 20.5%;}
+      .compare tbody tr:nth-child(3) td:nth-child(3){animation-range:cover 14% cover 22%;}
+      .compare tbody tr:nth-child(3) td:nth-child(4){animation-range:cover 15.5% cover 23.5%;}
+      .compare tbody tr:nth-child(4) td:nth-child(3){animation-range:cover 17% cover 25%;}
+      .compare tbody tr:nth-child(4) td:nth-child(4){animation-range:cover 18.5% cover 26.5%;}
+    }
   }
 }
 @keyframes cmp-fill{
