@@ -501,7 +501,11 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   .products-cta h2{font-size:26px;}
   /* мобильное меню: до этого .hamburger был display:none навсегда,
      а .nav-menu никогда не пряталось — меню вылезало за край экрана */
-  .hamburger{display:flex;flex-direction:column;gap:5px;padding:8px;}
+  /* Цель нажатия 44 px (WCAG 2.5.5). Коробка выросла с 38x32 до 44x44,
+     отрицательные поля возвращают прежнее место в строке: полоски стоят
+     там же, высота шапки не меняется — растёт только область касания */
+  .hamburger{display:flex;flex-direction:column;justify-content:center;align-items:center;
+    gap:5px;width:44px;height:44px;padding:0;margin:-6px -3px;}
   .hamburger span{width:22px;height:2px;background:var(--ink);border-radius:2px;
     transition:transform .2s ease,opacity .2s ease;}
   .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
@@ -521,6 +525,11 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   .products-hero .display,.about-hero .display,.lessons-hero .display{font-size:38px;}
   .case-hero h1{font-size:40px;}
   .mpshine-hero h1{font-size:46px;}
+  /* Мета кейса в строку переносилась по пробелу после разделителя:
+     на 320 строка заканчивалась висячей точкой «·». На узком экране
+     факты идут столбиком, и разделитель больше не нужен */
+  .case-meta,.mpshine-hero .meta{flex-direction:column;gap:6px;}
+  .case-meta .dot,.mpshine-hero .meta .dot{display:none;}
   .f-title{font-size:42px;}
   .section h2,.about-section h2,.format-block h2{font-size:28px;}
   .case-grid{grid-template-columns:1fr;}
@@ -531,6 +540,9 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   .flagship-card{padding:36px 26px;}
   .footer-grid-rich{grid-template-columns:1fr;}
   .footer-bottom{flex-direction:column;}
+  /* Ссылки подвала: 24 px строки + 2x10 padding = 44 px цели нажатия.
+     Кегль и начертание прежние, растёт только высота строки списка */
+  .fr-list a{padding:10px 0;}
 }
 
 /* ============ LADDER (три двери) ============ */
