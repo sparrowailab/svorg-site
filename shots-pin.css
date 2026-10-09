@@ -1,0 +1,52 @@
+/* Закреплённый блок снимков — только страница MPShine.
+   Гасит CSS-стопку из motion.css: там правила вида `.shot-frame:nth-child(1)`
+   и `.shot-frame:nth-child(2)` — два класса специфичности, здесь на один
+   больше, поэтому порядок подключения файлов ничего не решает и переставить
+   `<link>` местами безопасно.
+
+   Класс `shots-pinned` ставит скрипт. Без JS, при `prefers-reduced-motion`
+   и ниже 901 px ни одно правило отсюда не срабатывает: остаются три кадра
+   обычной сеткой, как на других кейсах. */
+
+/* Вся секция вместе с заголовком должна влезать в экран — иначе закреплять
+   нечего, человек увидит обрезанный кадр. Поэтому отступы поджаты.
+   Все три кадра стоят в одной ячейке сетки: высота блока равна самому
+   высокому из них, считать её руками не нужно. Прозрачностью правит GSAP. */
+.shots-pinned.shots-section{padding-top:32px;}
+.shots-pinned .shots-grid{display:grid;grid-template-columns:1fr;
+  grid-template-areas:"stage";margin-top:24px;gap:0;}
+/* Все кадры в одной ячейке, поэтому погашенный кадр лежит поверх видимого:
+   события мыши снимаем со всех, возвращаем только текущему — иначе клик по
+   снимку уходит в невидимый верхний. `z-index:auto` отменяет подъём второго
+   кадра из стопки motion.css, иначе два перехода выглядят по-разному.
+   `transition-property:border-color` убирает переход у transform: в styles.css
+   он объявлен на .shot-frame ради подъёма по наведению, а здесь transform
+   каждый кадр прокрутки пишет GSAP — с переходом сдвиг отстаёт от скролла
+   и доезжает уже после остановки. Подсветка рамки остаётся. */
+.shots-pinned .shots-grid .shot-frame{grid-area:stage;animation-name:none;
+  z-index:auto;pointer-events:none;transition-property:border-color;}
+.shots-pinned .shots-grid .shot-frame.is-live{pointer-events:auto;}
+
+/* Высота снимка считается от окна, а не задана на глаз. Вычитаем 460 px:
+   71 px занимает закреплённая шапка сайта, 355 px — всё, кроме картинки
+   (заголовок, подзаголовок, шапка окна, подпись, точки, отступы), и ещё
+   34 px остаются воздухом сверху и снизу. Так кадр крупный на большом
+   мониторе и при этом ничего не уезжает под шапку. */
+/* Снимки сняты 1200×750 и 1200×900, а рамка во всю ширину контента вышла бы
+   почти втрое шире своей высоты: картинка висела бы посреди серых полей.
+   Поэтому ширину кадра задаёт его же высота по пропорции 1,62 — кадр стоит
+   по центру и выглядит окном, а не полосой. Обрезать снимок нельзя: он здесь
+   и есть доказательство, что система существует. */
+.shots-pinned{--shot-h:min(100vh - 460px,520px);}
+.shots-pinned .shots-grid.full .shot-pic{height:var(--shot-h);}
+.shots-pinned .shot-frame{width:100%;
+  max-width:calc(var(--shot-h) * 1.62);justify-self:center;}
+.shots-pinned .shot-frame figcaption{min-height:3.6em;}
+.shots-pinned .shots-grid.full figcaption .zoom-hint{display:none;}
+
+/* Три точки под кадром: видно, что шагов ровно три и страница не зависла.
+   Разметку создаёт скрипт — в HTML её нет, чтобы без JS не висел мусор. */
+.shots-steps{display:flex;justify-content:center;gap:10px;margin-top:22px;}
+.shots-steps i{width:7px;height:7px;border-radius:50%;background:#D6DAE0;
+  transition:background .18s linear,transform .18s linear;}
+.shots-steps i.on{background:var(--lime-deep);transform:scale(1.3);}

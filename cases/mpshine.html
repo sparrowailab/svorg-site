@@ -33,6 +33,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Forum&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 <link rel="stylesheet" href="../motion.css?v=9" />
+<link rel="stylesheet" href="../shots-pin.css?v=4" />
 </head>
 <body>
 <div class="top-stripe"></div>
@@ -320,5 +321,9 @@
     m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');h.classList.remove('open');h.setAttribute('aria-expanded','false');});});})();
 </script>
 <script src="../motion.js?v=9" defer></script>
+<!-- GSAP только на этой странице: закреплённый блок снимков -->
+<script src="../vendor/gsap.min.js" defer></script>
+<script src="../vendor/ScrollTrigger.min.js" defer></script>
+<script src="../shots-pin.js?v=12" defer></script>
 </body>
 </html>

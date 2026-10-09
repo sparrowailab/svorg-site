@@ -63,13 +63,18 @@ got=$(sed -n 3p <<<"$out");  dirty=$(sed -n 4p <<<"$out" | tr -d ' ')
 echo "  сервер на ${got:0:7}, было ${prev:0:7}, дерево чистое"
 
 step "4/4 Проверка сайта"
-# байтовая сверка: коды 200 не доказывают, что отдана новая версия
-for f in styles.css index.html; do
+# Байтовая сверка: коды 200 не доказывают, что отдана новая версия.
+# vendor/*.js сверяем так же, а не кодом 200: обрезанная копия библиотеки
+# отдаётся с кодом 200, блок снимков от неё молча вернётся к обычной сетке,
+# и по виду страницы этого не заметить.
+for f in styles.css index.html shots-pin.js shots-pin.css \
+         vendor/gsap.min.js vendor/ScrollTrigger.min.js; do
   curl -sS --max-time 25 -H 'Cache-Control: no-cache' "$SITE/$f?d=$want" \
     | cmp -s - "$f" || die "$f на домене не совпадает с локальным — отдаётся другая версия"
   printf '  %-32s совпадает побайтово\n' "/$f"
 done
-for path in /cases.html /assets/sparrow-mark-dark.svg /motion.css /motion.js; do
+for path in /cases.html /assets/sparrow-mark-dark.svg /motion.css /motion.js \
+            /assets/mp-hero.jpg /assets/mp-anom.jpg /assets/mp-queue.jpg; do
   code=$(http "$path"); [ "$code" = "200" ] || die "$path отдаёт $code"
   printf '  %-32s %s\n' "$path" "$code"
 done
