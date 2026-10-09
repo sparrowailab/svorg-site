@@ -429,15 +429,23 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   .team-rows{grid-template-columns:1fr;}
   .flag-top{grid-template-columns:1fr;align-items:start;}
 }
-@media (max-width:680px){
-  :root{--pad:20px;}
+/* Шапка уходит в мобильный режим на 860 px, а не на 680 (решение 2026-10-09).
+   Меню главной шире, чем на внутренних страницах: бренд 167 + отступ 24 +
+   меню 530 + поля 2x32 = 785 px, с системным шрифтом вместо Onest — 804 px.
+   На 681 px документ был шире окна на 72 px, кнопка «Написать» уезжала
+   за край. Порог общий со styles.css, чтобы шапка не переключалась
+   на главной и на остальных страницах на разной ширине. */
+@media (max-width:860px){
   .nav-menu{display:none;}
-  /* Цель нажатия 44 px (WCAG 2.5.5). Коробка выросла с 38x32 до 44x44,
-     отрицательные поля возвращают прежнее место в строке: полоски стоят
-     там же, высота шапки не меняется — растёт только область касания */
+  /* Цель нажатия 44 px (WCAG 2.5.5). Коробка 44x44, отрицательные поля
+     возвращают прежнее место в строке: полоски стоят там же, высота шапки
+     не меняется — растёт только область касания */
   .hamb{display:flex;flex-direction:column;justify-content:center;align-items:center;
     gap:5px;width:44px;height:44px;padding:0;margin:-6px -3px;}
   .hamb span{width:22px;height:2px;background:var(--ink);border-radius:2px;}
+}
+@media (max-width:680px){
+  :root{--pad:20px;}
   .brand-logo{height:26px;}
   .brand-name{font-size:25px;}
   .brand{gap:13px;}
@@ -501,7 +509,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 /* Мобильное меню главной: кнопка была, а обработчика не было — меню не открывалось */
 .nav-inner{position:relative;}
 .hamb span{transition:transform .2s ease,opacity .2s ease;}
-@media (max-width:680px){
+@media (max-width:860px){
   .hamb.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   .hamb.open span:nth-child(2){opacity:0;}
   .hamb.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
