@@ -65,7 +65,8 @@
 .btn-write:active,.chip:active{transform:scale(.97);transition-duration:100ms;}
 
 /* ---------- 4. Переходы между страницами (View Transitions) ---------- */
-@view-transition{navigation:auto;}
+/* опт-ин @view-transition стоит инлайном в <head> каждой страницы: из внешнего файла
+   он приходит позже первого пересчёта стилей, и Chrome срывает переход. */
 /* шапка стоит на месте, страница под ней меняется */
 .nav{view-transition-name:site-nav;}
 ::view-transition-group(site-nav){animation:none;}
