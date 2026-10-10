@@ -1,8 +1,13 @@
 /* Закреплённый блок снимков — только страница MPShine.
-   Гасит CSS-стопку из motion-scroll.css: там правила вида `.shot-frame:nth-child(1)`
-   и `.shot-frame:nth-child(2)` — два класса специфичности, здесь на один
-   больше, поэтому порядок подключения файлов ничего не решает и переставить
-   `<link>` местами безопасно.
+   Гасит CSS-стопку из motion-scroll.css. Там анимацию включает
+   `html.m-ready .shot-frame:nth-child(1):not(.m-seen)` — это четыре класса
+   специфичности, а здесь их три, поэтому порядок подключения файлов ничего
+   не решает, а само гашение без `!important` проигрывает. Замерено на живом
+   сайте: у кадров оставался `animation-name: shots-left`, крайние разъезжались
+   на ±731 px с наклоном 21°, GSAP запекал наклон в inline-трансформ — и он
+   оставался навсегда, когда `--sry` уже доехал до нуля. Правый край кадра
+   выходил на 1516 px при окне 1440, то есть страница получала
+   горизонтальную прокрутку.
 
    Класс `shots-pinned` ставит скрипт. Без JS, при `prefers-reduced-motion`
    и ниже 901 px ни одно правило отсюда не срабатывает: остаются три кадра
@@ -23,7 +28,7 @@
    он объявлен на .shot-frame ради подъёма по наведению, а здесь transform
    каждый кадр прокрутки пишет GSAP — с переходом сдвиг отстаёт от скролла
    и доезжает уже после остановки. Подсветка рамки остаётся. */
-.shots-pinned .shots-grid .shot-frame{grid-area:stage;animation-name:none;
+.shots-pinned .shots-grid .shot-frame{grid-area:stage;animation-name:none !important;
   z-index:auto;pointer-events:none;transition-property:border-color;}
 .shots-pinned .shots-grid .shot-frame.is-live{pointer-events:auto;}
 
