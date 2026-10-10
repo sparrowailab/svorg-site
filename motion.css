@@ -7,6 +7,14 @@
    первого экрана выглядел неподвижным. Появление вешается на блоки секции,
    а не на каждый вложенный элемент, — момент остаётся один.
    Двигаются только transform/opacity.
+   Файл разделён 9 октября 2026: правило Сергея — обычный исходный файл
+   200-300 строк. Здесь остались мгновенные вещи — нажатие, наведение,
+   переход между страницами, 3D-знак главной, наклон карточек. Всё, что
+   привязано к прокрутке (появление блоков, карточки из глубины, слои
+   первого экрана, стопка снимков, «До и после»), живёт в motion-scroll.css.
+   Токены ниже объявлены только здесь, и motion-scroll.css берёт их отсюда,
+   поэтому листы подключаются парой. Порядок не важен: кастомные свойства
+   разрешаются при вычислении значения, а не при разборе таблицы.
    ========================================================== */
 :root{
   --m-fast:140ms; --m-base:220ms; --m-slow:360ms; --m-exit:120ms;
@@ -158,221 +166,11 @@
 @keyframes m-vt-depth-out{to{opacity:0;transform:scale(.965) translateY(-10px);}}
 @keyframes m-vt-depth-in{from{opacity:0;transform:scale(1.025) translateY(16px);}}
 
-/* ---------- «До и после»: колонка «стало» набирается по прокрутке ---------- */
-/* Числа стоят в HTML. Без JS и без scroll-таймлайна таблица видна целиком. */
-@supports (animation-timeline: view()){
-  @media (prefers-reduced-motion: no-preference){
-    .compare{view-timeline-name:--cmp;view-timeline-axis:block;}
-    .compare tbody td:nth-child(3),
-    .compare tbody td:nth-child(4){
-      animation:cmp-fill linear both;animation-timeline:--cmp;}
-    /* каждая строка набирается чуть позже предыдущей; всё готово к тому
-       моменту, когда таблица встаёт на удобную для чтения высоту */
-    .compare tbody tr:nth-child(1) td:nth-child(3){animation-range:cover 12% cover 24%;}
-    .compare tbody tr:nth-child(1) td:nth-child(4){animation-range:cover 15% cover 27%;}
-    .compare tbody tr:nth-child(2) td:nth-child(3){animation-range:cover 18% cover 30%;}
-    .compare tbody tr:nth-child(2) td:nth-child(4){animation-range:cover 21% cover 33%;}
-    .compare tbody tr:nth-child(3) td:nth-child(3){animation-range:cover 24% cover 36%;}
-    .compare tbody tr:nth-child(3) td:nth-child(4){animation-range:cover 27% cover 39%;}
-    .compare tbody tr:nth-child(4) td:nth-child(3){animation-range:cover 30% cover 42%;}
-    .compare tbody tr:nth-child(4) td:nth-child(4){animation-range:cover 33% cover 45%;}
-    /* На узких экранах строка таблицы разворачивается в карточку, таблица становится
-       вдвое выше, и диапазон `cover` растягивается: при той же прокрутке прогресс идёт
-       медленнее. Поэтому здесь набор укладывается в первую треть диапазона — к высоте
-       чтения колонка уже набрана полностью. */
-    @media (max-width: 560px){
-      .compare tbody tr:nth-child(1) td:nth-child(3){animation-range:cover 8% cover 16%;}
-      .compare tbody tr:nth-child(1) td:nth-child(4){animation-range:cover 9.5% cover 17.5%;}
-      .compare tbody tr:nth-child(2) td:nth-child(3){animation-range:cover 11% cover 19%;}
-      .compare tbody tr:nth-child(2) td:nth-child(4){animation-range:cover 12.5% cover 20.5%;}
-      .compare tbody tr:nth-child(3) td:nth-child(3){animation-range:cover 14% cover 22%;}
-      .compare tbody tr:nth-child(3) td:nth-child(4){animation-range:cover 15.5% cover 23.5%;}
-      .compare tbody tr:nth-child(4) td:nth-child(3){animation-range:cover 17% cover 25%;}
-      .compare tbody tr:nth-child(4) td:nth-child(4){animation-range:cover 18.5% cover 26.5%;}
-    }
-  }
+/* ---------- Печать ---------- */
+/* Прозрачность пары снимает скрипт по прокрутке, а на бумаге прокрутки
+   нет: «→ 1%» уходило в PDF невидимым, на index.html шесть таких мест.
+   Класс остаётся висеть, поэтому гасим его здесь. */
+@media print{
+  .ba.ba-wait .ba-arr,.ba.ba-wait .ba-to{opacity:1 !important;transform:none !important;}
+  .ba.ba-wait .ba-to{text-decoration-color:currentColor;}
 }
-@keyframes cmp-fill{
-  from{opacity:0;transform:translateX(-.22em);}
-  to{opacity:1;transform:none;}}
-
-/* Safari и всё, где нет scroll-таймлайна: та же подача, но разом по строке */
-@supports not (animation-timeline: view()){
-  @media (prefers-reduced-motion: no-preference){
-    .compare tbody td{transition:opacity var(--m-base) var(--m-ease),
-      transform var(--m-base) var(--m-ease);}
-    .compare tbody td.cmp-wait{opacity:0;transform:translateX(-.22em);}
-  }
-}
-
-/* ---------- Появление блоков по прокрутке: все страницы ---------- */
-/* Таймлайн у каждого блока свой, а не у секции: секции на главной бывают
-   по 3000 px, и нижние блоки такой секции успевали бы появиться, пока сами
-   ещё далеко за нижней кромкой.
-   Первая секция страницы исключена — первый экран виден сразу, приходить
-   ему неоткуда, а на главной у него своя подача из маски.
-   Стопка снимков, сетка кейсов и таблица «было → стало» исключены: у них
-   свой эффект по прокрутке, две анимации на одном элементе гасили бы друг
-   друга.
-   Диапазон отмерян от окна, а не в долях `cover`: доли считаются от высоты
-   окна плюс высота блока, и появление выходило длиной 100 px у плашки и
-   585 px у большого блока — у первой оно доигрывало за нижней кромкой,
-   у второго тянулось до верха экрана. Здесь начало и конец означают одно
-   и то же для любого блока: приходит, когда вошёл на 140 px снизу, и встаёт
-   на место, когда его верх поднялся до 55% высоты окна.
-   Конец именно в долях окна, а не в пикселях: при 480 px блок доигрывал
-   на 420 px от верха окна — выше середины при окне 900 px, но ниже неё при
-   окне 812 px, и на телефоне читатель встречал текст ещё полупрозрачным
-   ровно посреди экрана. 45vh держит конец выше середины на любой высоте.
-   Привязка линейная: при движении по прокрутке плавность задаёт сам
-   читатель, а ease поверх неё даёт рывок на старте. */
-@supports (animation-timeline: view()){
-  @media (prefers-reduced-motion: no-preference){
-    body > section:not(:first-of-type) > *:not(.shots-grid):not(.case-grid):not(.compare){
-      animation-name:m-reveal;
-      animation-timing-function:linear;
-      animation-fill-mode:backwards;
-      animation-timeline:view();
-      animation-range:cover 140px cover 45vh;}
-  }
-}
-@keyframes m-reveal{
-  from{opacity:0;transform:translateY(28px);}
-  to{opacity:1;transform:none;}}
-
-/* ---------- Карточки кейсов: приход из глубины ---------- */
-/* Карточки уже двигаются под курсором: styles.css поднимает их на 6 px,
-   .tilt из этого файла наклоняет по мыши. Анимация в каскаде сильнее
-   обычных объявлений, поэтому fill-mode здесь backwards, а не both:
-   он держит только состояние до входа в диапазон, а когда карточка
-   встала на место — transform снова берётся из обычных правил и курсор
-   работает как раньше. При both анимация висела бы на элементе всегда
-   и подъём с наклоном не применялись бы вовсе.
-   Собрать положение из кастомных свойств и продублировать их в правилах
-   курсора не вышло: пока анимация кастомного свойства активна, любое
-   другое правило transform подставляет не анимированное значение,
-   а initial-value из @property, — карточка под курсором теряла и
-   глубину, и поворот. Замер показывал translateZ 0 вместо −37 px.
-   Пока карточка идёт из глубины, курсор её не наклоняет: анимация
-   сильнее. Так и правильнее — наводят на то, что уже встало на место.
-   Знак поворота чередуется через nth-child, а не привязан к колонке:
-   сетка бывает в три колонки, в две и в одну, и привязка к колонке
-   рассыпалась бы на каждом пороге.
-   Флагманская карточка шириной в две колонки идёт без поворота: на её
-   ширине тот же угол уводит ближний край далеко за пределы сетки.
-   Диапазон и линейная привязка — те же, что у появления блоков выше,
-   по тем же причинам. */
-@supports (animation-timeline: view()){
-  @media (prefers-reduced-motion: no-preference){
-    .case-grid > .case-card{
-      animation-name:card-in;
-      animation-timing-function:linear;
-      animation-fill-mode:backwards;
-      animation-timeline:view();
-      animation-range:cover 140px cover 45vh;}
-    .case-grid > .case-card:nth-child(even){animation-name:card-in-right;}
-    .case-grid > .case-card.featured{animation-name:card-in-flat;}
-  }
-}
-@keyframes card-in{
-  from{opacity:0;transform:perspective(1000px) translateY(34px) translateZ(-90px) rotateY(14deg);}
-  to{opacity:1;transform:none;}}
-@keyframes card-in-right{
-  from{opacity:0;transform:perspective(1000px) translateY(34px) translateZ(-90px) rotateY(-14deg);}
-  to{opacity:1;transform:none;}}
-@keyframes card-in-flat{
-  from{opacity:0;transform:perspective(1000px) translateY(34px) translateZ(-90px);}
-  to{opacity:1;transform:none;}}
-
-/* ---------- Первый экран кейса и продуктов: слои уходят с разной скоростью ---------- */
-/* Привязка к scroll(), а не к view(): первый экран виден с нулевой
-   прокрутки, и у view() его прогресс на старте уже не нулевой — текст
-   встречал бы читателя сдвинутым и полупрозрачным. У scroll() ноль
-   прокрутки — это ровно начало анимации.
-   Нижние слои отстают сильнее верхних, а не наоборот: так промежутки
-   между строками только растут и ни одна строка не наезжает на другую.
-   Разброс отставания 36 px — глубина читается, а заголовок не отрывается
-   от подписи.
-   Конец диапазона в долях высоты окна, а не в пикселях: на телефоне
-   первый экран уезжает за 500 px, а на большом мониторе столько — ещё
-   половина экрана, и слои доигрывали бы, пока текст стоит на месте.
-   Заполнение forwards обязательно. Без него за концом диапазона слои
-   скачком возвращаются в исходное: на телефоне первый экран к 70vh ещё
-   не весь выше кромки — под шапкой остаётся видимой нижняя строка, и на
-   одном пикселе прокрутки она прыгала на 30 px и вспыхивала с .48 до 1.
-   На десктопе к этому моменту первый экран уже ушёл, и рывка не видно, —
-   поэтому его и легко не заметить. Замерено на 375x812: прокрутка
-   567 -> 569 px, видимой оставалось 60-99 px последней строки. */
-@supports (animation-timeline: scroll()){
-  @media (prefers-reduced-motion: no-preference){
-    .case-hero > *,.mpshine-hero > *,.products-hero > *{
-      animation-timing-function:linear;
-      animation-fill-mode:forwards;
-      animation-timeline:scroll();
-      animation-range:0 70vh;}
-    .case-hero > :nth-child(1),.mpshine-hero > :nth-child(1),.products-hero > :nth-child(1){
-      animation-name:hero-near;}
-    .case-hero > :nth-child(2),.mpshine-hero > :nth-child(2),.products-hero > :nth-child(2){
-      animation-name:hero-mid;}
-    .case-hero > :nth-child(n+3),.mpshine-hero > :nth-child(n+3),.products-hero > :nth-child(n+3){
-      animation-name:hero-far;}
-  }
-}
-@keyframes hero-near{
-  from{opacity:1;transform:none;}
-  to{opacity:.72;transform:perspective(1100px) translateZ(-24px);}}
-@keyframes hero-mid{
-  from{opacity:1;transform:none;}
-  to{opacity:.6;transform:perspective(1100px) translateY(18px) translateZ(-52px);}}
-@keyframes hero-far{
-  from{opacity:1;transform:none;}
-  to{opacity:.48;transform:perspective(1100px) translateY(36px) translateZ(-80px);}}
-
-/* ---------- Снимки интерфейсов: стопка в перспективе, разъезжается по прокрутке ---------- */
-/* Трогаем только три колонки на широком экране. Ниже 900 px сетка и так в одну колонку,
-   стопке там взяться неоткуда. Прозрачность не меняем: снимок виден всегда. */
-@property --sx{syntax:'<length-percentage>';inherits:false;initial-value:0px;}
-@property --sz{syntax:'<length>';inherits:false;initial-value:0px;}
-@property --sry{syntax:'<angle>';inherits:false;initial-value:0deg;}
-@property --ssc{syntax:'<number>';inherits:false;initial-value:1;}
-
-@supports (animation-timeline: view()){
-  @media (min-width: 901px) and (prefers-reduced-motion: no-preference){
-    .shots-grid{view-timeline-name:--shots;view-timeline-axis:block;}
-    .shot-frame{
-      transform:perspective(900px) translateX(var(--sx)) translateZ(var(--sz))
-        rotateY(var(--sry)) scale(var(--ssc));
-      will-change:transform;}
-    .shot-frame:nth-child(2){position:relative;z-index:2;}
-    /* только длинные свойства: сокращённая запись `animation:` сбрасывает
-       animation-timeline, и привязка к прокрутке терялась */
-    .shot-frame{animation-timing-function:linear;animation-fill-mode:both;
-      animation-timeline:--shots;}
-    .shot-frame:nth-child(1){animation-name:shots-left;}
-    .shot-frame:nth-child(2){animation-name:shots-mid;}
-    .shot-frame:nth-child(3){animation-name:shots-right;}
-    /* Диапазон отсчитан так, чтобы разъезд шёл, когда сетка уже целиком
-       в окне, а не доигрывал за нижней кромкой: на 10%–40% наклон кончался,
-       пока сетка стояла в нижней трети, и к центру экрана кадры были ровные. */
-    .shot-frame:nth-child(1),
-    .shot-frame:nth-child(3){animation-range:cover 30% cover 62%;}
-    .shot-frame:nth-child(2){animation-range:cover 28% cover 56%;}
-  }
-  /* Подъём под курсором остаётся, но поверх позиции в стопке, иначе он сбрасывал наклон */
-  @media (hover: hover) and (pointer: fine) and (min-width: 901px)
-     and (prefers-reduced-motion: no-preference){
-    .shot-frame:hover{
-      transform:perspective(900px) translateX(var(--sx)) translateZ(var(--sz))
-        rotateY(var(--sry)) scale(var(--ssc)) translateY(-3px);}
-  }
-}
-
-@keyframes shots-left{
-  from{--sx:calc(100% + 18px);--sz:-150px;--sry:24deg;--ssc:.88;}
-  to{--sx:0px;--sz:0px;--sry:0deg;--ssc:1;}}
-@keyframes shots-mid{
-  from{--sz:-70px;--ssc:.9;}
-  to{--sz:0px;--ssc:1;}}
-@keyframes shots-right{
-  from{--sx:calc(-100% - 18px);--sz:-150px;--sry:-24deg;--ssc:.88;}
-  to{--sx:0px;--sz:0px;--sry:0deg;--ssc:1;}}

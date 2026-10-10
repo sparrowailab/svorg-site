@@ -48,7 +48,7 @@
      `hover`/`pointer` отсекают планшеты, которые по ширине прошли бы: там
      высота окна меняется сама, когда при прокрутке убирается адресная строка,
      и длина закрепления пересчитывалась бы под рукой читателя. Тот же гард
-     стоит у наведения на кадры в motion.css. */
+     стоит у наведения на кадры в motion-scroll.css. */
   mm.add('(min-width: 901px) and (min-height: 760px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', function () {
     runSettle();
     section.classList.add('shots-pinned');

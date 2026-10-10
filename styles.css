@@ -327,6 +327,11 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .case-hero{padding-top:72px;padding-bottom:48px;}
 .case-hero .cat,.mpshine-hero .cat{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;
   text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+/* Категории — флекс со своими разделителями: строка переносилась по пробелу
+   после «·», и на mpshine при 320-414 строка кончалась висячей точкой.
+   Та же развязка, что у меты кейса ниже: на узком экране столбик без точек */
+.cat{display:flex;flex-wrap:wrap;gap:0 8px;}
+.cat .dot{opacity:.5;}
 .case-hero h1{font-family:'Forum',Georgia,serif;font-weight:400;font-size:60px;letter-spacing:-0.01em;color:var(--ink);margin-top:14px;line-height:1.02;}
 .case-hero .sub{font-size:21px;color:var(--gray);margin-top:20px;max-width:740px;line-height:1.45;}
 .case-meta{margin-top:28px;display:flex;gap:12px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);flex-wrap:wrap;}
@@ -640,7 +645,9 @@ a.lad:hover{transform:translateY(-2px);border-color:#CBD0D7;}
 /* Контакты в «О себе»: на 320 ник не помещался в колонку и сдвигал страницу */
 .contacts-list .row > *{min-width:0;}
 .contacts-list .v{overflow-wrap:anywhere;}
-@media (max-width:480px){.contacts-list .row{grid-template-columns:1fr;gap:4px;}}
+@media (max-width:480px){.contacts-list .row{grid-template-columns:1fr;gap:4px;}
+  .cat{flex-direction:column;gap:2px;}
+  .cat .dot{display:none;}}
 
 /* БРЕНД · заголовки карточек — Forum, как все заголовки (бренд-бук: Forum для заголовков, Onest 400–600 для текста) */
 .product-card .pc-title,.d-title,.principle h3,.subblock h3{font-family:'Forum',Georgia,serif;font-weight:400;letter-spacing:-0.01em;line-height:1.08;}
@@ -658,4 +665,14 @@ a.lad:hover{transform:translateY(-2px);border-color:#CBD0D7;}
   .flagship-card:hover .f-cta,
   .case-card:hover .cc-metric,
   .case-card:hover .cc-arrow{transform:none;}
+}
+
+/* ---------- Печать ---------- */
+/* `position:sticky` на бумаге отсчитывается не от начала документа, а от той
+   прокрутки, с которой человек нажал печать: шапка уезжала на третий лист и
+   печаталась поверх текста (замерено на mpshine.html при scrollY 4500 —
+   поверх блока «Владелец»; то же на werman.html и about.html). В обычном
+   потоке она встаёт один раз сверху первого листа. */
+@media print{
+  .nav{position:static;}
 }

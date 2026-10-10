@@ -67,7 +67,8 @@ step "4/4 Проверка сайта"
 # vendor/*.js сверяем так же, а не кодом 200: обрезанная копия библиотеки
 # отдаётся с кодом 200, блок снимков от неё молча вернётся к обычной сетке,
 # и по виду страницы этого не заметить.
-for f in styles.css index.html motion.css motion.js shots-pin.js shots-pin.css \
+for f in styles.css index.html motion.css motion-scroll.css motion.js \
+         shots-pin.js shots-pin.css \
          vendor/gsap.min.js vendor/ScrollTrigger.min.js; do
   curl -sS --max-time 25 -H 'Cache-Control: no-cache' "$SITE/$f?d=$want" \
     | cmp -s - "$f" || die "$f на домене не совпадает с локальным — отдаётся другая версия"

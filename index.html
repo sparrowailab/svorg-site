@@ -532,41 +532,51 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   a.val:hover .val-go,a.lr:hover .la,
   .go-btn:hover .ar,.go-link:hover .ar,.gu .gu-l:hover .ar{transform:none;}
 }
+/* ---------- Печать ---------- */
+/* `position:sticky` на бумаге отсчитывается не от начала документа, а от той
+   прокрутки, с которой человек нажал печать: шапка уезжала на третий лист и
+   печаталась поверх текста (замерено на mpshine.html при scrollY 4500 —
+   поверх блока «Владелец»; то же на werman.html и about.html). В обычном
+   потоке она встаёт один раз сверху первого листа. */
+@media print{
+  .nav{position:static;}
+}
 </style>
-<link rel="stylesheet" href="motion.css?v=10" />
+<link rel="stylesheet" href="motion.css?v=11" />
+<link rel="stylesheet" href="motion-scroll.css?v=11" />
 </head>
 <body>
 
 <!-- ============ NAV ============ -->
 <header class="nav">
   <div class="container nav-inner">
-    <a class="brand" href="index.html" aria-label="Sparrow · на главную">
+    <a class="brand" href="index.html" aria-label="Sparrow&nbsp;· на главную">
       <img class="brand-logo" src="assets/sparrow-mark-dark.svg" alt="" />
       <span class="brand-name">Sparrow</span>
     </a>
     <nav>
       <ul class="nav-menu">
         <li class="has-dd">
-          <a class="nav-link" href="products.html">Что делаю <span class="caret">▾</span></a>
+          <a class="nav-link" href="products.html">Продукты <span class="caret">▾</span></a>
           <div class="dd">
             <a class="dd-item" href="https://opencowork.ru" target="_blank" rel="noopener">
               <span class="dd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#C9F24E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg></span>
               <span>
-                <span class="dd-tt">OpenCowork · AI-сотрудник <span class="ext mono">↗</span></span>
+                <span class="dd-tt">OpenCowork&nbsp;· AI-сотрудник <span class="ext mono">↗</span></span>
                 <span class="dd-sub">Ставите задачу — агент делает и возвращает результат</span>
               </span>
             </a>
             <a class="dd-item" href="https://micmiky.ru" target="_blank" rel="noopener">
               <span class="dd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#C9F24E" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="3" width="6" height="9" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v3M9 20h6"/></svg></span>
               <span>
-                <span class="dd-tt">Micmiky · AI для встреч <span class="ext mono">↗</span></span>
+                <span class="dd-tt">Micmiky&nbsp;· AI для встреч <span class="ext mono">↗</span></span>
                 <span class="dd-sub">Запись без бота, задачи и КП после встречи</span>
               </span>
             </a>
             <a class="dd-item" href="https://ozon-calculator.ru" target="_blank" rel="noopener">
               <span class="dd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#C9F24E" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg></span>
               <span>
-                <span class="dd-tt">Ozon-юнит · юнит-экономика <span class="ext mono">↗</span></span>
+                <span class="dd-tt">Ozon-юнит&nbsp;· юнит-экономика <span class="ext mono">↗</span></span>
                 <span class="dd-sub">Маржа за 30&nbsp;секунд, 15+&nbsp;статей расходов</span>
               </span>
             </a>
@@ -574,7 +584,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
         </li>
         <li><a class="nav-link" href="cases.html">Кейсы</a></li>
         <li><a class="nav-link" href="#why">Почему я</a></li>
-        <li><a class="nav-link" href="about.html">О компании</a></li>
+        <li><a class="nav-link" href="about.html">О себе</a></li>
         <li><a class="btn-write" href="https://t.me/SergChina" target="_blank" rel="noopener">Написать</a></li>
       </ul>
     </nav>
@@ -594,19 +604,19 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     </div>
     <div class="hero-in">
       <div class="hero-text">
-        <span class="tag on-dark">ИИ-системы для бизнеса · с&nbsp;2023</span>
+        <span class="tag on-dark">ИИ-системы для бизнеса&nbsp;· с&nbsp;2023</span>
         <h1 style="margin-top:24px;">Бизнес теряет деньги там, куда <span class="lime">никто не смотрит</span></h1>
         <p class="hero-sub">Заявка пришла в два ночи, ответили утром — клиент уже купил у других. Кладовщик собрал не тот артикул, и товар едет назад за ваш счёт. Менеджер третий час читает документ, который читается за две минуты.<br><br>Я нахожу такие места и закрываю их системой. Сколько каждое стоит вам в месяц, считаем вслух на первом разговоре, по вашим цифрам. Дальше смета: что делаю, за сколько, к какому числу. 1&#8288;–&#8288;3&nbsp;месяца, от&nbsp;100&nbsp;000&nbsp;₽.</p>
         <div class="hero-cta">
           <a class="btn-lime" href="#price">Сколько это стоит</a>
           <a class="btn-ghost" href="cases.html">Смотреть кейсы</a>
         </div>
-        <div class="hero-note">Первый разговор бесплатно · отвечает основатель</div>
+        <div class="hero-note">Первый разговор бесплатно&nbsp;· отвечает основатель</div>
       </div>
       <div class="hero-stats">
         <div class="stat"><div class="n" data-target="50" data-suffix="+">50+</div><div class="l">систем собрал руками с&nbsp;2023</div></div>
         <div class="stat"><div class="n">от 100к</div><div class="l">под ключ, за 1&#8288;–&#8288;3&nbsp;месяца</div></div>
-        <div class="stat"><div class="n ba"><span class="ba-from">9%</span><span class="ba-arr">→</span><span class="ba-to">1%</span></div><div class="l">возвраты из-за пересорта · North West Parts</div></div>
+        <div class="stat"><div class="n ba"><span class="ba-from">9%</span><span class="ba-arr">→</span><span class="ba-to">1%</span></div><div class="l">возвраты из-за пересорта&nbsp;· North West Parts</div></div>
       </div>
     </div>
   </div>
@@ -622,32 +632,32 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     <a class="val" href="cases/north-west-parts.html">
       <div class="vh">Склад перестал терять на пересорте</div>
       <div><div class="vnum"><span class="from">9%</span><span class="arr">→</span><span class="to">1%</span></div>
-      <div class="src">возвраты из-за пересортицы на 19&nbsp;000&nbsp;SKU · North West Parts</div></div>
+      <div class="src">возвраты из-за пересортицы на 19&nbsp;000&nbsp;SKU&nbsp;· North West Parts</div></div>
     </a>
     <a class="val" href="cases/wowmebel.html">
       <div class="vh">Прибыль выросла вдвое за квартал</div>
       <div><div class="vnum"><span class="from">850к</span><span class="arr">→</span><span class="to">1,7&nbsp;млн</span></div>
-      <div class="src">в месяц · с одного замерщика до пяти · WowМебель</div></div>
+      <div class="src">в месяц&nbsp;· с одного замерщика до пяти&nbsp;· WowМебель</div></div>
     </a>
     <a class="val" href="cases/werman.html">
       <div class="vh">Средний чек вырос в полтора раза</div>
       <div><div class="vnum"><span class="from">890к</span><span class="arr">→</span><span class="to">1,34&nbsp;млн</span></div>
-      <div class="src">цикл сделки сократился с 14&nbsp;дней до 4 · Werman</div></div>
+      <div class="src">цикл сделки сократился с 14&nbsp;дней до 4&nbsp;· Werman</div></div>
     </a>
     <a class="val" href="cases/bank-broker.html">
       <div class="vh">Анализ заёмщика вместо трёх часов</div>
       <div><div class="vnum"><span class="from">3&nbsp;ч</span><span class="arr">→</span><span class="to">2&nbsp;мин</span></div>
-      <div class="src">в девяносто раз быстрее · банковский брокер</div></div>
+      <div class="src">в девяносто раз быстрее&nbsp;· банковский брокер</div></div>
     </a>
     <a class="val" href="cases/help-me.html">
       <div class="vh">Тот же поток лидов, вчетверо больше встреч</div>
       <div><div class="vnum"><span class="from">3,2%</span><span class="arr">→</span><span class="to">14%</span></div>
-      <div class="src">конверсия входящих во встречу · Help Me</div></div>
+      <div class="src">конверсия входящих во встречу&nbsp;· Help Me</div></div>
     </a>
     <a class="val" href="cases/mpshine.html">
       <div class="vh">Склад ушёл из Excel в систему</div>
       <div><div class="vnum"><span class="to">20&nbsp;листов</span></div>
-      <div class="src">Excel-макросов заменила одна система на пять ролей · MPShine</div></div>
+      <div class="src">Excel-макросов заменила одна система на пять ролей&nbsp;· MPShine</div></div>
     </a>
   </div>
   <div class="proof-more">
@@ -663,12 +673,12 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     <h2 class="s-title">Эти компании пустили меня в свои процессы.</h2>
   </div>
   <div class="pgrid">
-    <a class="pc" href="cases/mpshine.html"><div class="pc-n">MPShine</div><div class="pc-i">фулфилмент · складская операционная система</div></a>
-    <a class="pc" href="cases/north-west-parts.html"><div class="pc-n">North West Parts</div><div class="pc-i">автозапчасти · 19&nbsp;000&nbsp;SKU без пересорта</div></a>
-    <div class="pc"><div class="pc-n">Skillbox</div><div class="pc-i">образование · методология курса по ИИ</div></div>
-    <a class="pc" href="cases/help-me.html"><div class="pc-n">Help Me</div><div class="pc-i">списание долгов · захват лидов голосом и текстом</div></a>
-    <a class="pc" href="cases/werman.html"><div class="pc-n">Werman</div><div class="pc-i">станки · продажи без техконсультаций</div></a>
-    <a class="pc" href="cases/investments.html"><div class="pc-n">Инвестиции России</div><div class="pc-i">финтех · квалификация инвесторов</div></a>
+    <a class="pc" href="cases/mpshine.html"><div class="pc-n">MPShine</div><div class="pc-i">фулфилмент&nbsp;· складская операционная система</div></a>
+    <a class="pc" href="cases/north-west-parts.html"><div class="pc-n">North West Parts</div><div class="pc-i">автозапчасти&nbsp;· 19&nbsp;000&nbsp;SKU без пересорта</div></a>
+    <div class="pc"><div class="pc-n">Skillbox</div><div class="pc-i">образование&nbsp;· методология курса по ИИ</div></div>
+    <a class="pc" href="cases/help-me.html"><div class="pc-n">Help Me</div><div class="pc-i">списание долгов&nbsp;· захват лидов голосом и текстом</div></a>
+    <a class="pc" href="cases/werman.html"><div class="pc-n">Werman</div><div class="pc-i">станки&nbsp;· продажи без техконсультаций</div></a>
+    <a class="pc" href="cases/investments.html"><div class="pc-n">Инвестиции России</div><div class="pc-i">финтех&nbsp;· квалификация инвесторов</div></a>
   </div>
   <div class="pnda">И ещё сорок с лишним проектов, о которых я не могу рассказать. Финтех, телеком, крупный B2B — там NDA, и я его не нарушаю даже когда очень хочется.</div>
 </section>
@@ -734,22 +744,22 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
 
     <a class="lr" href="cases/wowmebel.html">
       <div class="lq">Ночной трафик мы списывали в «низкокачественный». А его <em>просто никто не обрабатывал</em>.</div>
-      <div class="lf"><span class="lc">WowМебель · продажи 24/7</span></div>
+      <div class="lf"><span class="lc">WowМебель&nbsp;· продажи 24/7</span></div>
     </a>
 
     <a class="lr" href="cases/federal-provider.html">
       <div class="lq">«Нет покрытия» мы считали отказом. А это <em>просто другой сегмент</em>: перестали их выбрасывать, и за неделю появилась новая статья дохода.</div>
-      <div class="lf"><span class="lc">Федеральный провайдер · телеком</span></div>
+      <div class="lf"><span class="lc">Федеральный провайдер&nbsp;· телеком</span></div>
     </a>
 
     <a class="lr" href="cases/help-me.html">
       <div class="lq">Юридический клиент трубку берёт, но <em>не у незнакомого номера</em>. Уговорить его нельзя, можно только попасть в тот короткий момент, когда он сам готов говорить.</div>
-      <div class="lf"><span class="lc">Help Me · списание долгов</span></div>
+      <div class="lf"><span class="lc">Help Me&nbsp;· списание долгов</span></div>
     </a>
 
     <a class="lr" href="cases/north-west-parts.html">
       <div class="lq">Никакая нейросеть не спасёт, если данные о складе неактуальны. Половина работы здесь — <em>не ИИ, а инженерия данных</em>.</div>
-      <div class="lf"><span class="lc">North West Parts · 19&nbsp;000&nbsp;SKU</span></div>
+      <div class="lf"><span class="lc">North West Parts&nbsp;· 19&nbsp;000&nbsp;SKU</span></div>
     </a>
 
   </div>
@@ -765,7 +775,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   <div class="price-grid">
 
     <div class="price-card">
-      <span class="tag">01 · Бот или интеграция</span>
+      <span class="tag">01&nbsp;· Бот или интеграция</span>
       <div class="pc-sum">100&#8288;–&#8288;200&nbsp;<span class="unit">тыс&nbsp;₽</span></div>
       <p class="pc-what">ИИ-ассистент принимает заявку за 30&nbsp;секунд, квалифицирует, консультирует, бронирует встречу. Менеджеру достаются только горячие.</p>
       <div class="pc-drivers">
@@ -785,7 +795,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     </div>
 
     <div class="price-card">
-      <span class="tag">02 · Система с интерфейсами</span>
+      <span class="tag">02&nbsp;· Система с интерфейсами</span>
       <div class="pc-sum">от 200&nbsp;<span class="unit">тыс&nbsp;₽</span></div>
       <p class="pc-what">Процесс оцифровывается целиком: свой интерфейс под каждую роль, учёт, логика, отчёты. Excel после этого можно закрыть.</p>
       <div class="pc-drivers">
@@ -803,7 +813,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     </div>
 
     <div class="price-card top">
-      <span class="tag">03 · Потолок на сегодня</span>
+      <span class="tag">03&nbsp;· Потолок на сегодня</span>
       <div class="pc-sum">350&nbsp;<span class="unit">тыс&nbsp;₽</span></div>
       <p class="pc-what">Самый крупный проект за три года. Складская операционная система с нуля: интерфейсы, логика, учёт, биллинг, пять ролей пользователей. Аналог «Мой склад» плюс CRM, собранный под один конкретный бизнес.</p>
       <div class="pc-drivers">
@@ -1035,7 +1045,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
   <div class="flag">
     <div class="flag-top">
       <div>
-        <span class="tag on-dark">Флагман · складская автоматизация</span>
+        <span class="tag on-dark">Флагман&nbsp;· складская автоматизация</span>
         <h2>MPShine</h2>
         <p class="flag-line">Операционная система для селлера на месте связки Excel-макросов. Упаковщик видит свой заработок в реальном времени, менеджер — что происходит на складе, владелец выставляет счета фулфилмент-клиентам.</p>
       </div>
@@ -1062,7 +1072,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
       </div>
       <p style="margin-top:26px;">Сорок минут, расчёт на бумаге, ноль рублей. Если ИИ вашу задачу не решает, я скажу это сразу.</p>
       <a class="btn-lime" href="https://t.me/SergChina" target="_blank" rel="noopener">Забрать бесплатный разбор</a>
-      <div class="signoff">Пишите в Telegram · отвечает основатель, не менеджер</div>
+      <div class="signoff">Пишите в Telegram&nbsp;· отвечает основатель, не менеджер</div>
     </div>
   </div>
 </section>
@@ -1076,7 +1086,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
         <span class="foot-name">Sparrow</span>
       </div>
       <p class="foot-tag">ИИ-системы и продукты для российского бизнеса. Два продукта в проде и внедрения под ключ.</p>
-      <div class="foot-mono mono">С&nbsp;2023 · 50+ внедрений · основатель Сергей Воробьев</div>
+      <div class="foot-mono mono">С&nbsp;2023&nbsp;· 50+ внедрений&nbsp;· основатель Сергей Воробьев</div>
     </div>
     <div class="foot-col">
       <h4>Навигация</h4>
@@ -1084,7 +1094,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
         <li><a href="products.html">Продукты</a></li>
         <li><a href="cases.html">Кейсы</a></li>
         <li><a href="#why">Почему я</a></li>
-        <li><a href="about.html">О компании</a></li>
+        <li><a href="about.html">О себе</a></li>
       </ul>
     </div>
     <div class="foot-col">
@@ -1098,7 +1108,7 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     </div>
   </div>
   <div class="foot-bottom">
-    <span>Sparrow · sparrow-ai.tech · 2026 · юрлицо SVORG</span>
+    <span>Sparrow&nbsp;· sparrow-ai.tech&nbsp;· 2026&nbsp;· юрлицо SVORG</span>
     <span class="mono">Чем глубже смотришь, тем больше видишь</span>
   </div>
 </footer>
@@ -1115,6 +1125,6 @@ a.pc:hover .pc-go{opacity:1;color:#5C6B16;}
     m.addEventListener('click',function(e){if(e.target.closest('a')){m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded','false');}});
   })();
 </script>
-<script src="motion.js?v=10" defer></script>
+<script src="motion.js?v=11" defer></script>
 </body>
 </html>

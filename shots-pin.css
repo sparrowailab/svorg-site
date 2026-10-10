@@ -1,5 +1,5 @@
 /* Закреплённый блок снимков — только страница MPShine.
-   Гасит CSS-стопку из motion.css: там правила вида `.shot-frame:nth-child(1)`
+   Гасит CSS-стопку из motion-scroll.css: там правила вида `.shot-frame:nth-child(1)`
    и `.shot-frame:nth-child(2)` — два класса специфичности, здесь на один
    больше, поэтому порядок подключения файлов ничего не решает и переставить
    `<link>` местами безопасно.
@@ -18,7 +18,7 @@
 /* Все кадры в одной ячейке, поэтому погашенный кадр лежит поверх видимого:
    события мыши снимаем со всех, возвращаем только текущему — иначе клик по
    снимку уходит в невидимый верхний. `z-index:auto` отменяет подъём второго
-   кадра из стопки motion.css, иначе два перехода выглядят по-разному.
+   кадра из стопки motion-scroll.css, иначе два перехода выглядят по-разному.
    `transition-property:border-color` убирает переход у transform: в styles.css
    он объявлен на .shot-frame ради подъёма по наведению, а здесь transform
    каждый кадр прокрутки пишет GSAP — с переходом сдвиг отстаёт от скролла
@@ -50,3 +50,37 @@
 .shots-steps i{width:7px;height:7px;border-radius:50%;background:#D6DAE0;
   transition:background .18s linear,transform .18s linear;}
 .shots-steps i.on{background:var(--lime-deep);transform:scale(1.3);}
+
+/* ---------- Печать ---------- */
+/* На бумаге нет ни прокрутки, ни закрепления: ScrollTrigger оставляет
+   обёртке высоту в три экрана с пустым полем снизу (замерено на
+   mpshine.html: 3224 px при отступе 2430 px — в PDF это были три пустые
+   страницы), а второй и третий кадры стоят с inline `opacity:0`.
+   Прозрачность и сдвиг пишет GSAP прямо в атрибут style, поэтому только
+   `!important`: правило таблицы с ним сильнее inline без него.
+   Все три кадра стоят в одной ячейке сетки, так что просто сделать их
+   видимыми нельзя — они легли бы друг на друга. Распускаем всё
+   закрепление и возвращаем обычный вид сетки снимков: на листе кейс
+   выглядит так же, как остальные одиннадцать — и неважно, с какого места
+   страницы человек нажал печать. */
+@media print{
+  .pin-spacer{height:auto !important;padding:0 !important;}
+  /* Пока секция реально закреплена, ScrollTrigger держит на ней inline
+     `position:fixed` с координатами. Снять только высоту и transform
+     недостаточно: распорка схлопывается, а секция остаётся вне потока —
+     печать из середины страницы (а это как раз то место, откуда её и захочется
+     напечатать) давала девять листов вместо шести, без шапки на первом
+     и по одному снимку на лист. Поэтому возвращаем секцию в поток целиком. */
+  .shots-pinned.shots-section{height:auto !important;max-height:none !important;
+    transform:none !important;position:static !important;
+    top:auto !important;left:auto !important;width:auto !important;}
+  /* Ширина листа около 717 px, поэтому сетку в одну колонку задаёт правило
+     `max-width:900px` из styles.css — как и на остальных одиннадцати кейсах.
+     Здесь остаётся только распустить общую ячейку. */
+  .shots-pinned .shots-grid{grid-template-areas:none;gap:18px;}
+  .shots-pinned .shots-grid .shot-frame{grid-area:auto;max-width:none;
+    opacity:1 !important;transform:none !important;}
+  .shots-pinned .shots-grid.full .shot-pic{height:200px;}
+  .shots-pinned .shot-frame figcaption{min-height:0;}
+  .shots-steps{display:none;}
+}

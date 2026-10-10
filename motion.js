@@ -1,6 +1,64 @@
-/* Движение Sparrow · счётчики и пары «было → стало».
-   Без JS страница полностью читается: финальные числа стоят в HTML,
-   скрипт только проигрывает к ним путь. Один раз, без повторов. */
+/* Движение Sparrow · счётчики и пары «было → стало». Без JS страница
+   читается целиком: финальные числа стоят в HTML, скрипт только
+   проигрывает к ним путь. Один раз, без повторов. */
+/* ---------- Устаивание страницы: общий механизм для всех появлений ---------- */
+/* Одного прохода при загрузке мало: первый экран устаивается позже скрипта.
+   Якорь приземляет читателя не в начало, и место приземления ползёт, пока
+   дорисовываются шрифты и снимки (index.html#price: scrollY от 3619 до 4159
+   px). Поэтому проход на каждом кадре: раз в 100 мс сдвиг вёрстки успевал
+   попасть между тиками, и блок на десятую секунды мигал. Останавливаемся,
+   как только читатель сам тронул страницу: колесо, палец, клавиша, нажатие.
+   Якорь, довёрстка и скрытие адресной строки таких событий не дают — по ним
+   и отличаем движение браузера от движения человека. Скрипт замера их тоже
+   не даёт: ему нужно сперва дать `mouse.wheel`, иначе он увидит мёртвую
+   страницу. */
+var mTouched = false, mScrolled = 0;
+['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (ev) {
+  addEventListener(ev, function () { mTouched = true; }, { passive: true, once: true });
+});
+addEventListener('scroll', function () { mScrolled = Date.now(); }, { passive: true });
+
+/* Якорь особый: при `scroll-behavior: smooth` событие приходит сразу, а
+   прокрутка ещё едет; серия уже остановлена — щелчок сам дал `pointerdown`.
+   Поэтому для якоря проходим заново, не глядя на ввод (замерено:
+   index.html#why, .founder оставался на opacity 0). */
+function mSettleAnchor(pass) {
+  var until = Date.now() + 1500;
+  (function step() {
+    pass();
+    if (Date.now() < until) requestAnimationFrame(step);
+  })();
+}
+
+function mSettle(pass) {
+  pass();
+  if (mTouched) return;
+  var until = Date.now() + 2000;
+  requestAnimationFrame(function step() {
+    pass();
+    if (!mTouched && Date.now() < until) requestAnimationFrame(step);
+  });
+}
+
+/* Окно изменили — проход заново: снизу открывается полоса, которой при
+   первом проходе не было (замерено: products.html, 1440x900 -> 1440x1800,
+   .products-grid высотой 1078 px с opacity 0,03). Задержка нужна из-за
+   телефона: при первой прокрутке прячется адресная строка, окно растёт и
+   приходит `resize`; без неё блок посередине появления скачком стал бы
+   непрозрачным на глазах. */
+function mOnResize(pass) {
+  var timer = 0;
+  function run() {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      if (Date.now() - mScrolled < 400) return;
+      pass();
+    }, 150);
+  }
+  addEventListener('resize', run);
+  addEventListener('orientationchange', run);
+}
+
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce || !('IntersectionObserver' in window)) return;
@@ -49,6 +107,28 @@
 
   counters.forEach(function (el) { io.observe(el); });
   pairs.forEach(function (el) { io.observe(el); });
+
+  /* Пара в нижней части экрана в наблюдатель не попадает: снизу отрезано
+     12%, и нужно 40% площади. Если страница так и встала — у конца
+     документа или после якоря, — «стало» осталось бы невидимым до
+     прокрутки, а её может и не быть. Поэтому всё видимое показываем само.
+     Ждём 700 мс: в hero на пару заказана задержка 620 мс. */
+  function baShow() {
+    var vh = innerHeight;
+    pairs.forEach(function (el) {
+      if (!el.classList.contains('ba-wait')) return;
+      if (el.getBoundingClientRect().top >= vh) return;
+      io.unobserve(el);
+      el.classList.remove('ba-wait');
+    });
+  }
+  setTimeout(function () { mSettle(baShow); }, 700);
+  /* Только настоящий возврат из кэша: `pageshow` приходит и на обычной
+     загрузке, сразу за `load`, и снял бы отметку раньше своих 700 мс —
+     «→ 1%» опередило бы плашку (замерено: 701 мс вместо 1012). */
+  addEventListener('pageshow', function (e) { if (e.persisted) mSettle(baShow); });
+  addEventListener('hashchange', function () { mSettleAnchor(baShow); });
+  mOnResize(baShow);
 })();
 
 /* ---------- объём: наклон под курсором ---------- */
@@ -160,3 +240,61 @@
     io.observe(table);
   });
 })();
+
+/* ---------- Появление блоков: что уже в первом экране, то не приходит ---------- */
+/* Блок, стоящий при загрузке внизу экрана, читателя встречал посередине
+   анимации — вплоть до полной прозрачности: появление привязано к нижней
+   кромке окна. Отмечаем такие блоки `m-seen` и только потом разрешаем
+   появление классом `m-ready` — до этого страница читается целиком.
+   Проход повторяется, пока страница устаивается, и после разворота окна,
+   якоря, возврата «назад» и шрифтов; механизм в начале файла. */
+(function () {
+  var root = document.documentElement;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!(window.CSS && CSS.supports && CSS.supports('animation-timeline', 'view()'))) return;
+
+  var SEL = 'body > section:not(:first-of-type) > *:not(.shots-grid):not(.case-grid):not(.compare),'
+          + '.case-grid > .case-card,.compare tbody td,.shot-frame';
+
+  function mark() {
+    var vh = innerHeight;
+    [].slice.call(document.querySelectorAll(SEL)).forEach(function (el) {
+      if (el.classList.contains('m-seen')) return;
+      if (el.getBoundingClientRect().top < vh) el.classList.add('m-seen');
+    });
+  }
+
+  mSettle(mark);
+  root.classList.add('m-ready');
+  mOnResize(mark);
+  addEventListener('hashchange', function () { mSettleAnchor(mark); });
+  addEventListener('pageshow', function (e) { if (e.persisted) mSettle(mark); });
+  addEventListener('load', function () { mSettle(mark); });
+  /* Tab доводит фокус до ссылки, браузер доскроливает её минимально — к
+     кромке, где блок ещё прозрачный, и человек не видит ни ссылку, ни рамку
+     фокуса (замерено: .proof-more, opacity 0,12). Серия тут бессильна: Tab —
+     это `keydown`, он её и останавливает. Показываем блок сразу. */
+  addEventListener('focusin', function (e) {
+    var el = e.target && e.target.closest && e.target.closest(SEL);
+    if (el) el.classList.add('m-seen');
+  });
+  /* Шрифты доезжают и двигают вёрстку — но только пока читатель не начал
+     листать сам: иначе поздняя загрузка сняла бы появление у блоков,
+     к которым он как раз подошёл. */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { if (!mTouched) mark(); });
+  }
+})();
+
+/* ---------- Отложенные снимки: догрузить сразу после первого экрана ---------- */
+/* Семь снимков на mpshine и opencowork отмечены `loading="lazy"`: они далеко
+   внизу. Но к печати браузер отложенный снимок не грузит — лист уходил с
+   пустыми рамками (naturalWidth 0), а `beforeprint` не спасает: лист уже
+   свёрстан. Снимаем отметку в событии `load`, когда первый экран отрисован:
+   цена 4 мс из 1444. В разметке нельзя — те же снимки отнимают канал у
+   styles.css и отодвигают первый экран на 400 мс. Цифры и остаточная щель —
+   в решении от 10 октября в docs/DESIGN.md. */
+addEventListener('load', function () {
+  [].slice.call(document.querySelectorAll('img[loading="lazy"]'))
+    .forEach(function (img) { img.loading = 'eager'; });
+});
